@@ -46,6 +46,74 @@ function compactBody(value: string, limit = 900) {
   return `${value.slice(0, limit).trim()}...`;
 }
 
+function sourceUrl(title: string) {
+  return externalSources.find((source) => normalize(source.title) === normalize(title))?.url ?? "#zrodla";
+}
+
+const legalReferences = [
+  {
+    url: sourceUrl("Prawo oswiatowe"),
+    phrases: ["Prawo oświatowe", "Prawa oświatowego"],
+  },
+  {
+    url: sourceUrl("Ustawa o systemie oswiaty"),
+    phrases: ["ustawa o systemie oświaty", "ustawy o systemie oświaty"],
+  },
+  {
+    url: sourceUrl("Pomoc psychologiczno-pedagogiczna"),
+    phrases: ["pomoc psychologiczno-pedagogiczna", "pomocy psychologiczno-pedagogicznej"],
+  },
+  {
+    url: sourceUrl("Indywidualne nauczanie"),
+    phrases: ["indywidualne nauczanie", "indywidualnego nauczania"],
+  },
+  {
+    url: sourceUrl("Dokumentacja przebiegu nauczania"),
+    phrases: ["dokumentacja przebiegu nauczania", "dokumentacji przebiegu nauczania"],
+  },
+  {
+    url: sourceUrl("Praktyczna nauka zawodu"),
+    phrases: ["praktyczna nauka zawodu", "praktycznej nauki zawodu"],
+  },
+  {
+    url: sourceUrl("BHP w szkolach"),
+    phrases: ["bezpieczeństwa i higieny pracy", "BHP"],
+  },
+  {
+    url: sourceUrl("Ochrona maloletnich"),
+    phrases: ["Standardy Ochrony Małoletnich", "ochrony małoletnich"],
+  },
+];
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+const legalReferenceMatcher = new RegExp(
+  `(${legalReferences
+    .flatMap((reference) => reference.phrases)
+    .sort((a, b) => b.length - a.length)
+    .map(escapeRegExp)
+    .join("|")})`,
+  "gi",
+);
+
+function renderLinkedText(value: string) {
+  return value.split(legalReferenceMatcher).map((part, index) => {
+    const reference = legalReferences.find((item) =>
+      item.phrases.some((phrase) => normalize(phrase) === normalize(part)),
+    );
+
+    if (!reference) return part;
+
+    return (
+      <a className="legal-link" href={reference.url} key={`${part}-${index}`} rel="noreferrer" target="_blank">
+        {part}
+      </a>
+    );
+  });
+}
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<(typeof categories)[number]>("Wszystko");
@@ -249,23 +317,42 @@ export default function Home() {
 
       <section className="statute-section" id="statut">
         <div className="section-heading">
-          <p>Statut jako mapa</p>
-          <h2>Wyniki w aktualnym statucie</h2>
-        </div>
-        <div className="statute-grid">
-          {filteredSections.slice(0, 36).map((section) => (
-            <article className="statute-card" key={section.id}>
-              <span>{section.chapter}</span>
-              <h3>{section.title}</h3>
-              <p>{compactBody(section.body, 360)}</p>
-            </article>
-          ))}
-        </div>
-        {filteredSections.length > 36 ? (
-          <p className="more-note">
-            Pokazuję pierwsze 36 trafień. Doprecyzuj zapytanie, żeby zawęzić listę.
+          <p>Statut tekstowy</p>
+          <h2>Pełny aktualny statut do czytania</h2>
+          <p className="section-lead">
+            To jest cały tekst statutu w formie HTML. Wyszukiwarka zawęża widoczne paragrafy, a rozpoznane
+            odwołania do aktów zewnętrznych prowadzą do oficjalnych publikacji.
           </p>
-        ) : null}
+        </div>
+        <div className="reader-layout">
+          <aside className="reader-toc" aria-label="Spis treści statutu">
+            <div className="reader-toc-header">
+              <strong>{filteredSections.length}</strong>
+              <span>{query ? "trafień" : "paragrafów"}</span>
+            </div>
+            <a className="reader-download" href={siteStats.statuteDownload}>
+              Pobierz oryginalny PDF
+            </a>
+            <nav>
+              {filteredSections.map((section) => (
+                <a href={`#${section.id}`} key={section.id}>
+                  <span>{section.chapter}</span>
+                  {section.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+          <div className="statute-reader">
+            {filteredSections.map((section) => (
+              <article className="reader-article" id={section.id} key={section.id}>
+                <span>{section.chapter}</span>
+                <h3>{section.title}</h3>
+                <p className="reader-text">{renderLinkedText(section.body)}</p>
+              </article>
+            ))}
+            {!filteredSections.length ? <p className="empty">Brak paragrafów statutu dla tego filtra.</p> : null}
+          </div>
+        </div>
       </section>
 
       <section className="missing-section" id="braki">

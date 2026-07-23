@@ -105,9 +105,15 @@ const html = `<!doctype html>
     </section>
 
     <section class="statute-section" id="statut">
-      <div class="section-heading"><p>Statut jako mapa</p><h2>Wyniki w aktualnym statucie</h2></div>
-      <div class="statute-grid" id="statute-grid"></div>
-      <p class="more-note" id="more-note"></p>
+      <div class="section-heading">
+        <p>Statut tekstowy</p>
+        <h2>Pełny aktualny statut do czytania</h2>
+        <p class="section-lead">To jest cały tekst statutu w formie HTML. Wyszukiwarka zawęża widoczne paragrafy, a rozpoznane odwołania do aktów zewnętrznych prowadzą do oficjalnych publikacji.</p>
+      </div>
+      <div class="reader-layout">
+        <aside class="reader-toc" aria-label="Spis treści statutu" id="reader-toc"></aside>
+        <div class="statute-reader" id="statute-reader"></div>
+      </div>
     </section>
 
     <section class="missing-section" id="braki">
@@ -137,6 +143,26 @@ const norm = (value) => String(value).toLowerCase().normalize("NFD").replace(/[\
 const includesQuery = (value, query) => norm(value).includes(norm(query));
 const statusLabel = (status) => ({ obowiazujacy: "obowiązujący", gotowy: "gotowy", "do uzupelnienia": "do uzupełnienia", brak: "brak" }[status] || status);
 const compact = (value, limit = 900) => value.length <= limit ? value : value.slice(0, limit).trim() + "...";
+const sourceUrl = (title) => data.externalSources.find((source) => norm(source.title) === norm(title))?.url || "#zrodla";
+const legalReferences = [
+  { url: sourceUrl("Prawo oswiatowe"), phrases: ["Prawo oświatowe", "Prawa oświatowego"] },
+  { url: sourceUrl("Ustawa o systemie oswiaty"), phrases: ["ustawa o systemie oświaty", "ustawy o systemie oświaty"] },
+  { url: sourceUrl("Pomoc psychologiczno-pedagogiczna"), phrases: ["pomoc psychologiczno-pedagogiczna", "pomocy psychologiczno-pedagogicznej"] },
+  { url: sourceUrl("Indywidualne nauczanie"), phrases: ["indywidualne nauczanie", "indywidualnego nauczania"] },
+  { url: sourceUrl("Dokumentacja przebiegu nauczania"), phrases: ["dokumentacja przebiegu nauczania", "dokumentacji przebiegu nauczania"] },
+  { url: sourceUrl("Praktyczna nauka zawodu"), phrases: ["praktyczna nauka zawodu", "praktycznej nauki zawodu"] },
+  { url: sourceUrl("BHP w szkolach"), phrases: ["bezpieczeństwa i higieny pracy", "BHP"] },
+  { url: sourceUrl("Ochrona maloletnich"), phrases: ["Standardy Ochrony Małoletnich", "ochrony małoletnich"] },
+];
+const legalMatcher = new RegExp("(" + legalReferences.flatMap((reference) => reference.phrases).sort((a, b) => b.length - a.length).map((phrase) => phrase.replace(/[.*+?^$(){}|[\\]\\\\]/g, "\\\\$&")).join("|") + ")", "gi");
+
+function linkedText(value) {
+  return esc(value).split(legalMatcher).map((part) => {
+    const reference = legalReferences.find((item) => item.phrases.some((phrase) => norm(phrase) === norm(part)));
+    if (!reference) return part;
+    return \`<a class="legal-link" href="\${esc(reference.url)}" rel="noreferrer" target="_blank">\${part}</a>\`;
+  }).join("");
+}
 
 function filtered() {
   const docs = data.documents.filter((document) => {
@@ -180,9 +206,12 @@ function render() {
     </div>
     <pre>\${esc(compact(selected.body, selected.id === "statut" ? 2200 : 1800))}</pre>\` : "";
 
-  $("statute-grid").innerHTML = result.sections.slice(0, 36).map((section) => \`
-    <article class="statute-card"><span>\${esc(section.chapter)}</span><h3>\${esc(section.title)}</h3><p>\${esc(compact(section.body, 360))}</p></article>\`).join("");
-  $("more-note").textContent = result.sections.length > 36 ? "Pokazuję pierwsze 36 trafień. Doprecyzuj zapytanie, żeby zawęzić listę." : "";
+  $("reader-toc").innerHTML = \`
+    <div class="reader-toc-header"><strong>\${result.sections.length}</strong><span>\${state.query ? "trafień" : "paragrafów"}</span></div>
+    <a class="reader-download" href="./docs/Statut_Zespolu_Szkol_Zawodowych_nr_20251015.pdf">Pobierz oryginalny PDF</a>
+    <nav>\${result.sections.map((section) => \`<a href="#\${esc(section.id)}"><span>\${esc(section.chapter)}</span>\${esc(section.title)}</a>\`).join("")}</nav>\`;
+  $("statute-reader").innerHTML = result.sections.length ? result.sections.map((section) => \`
+    <article class="reader-article" id="\${esc(section.id)}"><span>\${esc(section.chapter)}</span><h3>\${esc(section.title)}</h3><p class="reader-text">\${linkedText(section.body)}</p></article>\`).join("") : '<p class="empty">Brak paragrafów statutu dla tego filtra.</p>';
 
   $("missing-list").innerHTML = result.missing.length ? result.missing.map((document) => \`
     <article class="missing-item"><div><span class="pill">\${esc(document.category)}</span><h3>\${esc(document.title)}</h3><p>\${esc(document.note)}</p></div><strong>\${esc(document.ref)}</strong></article>\`).join("") : '<p class="empty">Brak pozycji dla tego filtra.</p>';
