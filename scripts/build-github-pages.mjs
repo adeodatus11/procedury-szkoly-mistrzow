@@ -1,0 +1,208 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const siteRoot = process.cwd();
+const outputDir = path.join(siteRoot, "_site");
+const publicDir = path.join(siteRoot, "public");
+const dataPath = path.join(publicDir, "search-data.json");
+
+const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+
+function ensureDir(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+function copyDir(source, target) {
+  ensureDir(target);
+  for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
+    const sourcePath = path.join(source, entry.name);
+    const targetPath = path.join(target, entry.name);
+    if (entry.isDirectory()) copyDir(sourcePath, targetPath);
+    else fs.copyFileSync(sourcePath, targetPath);
+  }
+}
+
+function esc(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+fs.rmSync(outputDir, { recursive: true, force: true });
+ensureDir(outputDir);
+copyDir(path.join(publicDir, "assets"), path.join(outputDir, "assets"));
+copyDir(path.join(publicDir, "docs"), path.join(outputDir, "docs"));
+
+const html = `<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Procedury Szkoły Mistrzów</title>
+    <meta name="description" content="Statut, procedury, regulaminy i dokumenty Zespołu Szkół Zawodowych nr 5 we Wrocławiu.">
+    <link rel="icon" href="./assets/logo.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Główna nawigacja">
+        <a class="brand" href="#start"><img src="./assets/logo.png" alt="procedury.szkolamistrzow.info"></a>
+        <div class="topbar-links">
+          <a href="#dokumenty">Dokumenty</a>
+          <a href="#statut">Statut</a>
+          <a href="#braki">Braki</a>
+          <a href="#zrodla">Źródła</a>
+        </div>
+      </nav>
+      <section class="hero" id="start">
+        <div class="hero-copy">
+          <p class="eyebrow">System dokumentacji ZSZ nr 5</p>
+          <h1>Statut, procedury i regulaminy w jednym miejscu</h1>
+          <p class="lead">Prosty katalog dokumentów wynikających ze Statutu Zespołu Szkół Zawodowych nr 5 we Wrocławiu. Strona używa aktualnego statutu z 15 października 2025 r. jako dokumentu nadrzędnego.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="./docs/Statut_Zespolu_Szkol_Zawodowych_nr_20251015.pdf">Pobierz statut PDF</a>
+            <a class="secondary-action" href="#wyszukiwarka">Przejdź do wyszukiwarki</a>
+          </div>
+        </div>
+        <aside class="hero-status" aria-label="Stan katalogu">
+          <div><strong>${data.siteStats.documentCount}</strong><span>dokumentów</span></div>
+          <div><strong>${data.siteStats.statuteSectionCount}</strong><span>sekcji statutu</span></div>
+          <div><strong>${data.siteStats.missingCount}</strong><span>braków do opracowania</span></div>
+        </aside>
+      </section>
+    </header>
+
+    <section class="search-band" id="wyszukiwarka">
+      <div class="search-inner">
+        <label for="search">Wyszukaj w statucie i dokumentach</label>
+        <div class="search-row">
+          <input id="search" type="search" placeholder="np. skreślenie, dyżury, pomoc psychologiczno-pedagogiczna, wycieczki">
+          <button id="clear" type="button">Wyczyść</button>
+        </div>
+        <div class="filters" aria-label="Filtry">
+          ${["Wszystko", "Statut", "Procedury", "Regulaminy", "Programy", "Ocenianie", "Braki"]
+            .map((item) => `<button type="button" data-filter="${esc(item)}">${esc(item)}</button>`)
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard" aria-label="Podsumowanie wyników">
+      <div><span id="count-docs">0</span><p>dokumentów w widoku</p></div>
+      <div><span id="count-statut">0</span><p>trafień w statucie</p></div>
+      <div><span id="count-braki">0</span><p>braków w kolejce</p></div>
+      <div><span>${esc(new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(new Date(data.generatedAt)))}</span><p>ostatnia aktualizacja indeksu</p></div>
+    </section>
+
+    <section class="workspace" id="dokumenty">
+      <div class="document-list">
+        <div class="section-heading"><p>Dokumenty zebrane</p><h2>Rejestr dokumentów</h2></div>
+        <div class="list-stack" id="document-list"></div>
+      </div>
+      <aside class="preview" id="preview"></aside>
+    </section>
+
+    <section class="statute-section" id="statut">
+      <div class="section-heading"><p>Statut jako mapa</p><h2>Wyniki w aktualnym statucie</h2></div>
+      <div class="statute-grid" id="statute-grid"></div>
+      <p class="more-note" id="more-note"></p>
+    </section>
+
+    <section class="missing-section" id="braki">
+      <div class="section-heading"><p>Do opracowania</p><h2>Dokumenty wskazane przez statut, których brakuje w katalogu</h2></div>
+      <div class="missing-list" id="missing-list"></div>
+    </section>
+
+    <section class="sources-section" id="zrodla">
+      <div class="section-heading"><p>Źródła zewnętrzne</p><h2>Akty prawne i odwołania</h2></div>
+      <div class="source-list">
+        ${data.externalSources.map((source) => `<a href="${esc(source.url)}" rel="noreferrer" target="_blank">${esc(source.title)}</a>`).join("")}
+      </div>
+    </section>
+
+    <script id="search-data" type="application/json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>
+    <script src="./app.js"></script>
+  </body>
+</html>`;
+
+const css = fs.readFileSync(path.join(siteRoot, "app", "globals.css"), "utf8").replace('@import "tailwindcss";', "");
+
+const js = `const data = JSON.parse(document.getElementById("search-data").textContent);
+const state = { query: "", category: "Wszystko", selected: data.documents[0]?.id };
+const $ = (id) => document.getElementById(id);
+const esc = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+const norm = (value) => String(value).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
+const includesQuery = (value, query) => norm(value).includes(norm(query));
+const statusLabel = (status) => ({ obowiazujacy: "obowiązujący", gotowy: "gotowy", "do uzupelnienia": "do uzupełnienia", brak: "brak" }[status] || status);
+const compact = (value, limit = 900) => value.length <= limit ? value : value.slice(0, limit).trim() + "...";
+
+function filtered() {
+  const docs = data.documents.filter((document) => {
+    const matchesCategory = state.category === "Wszystko" || state.category === document.category || (state.category === "Programy" && document.category === "Programy");
+    const haystack = [document.title, document.category, document.status, document.statuteRefs.join(" "), document.body].join(" ");
+    return matchesCategory && (!state.query || includesQuery(haystack, state.query));
+  });
+  const sections = (state.category === "Wszystko" || state.category === "Statut")
+    ? data.statuteSections.filter((section) => !state.query || includesQuery([section.title, section.chapter, section.body].join(" "), state.query))
+    : [];
+  const missing = (state.category === "Wszystko" || state.category === "Braki")
+    ? data.missingDocuments.filter((document) => !state.query || includesQuery([document.title, document.category, document.ref, document.note].join(" "), state.query))
+    : [];
+  return { docs, sections, missing };
+}
+
+function render() {
+  const result = filtered();
+  $("count-docs").textContent = result.docs.length;
+  $("count-statut").textContent = result.sections.length;
+  $("count-braki").textContent = result.missing.length;
+  document.querySelectorAll("[data-filter]").forEach((button) => button.classList.toggle("active", button.dataset.filter === state.category));
+
+  $("document-list").innerHTML = result.docs.length ? result.docs.map((document) => \`
+    <article class="doc-card">
+      <div class="doc-card-head"><span class="pill">\${esc(document.category)}</span><span class="status status-\${esc(document.status.replaceAll(" ", "-"))}">\${esc(statusLabel(document.status))}</span></div>
+      <h3>\${esc(document.title)}</h3>
+      <p>\${esc(document.excerpt)}</p>
+      <div class="refs">\${document.statuteRefs.map((ref) => \`<span>\${esc(ref)}</span>\`).join("")}</div>
+      <div class="doc-actions"><button type="button" data-read="\${esc(document.id)}">Czytaj</button>\${document.hasDownload && document.download ? \`<a href=".\${esc(document.download)}">Pobierz</a>\` : ""}</div>
+    </article>\`).join("") : '<p class="empty">Brak dokumentów dla tego filtra.</p>';
+
+  const selected = data.documents.find((document) => document.id === state.selected) || result.docs[0] || data.documents[0];
+  state.selected = selected?.id;
+  $("preview").innerHTML = selected ? \`
+    <div class="preview-header">
+      <span class="pill">\${esc(selected.category)}</span>
+      <h2>\${esc(selected.title)}</h2>
+      <p>Podstawa w statucie: <strong>\${esc(selected.statuteRefs.join(", "))}</strong></p>
+      \${selected.hasDownload && selected.download ? \`<a class="download-link" href=".\${esc(selected.download)}">Pobierz plik źródłowy</a>\` : ""}
+    </div>
+    <pre>\${esc(compact(selected.body, selected.id === "statut" ? 2200 : 1800))}</pre>\` : "";
+
+  $("statute-grid").innerHTML = result.sections.slice(0, 36).map((section) => \`
+    <article class="statute-card"><span>\${esc(section.chapter)}</span><h3>\${esc(section.title)}</h3><p>\${esc(compact(section.body, 360))}</p></article>\`).join("");
+  $("more-note").textContent = result.sections.length > 36 ? "Pokazuję pierwsze 36 trafień. Doprecyzuj zapytanie, żeby zawęzić listę." : "";
+
+  $("missing-list").innerHTML = result.missing.length ? result.missing.map((document) => \`
+    <article class="missing-item"><div><span class="pill">\${esc(document.category)}</span><h3>\${esc(document.title)}</h3><p>\${esc(document.note)}</p></div><strong>\${esc(document.ref)}</strong></article>\`).join("") : '<p class="empty">Brak pozycji dla tego filtra.</p>';
+}
+
+$("search").addEventListener("input", (event) => { state.query = event.target.value; render(); });
+$("clear").addEventListener("click", () => { state.query = ""; $("search").value = ""; render(); });
+document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => { state.category = button.dataset.filter; render(); }));
+document.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-read]");
+  if (!target) return;
+  state.selected = target.dataset.read;
+  render();
+  $("preview").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+render();`;
+
+fs.writeFileSync(path.join(outputDir, "index.html"), html);
+fs.writeFileSync(path.join(outputDir, "styles.css"), css);
+fs.writeFileSync(path.join(outputDir, "app.js"), js);
+fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
+
+console.log(`Built GitHub Pages site in ${path.relative(siteRoot, outputDir)}`);

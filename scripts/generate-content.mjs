@@ -4,7 +4,9 @@ import path from "node:path";
 const root = path.resolve("..");
 const siteRoot = process.cwd();
 const publicDocs = path.join(siteRoot, "public", "docs");
+const publicData = path.join(siteRoot, "public", "search-data.json");
 const outputPath = path.join(siteRoot, "app", "content.ts");
+const generatedAt = "2026-07-23T20:17:33.147Z";
 
 const sourceFiles = [
   {
@@ -266,7 +268,7 @@ const docs = sourceFiles.map((item) => {
 const statute = docs.find((doc) => doc.id === "statut");
 const statuteSections = parseStatuteSections(readSource("Statut_Zespolu_Szkol_Zawodowych_nr_20251015.md"));
 
-const payload = `export const generatedAt = ${JSON.stringify(new Date().toISOString())};
+const payload = `export const generatedAt = ${JSON.stringify(generatedAt)};
 
 export const documents = ${JSON.stringify(docs, null, 2)} as const;
 
@@ -285,4 +287,24 @@ export const siteStats = {
 `;
 
 fs.writeFileSync(outputPath, payload);
+fs.writeFileSync(
+  publicData,
+  JSON.stringify(
+    {
+      generatedAt,
+      documents: docs,
+      statuteSections,
+      missingDocuments,
+      externalSources,
+      siteStats: {
+        documentCount: docs.length,
+        statuteSectionCount: statuteSections.length,
+        missingCount: missingDocuments.length,
+        statuteDownload: statute?.download ?? "",
+      },
+    },
+    null,
+    2,
+  ),
+);
 console.log(`Generated ${path.relative(siteRoot, outputPath)} with ${docs.length} documents and ${statuteSections.length} statute sections.`);
