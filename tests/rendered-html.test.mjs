@@ -93,6 +93,18 @@ test("server-renders numbered paragraphs and subpoints on separate lines", async
   assert.doesNotMatch(html, /na wniosek: a\) ucznia/);
 });
 
+test("server-renders numbered document sections above indented lists", async () => {
+  const response = await render("/dokumenty/proc-skreslenie-propozycja");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<p class="structured-line line-section">5\. Minimalny zestaw dokumentów<\/p>/);
+  assert.match(html, /<p class="structured-line line-ustep">1\. Notatka służbowa o zdarzeniu\.<\/p>/);
+  assert.match(html, /<p class="structured-line line-section">6\. Wzory załączników do opracowania<\/p>/);
+  assert.match(html, /<p class="structured-line line-section">7\. Źródła wykorzystane w kwerendzie<\/p>/);
+  assert.match(html, /<p class="structured-line line-ustep">1\. <a class="legal-link"[^>]*>Prawo oświatowe<\/a>, art\. 68/);
+});
+
 test("server-renders one statute chapter at a time", async () => {
   const response = await render("/statut/rozdzial-1-przepisy-definiujace");
   assert.equal(response.status, 200);

@@ -118,6 +118,15 @@ function lineClassName(line: string) {
   const trimmed = line.trim();
   if (/^Rozdział\s+\d+/i.test(trimmed)) return "structured-line line-chapter";
   if (/^§\s*\d+/.test(trimmed)) return "structured-line line-paragraph";
+  if (
+    /^\d+(?:\.\d+)*\.?\s+\S/.test(trimmed) &&
+    !/[.:;]$/.test(trimmed) &&
+    !/^https?:\/\//i.test(trimmed) &&
+    !/https?:\/\//i.test(trimmed) &&
+    trimmed.split(/\s+/).length <= 12
+  ) {
+    return "structured-line line-section";
+  }
   if (/^\d+[a-z]?\./i.test(trimmed)) return "structured-line line-ustep";
   if (/^\d+\)/.test(trimmed)) return "structured-line line-punkt";
   if (/^[-•]/.test(trimmed)) return "structured-line line-punkt";

@@ -7,7 +7,7 @@
   --ink: #1d2522;
   --muted: #66716c;
   --line: #d7d9cf;
-  --table-line: #aeb8ac;
+  --table-line: #879188;
   --green: #1f6b54;
   --green-dark: #174a3c;
   --amber: #b27722;
@@ -680,7 +680,7 @@ h1 {
 }
 
 .structured-line {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   max-width: 92ch;
 }
 
@@ -702,15 +702,32 @@ h1 {
   margin-top: 14px;
 }
 
+.line-section {
+  color: var(--green-dark);
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 22px 0 10px;
+}
+
+.line-section:first-child {
+  margin-top: 0;
+}
+
 .line-ustep {
-  padding-left: 1.1rem;
+  line-height: 1.45;
+  margin-bottom: 4px;
+  padding-left: 1.75rem;
 }
 
 .line-punkt {
+  line-height: 1.45;
+  margin-bottom: 4px;
   padding-left: 2.5rem;
 }
 
 .line-litera {
+  line-height: 1.42;
+  margin-bottom: 3px;
   padding-left: 4rem;
 }
 
