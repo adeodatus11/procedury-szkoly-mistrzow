@@ -112,7 +112,7 @@ test("server-renders one statute chapter at a time", async () => {
   const html = await response.text();
   assert.match(html, /Rozdział 1\. Przepisy definiujące/);
   assert.match(html, /Wyświetlany jest tylko jeden rozdział/);
-  assert.match(html, /class="active" href="\/statut\/rozdzial-1-przepisy-definiujace"/);
+  assert.match(html, /href="\/statut\/rozdzial-1-przepisy-definiujace" class="active"/);
   assert.doesNotMatch(html, /paragrafów/);
   assert.doesNotMatch(html, /<h2>§ 136\./);
   assert.doesNotMatch(html, /<h2>§ 140\./);
@@ -127,6 +127,45 @@ test("server-renders the missing documents page after consolidation", async () =
   assert.match(html, /11<\/strong><span>dokumentów do opracowania/);
   assert.match(html, /Dokumenty, dla których przygotowano propozycję/);
   assert.match(html, /href="\/dokumenty\/ins-kancelaryjna-propozycja"/);
+  assert.match(html, /href="\/wzory\/archiwum-rejestr-pieczeci"/);
+  assert.match(html, /href="\/wzory\/skreslenie-karta-obiegowa"/);
   assert.doesNotMatch(html, /Instrukcja kancelaryjna<\/h3>/);
   assert.match(html, /Instrukcja korzystania z dziennika elektronicznego/);
+});
+
+test("server-renders the full form template catalogue", async () => {
+  const response = await render("/wzory");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Wzory pism i formularzy/);
+  assert.match(html, /35<\/strong><span>wzorów DOCX/);
+  assert.match(html, /Skreślenie ucznia/);
+  assert.match(html, /Kancelaria i archiwizacja/);
+  assert.match(html, /href="\/wzory\/skreslenie-decyzja"/);
+  assert.match(html, /href="\/dokumenty\/proc-skreslenie-propozycja"/);
+});
+
+test("server-renders a form preview with direct Word download and research links", async () => {
+  const response = await render("/wzory/skreslenie-karta-obiegowa");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Karta obiegowa ucznia/);
+  assert.match(html, /DO WERYFIKACJI/);
+  assert.match(html, /Pobierz plik Word/);
+  assert.match(html, /\/docs\/wzory\/PROC_03_Skreslenie_Ucznia\/06_Karta_obiegowa_ucznia\.docx/);
+  assert.match(html, /\/previews\/wzory\/skreslenie-karta-obiegowa\/page-1\.png/);
+  assert.match(html, /Kodeks postępowania administracyjnego/);
+});
+
+test("links proposed form templates from their source procedure", async () => {
+  const response = await render("/dokumenty/proc-skreslenie-propozycja");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Propozycje wzorów pism i formularzy/);
+  assert.match(html, /href="\/wzory\/skreslenie-notatka-sluzbowa"/);
+  assert.match(html, /href="\/wzory\/skreslenie-decyzja"/);
+  assert.match(html, /Podgląd PNG i plik Word do pobrania/);
 });

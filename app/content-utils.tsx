@@ -206,11 +206,15 @@ function renderTextBlock(block: string, index: number) {
     .filter(Boolean);
 
   if (shouldSplitStructuredBlock(lines)) {
-    return lines.map((line, lineIndex) => (
-      <p className={lineClassName(line)} key={`${line.slice(0, 28)}-${index}-${lineIndex}`}>
-        {renderLinkedText(line)}
-      </p>
-    ));
+    return lines.map((line, lineIndex) =>
+      /^-{3,}$/.test(line) ? (
+        <hr className="document-rule" key={`rule-${index}-${lineIndex}`} />
+      ) : (
+        <p className={lineClassName(line)} key={`${line.slice(0, 28)}-${index}-${lineIndex}`}>
+          {renderLinkedText(line)}
+        </p>
+      ),
+    );
   }
 
   return (
@@ -226,6 +230,10 @@ export function renderStructuredText(value: string) {
     .map((block) => block.trim())
     .filter(Boolean)
     .flatMap((block, index) => {
+      if (/^-{3,}$/.test(block)) {
+        return <hr className="document-rule" key={`rule-${index}`} />;
+      }
+
       const table = renderMarkdownTable(block, index);
       if (table) return table;
 

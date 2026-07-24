@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { documents, generatedAt, missingDocuments } from "../content";
 import { documentHref } from "../content-utils";
+import { formTemplateHref, formTemplates, templateForMissingDocument } from "../form-templates";
 
 function groupedMissing() {
-  return missingDocuments.reduce<Record<string, typeof missingDocuments>>((groups, document) => {
+  return missingDocuments.reduce<Record<string, (typeof missingDocuments)[number][]>>((groups, document) => {
     groups[document.category] = [...(groups[document.category] ?? []), document];
     return groups;
   }, {});
@@ -28,6 +29,7 @@ export default function MissingPage() {
             <Link href="/">Strona główna</Link>
             <Link href="/#dokumenty">Dokumenty</Link>
             <Link href="/#statut">Statut</Link>
+            <Link href="/wzory">Wzory pism</Link>
           </div>
         </nav>
       </header>
@@ -51,6 +53,10 @@ export default function MissingPage() {
           <div>
             <strong>{documents.length}</strong>
             <span>dokumentów już zebranych</span>
+          </div>
+          <div>
+            <strong>{formTemplates.length}</strong>
+            <span>wzorów do weryfikacji</span>
           </div>
         </div>
       </section>
@@ -97,6 +103,14 @@ export default function MissingPage() {
                   <div>
                     <h3>{document.title}</h3>
                     <p>{document.note}</p>
+                    {templateForMissingDocument(document.id) ? (
+                      <Link
+                        className="missing-proposal-link"
+                        href={formTemplateHref(templateForMissingDocument(document.id)!.id)}
+                      >
+                        Jest propozycja wzoru - otwórz podgląd i plik Word
+                      </Link>
+                    ) : null}
                   </div>
                   <strong>{document.ref}</strong>
                 </section>

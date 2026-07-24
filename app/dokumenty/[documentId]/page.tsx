@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { documents } from "../../content";
 import { renderStructuredText, statusLabel } from "../../content-utils";
+import { formTemplateHref, templatesForDocument } from "../../form-templates";
 
 type PageProps = {
   params: Promise<{
@@ -28,19 +30,21 @@ export default async function DocumentPage({ params }: PageProps) {
   const document = documents.find((item) => item.id === documentId);
 
   if (!document) notFound();
+  const relatedTemplates = templatesForDocument(document.id);
 
   return (
     <main>
       <header className="site-header">
         <nav className="topbar" aria-label="Główna nawigacja">
-          <a className="brand" href="/">
+          <Link className="brand" href="/">
             <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </a>
+          </Link>
           <div className="topbar-links">
-            <a href="/">Strona główna</a>
-            <a href="/#dokumenty">Dokumenty</a>
-            <a href="/statut">Statut</a>
-            <a href="/braki">Braki</a>
+            <Link href="/">Strona główna</Link>
+            <Link href="/#dokumenty">Dokumenty</Link>
+            <Link href="/statut">Statut</Link>
+            <Link href="/wzory">Wzory pism</Link>
+            <Link href="/braki">Braki</Link>
           </div>
         </nav>
       </header>
@@ -72,6 +76,23 @@ export default async function DocumentPage({ params }: PageProps) {
               </div>
             ) : null}
             <div className="document-reader document-reader-full">{renderStructuredText(document.body)}</div>
+            {relatedTemplates.length ? (
+              <section className="related-forms" aria-label="Wzory pism do dokumentu">
+                <div className="section-heading">
+                  <p>Załączniki robocze</p>
+                  <h2>Propozycje wzorów pism i formularzy</h2>
+                </div>
+                <div className="related-forms-list">
+                  {relatedTemplates.map((template) => (
+                    <Link href={formTemplateHref(template.id)} key={template.id}>
+                      <span>{template.code}</span>
+                      <strong>{template.title}</strong>
+                      <small>Podgląd PNG i plik Word do pobrania</small>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </article>
         </div>
       </section>

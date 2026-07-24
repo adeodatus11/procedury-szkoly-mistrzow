@@ -11,6 +11,7 @@ import {
   statuteSections,
 } from "./content";
 import { documentHref, includesQuery, statuteChapterHref, statusLabel } from "./content-utils";
+import { formTemplateHref, formTemplates, templateForMissingDocument } from "./form-templates";
 
 const categories = [
   "Wszystko",
@@ -76,6 +77,7 @@ export default function Home() {
           <div className="topbar-links">
             <a href="#dokumenty">Dokumenty</a>
             <a href="#statut">Statut</a>
+            <a href="./wzory/">Wzory pism</a>
             <a href="./braki/">Braki</a>
             <a href="#zrodla">Źródła</a>
           </div>
@@ -96,6 +98,9 @@ export default function Home() {
               <a className="secondary-action" href="#wyszukiwarka">
                 Przejdź do wyszukiwarki
               </a>
+              <a className="secondary-action" href="./wzory/">
+                Przeglądaj wzory pism
+              </a>
             </div>
           </div>
           <aside className="hero-status" aria-label="Stan katalogu">
@@ -110,6 +115,10 @@ export default function Home() {
             <div>
               <strong>{siteStats.missingCount}</strong>
               <span>braków do opracowania</span>
+            </div>
+            <div>
+              <strong>{formTemplates.length}</strong>
+              <span>wzorów pism do weryfikacji</span>
             </div>
           </aside>
         </section>
@@ -266,6 +275,14 @@ export default function Home() {
                 <span className="pill">{document.category}</span>
                 <h3>{document.title}</h3>
                 <p>{document.note}</p>
+                {templateForMissingDocument(document.id) ? (
+                  <a
+                    className="missing-proposal-link"
+                    href={formTemplateHref(templateForMissingDocument(document.id)!.id)}
+                  >
+                    Jest propozycja wzoru
+                  </a>
+                ) : null}
               </div>
               <strong>{document.ref}</strong>
             </article>

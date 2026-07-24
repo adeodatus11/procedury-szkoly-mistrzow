@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { statuteChapters } from "../content";
 import { statuteChapterHref } from "../content-utils";
 
@@ -8,13 +9,14 @@ export default function StatuteIndexPage() {
     <main>
       <header className="site-header">
         <nav className="topbar" aria-label="Główna nawigacja">
-          <a className="brand" href="/">
+          <Link className="brand" href="/">
             <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </a>
+          </Link>
           <div className="topbar-links">
-            <a href="/">Strona główna</a>
-            <a href="/#dokumenty">Dokumenty</a>
-            <a href="/braki">Braki</a>
+            <Link href="/">Strona główna</Link>
+            <Link href="/#dokumenty">Dokumenty</Link>
+            <Link href="/wzory">Wzory pism</Link>
+            <Link href="/braki">Braki</Link>
           </div>
         </nav>
       </header>
@@ -33,9 +35,9 @@ export default function StatuteIndexPage() {
             </div>
             <nav>
               {statuteChapters.map((chapter) => (
-                <a href={statuteChapterHref(chapter.id)} key={chapter.id}>
+                <Link href={statuteChapterHref(chapter.id)} key={chapter.id}>
                   {chapter.title}
-                </a>
+                </Link>
               ))}
             </nav>
           </aside>
@@ -44,9 +46,9 @@ export default function StatuteIndexPage() {
             <h2>{firstChapter?.title ?? "Statut"}</h2>
             <p>Otwórz pierwszy rozdział albo wybierz dowolny rozdział z menu po lewej.</p>
             {firstChapter ? (
-              <a className="section-link" href={statuteChapterHref(firstChapter.id)}>
+              <Link className="section-link" href={statuteChapterHref(firstChapter.id)}>
                 Otwórz pierwszy rozdział
-              </a>
+              </Link>
             ) : null}
           </article>
         </div>

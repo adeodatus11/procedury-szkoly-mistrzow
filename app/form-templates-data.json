@@ -1,0 +1,1111 @@
+[
+  {
+    "id": "skreslenie-notatka-sluzbowa",
+    "code": "PROC-03/Z-01",
+    "title": "Notatka służbowa o zdarzeniu",
+    "summary": "Pierwotne, rzeczowe udokumentowanie zdarzenia mogącego mieć znaczenie w postępowaniu dotyczącym ucznia.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/01_Notatka_sluzbowa_o_zdarzeniu.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-notatka-sluzbowa/page-1.png",
+      "/previews/wzory/skreslenie-notatka-sluzbowa/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/01_Notatka_sluzbowa_o_zdarzeniu.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "skreslenie-zawiadomienie",
+    "code": "PROC-03/Z-02",
+    "title": "Zawiadomienie o wszczęciu postępowania",
+    "summary": "Zawiadomienie strony o wszczęciu postępowania w sprawie możliwego skreślenia z listy uczniów.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/02_Zawiadomienie_o_wszczeciu_postepowania.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-zawiadomienie/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/02_Zawiadomienie_o_wszczeciu_postepowania.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "skreslenie-wniosek-rp",
+    "code": "PROC-03/Z-03",
+    "title": "Wniosek do Rady Pedagogicznej",
+    "summary": "Uporządkowany materiał do rozpatrzenia przez radę pedagogiczną przed podjęciem uchwały.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/03_Wniosek_do_Rady_Pedagogicznej.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-wniosek-rp/page-1.png",
+      "/previews/wzory/skreslenie-wniosek-rp/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/03_Wniosek_do_Rady_Pedagogicznej.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "skreslenie-opinia-su",
+    "code": "PROC-03/Z-04",
+    "title": "Wystąpienie do Samorządu Uczniowskiego o opinię",
+    "summary": "Formalne wystąpienie o opinię samorządu uczniowskiego wymaganą przed decyzją dyrektora.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/04_Wystapienie_do_Samorzadu_Uczniowskiego.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-opinia-su/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/04_Wystapienie_do_Samorzadu_Uczniowskiego.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "skreslenie-decyzja",
+    "code": "PROC-03/Z-05",
+    "title": "Decyzja administracyjna w sprawie skreślenia",
+    "summary": "Edytowalny szkielet decyzji zawierający elementy wymagane przez KPA; wymaga każdorazowej analizy prawnej.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/05_Decyzja_administracyjna_skreslenie.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-decyzja/page-1.png",
+      "/previews/wzory/skreslenie-decyzja/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/05_Decyzja_administracyjna_skreslenie.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "skreslenie-karta-obiegowa",
+    "code": "PROC-03/Z-06",
+    "title": "Karta obiegowa ucznia",
+    "summary": "Rozliczenie dokumentów, sprzętu, biblioteki i innych zobowiązań przy zakończeniu nauki.",
+    "groupId": "skreslenie",
+    "groupTitle": "Skreślenie ucznia",
+    "sourceDocumentId": "proc-skreslenie-propozycja",
+    "sourceDocumentTitle": "Procedura postępowania w sprawie skreślenia ucznia",
+    "docxRelativePath": "PROC_03_Skreslenie_Ucznia/06_Karta_obiegowa_ucznia.docx",
+    "sources": [
+      {
+        "label": "Prawo oświatowe, art. 68 ust. 2",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Kodeks postępowania administracyjnego",
+        "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
+      },
+      {
+        "label": "Przykład szkolny: Zespół Szkół Ekonomicznych",
+        "url": "https://zse.edu.pl/pliki/regulaminy/10%20_procedura_postepowania_w_przypadku_skreslenia.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/skreslenie-karta-obiegowa/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_03_Skreslenie_Ucznia/06_Karta_obiegowa_ucznia.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "indywidualne-wniosek",
+    "code": "PROC-04/Z-01",
+    "title": "Wniosek o organizację indywidualnego nauczania",
+    "summary": "Wniosek rodzica albo pełnoletniego ucznia składany wraz z orzeczeniem poradni.",
+    "groupId": "indywidualne",
+    "groupTitle": "Indywidualne nauczanie",
+    "sourceDocumentId": "proc-indywidualne-nauczanie-propozycja",
+    "sourceDocumentTitle": "Procedura organizacji indywidualnego nauczania",
+    "docxRelativePath": "PROC_04_Indywidualne_Nauczanie/01_Wniosek_o_indywidualne_nauczanie.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie w sprawie indywidualnego nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2023/2468/ogl"
+      },
+      {
+        "label": "Zmiana rozporządzenia z 19 listopada 2024 r.",
+        "url": "https://eli.gov.pl/eli/DU/2024/1714/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2024/50/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/indywidualne-wniosek/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_04_Indywidualne_Nauczanie/01_Wniosek_o_indywidualne_nauczanie.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "indywidualne-analiza-orzeczenia",
+    "code": "PROC-04/Z-02",
+    "title": "Karta analizy orzeczenia",
+    "summary": "Wewnętrzna karta organizacyjna do przełożenia zaleceń orzeczenia na plan nauczania.",
+    "groupId": "indywidualne",
+    "groupTitle": "Indywidualne nauczanie",
+    "sourceDocumentId": "proc-indywidualne-nauczanie-propozycja",
+    "sourceDocumentTitle": "Procedura organizacji indywidualnego nauczania",
+    "docxRelativePath": "PROC_04_Indywidualne_Nauczanie/02_Karta_analizy_orzeczenia.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie w sprawie indywidualnego nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2023/2468/ogl"
+      },
+      {
+        "label": "Zmiana rozporządzenia z 19 listopada 2024 r.",
+        "url": "https://eli.gov.pl/eli/DU/2024/1714/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2024/50/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/indywidualne-analiza-orzeczenia/page-1.png",
+      "/previews/wzory/indywidualne-analiza-orzeczenia/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_04_Indywidualne_Nauczanie/02_Karta_analizy_orzeczenia.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "indywidualne-ustalenie-dyrektora",
+    "code": "PROC-04/Z-03",
+    "title": "Ustalenie organizacyjne dyrektora",
+    "summary": "Dokumentuje okres, wymiar, miejsce, nauczycieli i sposób organizacji indywidualnego nauczania.",
+    "groupId": "indywidualne",
+    "groupTitle": "Indywidualne nauczanie",
+    "sourceDocumentId": "proc-indywidualne-nauczanie-propozycja",
+    "sourceDocumentTitle": "Procedura organizacji indywidualnego nauczania",
+    "docxRelativePath": "PROC_04_Indywidualne_Nauczanie/03_Ustalenie_organizacyjne_dyrektora.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie w sprawie indywidualnego nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2023/2468/ogl"
+      },
+      {
+        "label": "Zmiana rozporządzenia z 19 listopada 2024 r.",
+        "url": "https://eli.gov.pl/eli/DU/2024/1714/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2024/50/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/indywidualne-ustalenie-dyrektora/page-1.png",
+      "/previews/wzory/indywidualne-ustalenie-dyrektora/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_04_Indywidualne_Nauczanie/03_Ustalenie_organizacyjne_dyrektora.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "indywidualne-plan-zajec",
+    "code": "PROC-04/Z-04",
+    "title": "Plan zajęć indywidualnego nauczania",
+    "summary": "Tygodniowy harmonogram zajęć z miejscem, nauczycielem i sposobem dokumentowania zmian.",
+    "groupId": "indywidualne",
+    "groupTitle": "Indywidualne nauczanie",
+    "sourceDocumentId": "proc-indywidualne-nauczanie-propozycja",
+    "sourceDocumentTitle": "Procedura organizacji indywidualnego nauczania",
+    "docxRelativePath": "PROC_04_Indywidualne_Nauczanie/04_Plan_zajec_indywidualnego_nauczania.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie w sprawie indywidualnego nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2023/2468/ogl"
+      },
+      {
+        "label": "Zmiana rozporządzenia z 19 listopada 2024 r.",
+        "url": "https://eli.gov.pl/eli/DU/2024/1714/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2024/50/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/indywidualne-plan-zajec/page-1.png",
+      "/previews/wzory/indywidualne-plan-zajec/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_04_Indywidualne_Nauczanie/04_Plan_zajec_indywidualnego_nauczania.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "indywidualne-notatka-uzgodnienia",
+    "code": "PROC-04/Z-05",
+    "title": "Notatka z uzgodnień organizacyjnych",
+    "summary": "Zapis uzgodnień z rodzicem albo pełnoletnim uczniem dotyczących organizacji zajęć.",
+    "groupId": "indywidualne",
+    "groupTitle": "Indywidualne nauczanie",
+    "sourceDocumentId": "proc-indywidualne-nauczanie-propozycja",
+    "sourceDocumentTitle": "Procedura organizacji indywidualnego nauczania",
+    "docxRelativePath": "PROC_04_Indywidualne_Nauczanie/05_Notatka_z_uzgodnien.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie w sprawie indywidualnego nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2023/2468/ogl"
+      },
+      {
+        "label": "Zmiana rozporządzenia z 19 listopada 2024 r.",
+        "url": "https://eli.gov.pl/eli/DU/2024/1714/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania",
+        "url": "https://eli.gov.pl/eli/DU/2024/50/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/indywidualne-notatka-uzgodnienia/page-1.png",
+      "/previews/wzory/indywidualne-notatka-uzgodnienia/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_04_Indywidualne_Nauczanie/05_Notatka_z_uzgodnien.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-wniosek-przyjecie",
+    "code": "PROC-05/Z-01",
+    "title": "Wniosek o przyjęcie na kwalifikacyjny kurs zawodowy",
+    "summary": "Formularz kandydata z wyborem kwalifikacji i wykazem dokumentów.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/01_Wniosek_o_przyjecie_na_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-wniosek-przyjecie/page-1.png",
+      "/previews/wzory/kkz-wniosek-przyjecie/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/01_Wniosek_o_przyjecie_na_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-karta-kursu",
+    "code": "PROC-05/Z-02",
+    "title": "Karta kwalifikacyjnego kursu zawodowego",
+    "summary": "Zbiorcza karta organizacyjna kursu: kwalifikacja, program, kadra, terminy i dokumentacja.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/02_Karta_kursu_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-karta-kursu/page-1.png",
+      "/previews/wzory/kkz-karta-kursu/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/02_Karta_kursu_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-harmonogram",
+    "code": "PROC-05/Z-03",
+    "title": "Harmonogram zajęć KKZ",
+    "summary": "Plan terminów, godzin, tematów, prowadzących i sal dla kwalifikacyjnego kursu zawodowego.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/03_Harmonogram_zajec_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-harmonogram/page-1.png",
+      "/previews/wzory/kkz-harmonogram/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/03_Harmonogram_zajec_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-lista-sluchaczy",
+    "code": "PROC-05/Z-04",
+    "title": "Lista słuchaczy KKZ",
+    "summary": "Wewnętrzna lista osób przyjętych na kurs z ograniczonym zakresem danych.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/04_Lista_sluchaczy_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-lista-sluchaczy/page-1.png",
+      "/previews/wzory/kkz-lista-sluchaczy/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/04_Lista_sluchaczy_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-protokol-zaliczenia",
+    "code": "PROC-05/Z-05",
+    "title": "Protokół zaliczenia kwalifikacyjnego kursu zawodowego",
+    "summary": "Dokumentuje formę zaliczenia, wyniki i podstawę wydania zaświadczeń o ukończeniu kursu.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/05_Protokol_zaliczenia_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-protokol-zaliczenia/page-1.png",
+      "/previews/wzory/kkz-protokol-zaliczenia/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/05_Protokol_zaliczenia_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kkz-wniosek-zwolnienie",
+    "code": "PROC-05/Z-06",
+    "title": "Wniosek o zwolnienie z części zajęć KKZ",
+    "summary": "Wniosek słuchacza wraz z podstawą i dokumentami potwierdzającymi zrealizowane wcześniej efekty kształcenia.",
+    "groupId": "kkz",
+    "groupTitle": "Kwalifikacyjne kursy zawodowe",
+    "sourceDocumentId": "proc-kkz-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "docxRelativePath": "PROC_05_KKZ/06_Wniosek_o_zwolnienie_z_zajec_KKZ.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 6 października 2023 r. w sprawie kształcenia ustawicznego",
+        "url": "https://eli.gov.pl/eli/DU/2023/2175/ogl"
+      },
+      {
+        "label": "Prawo oświatowe",
+        "url": "https://eli.gov.pl/eli/DU/2026/820/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSCKR w Leśnej Podlaskiej",
+        "url": "https://lesna.zsckr.edu.pl/wp-content/uploads/2026/04/zalacznik-nr-2-kursy-zawodowe-zasady.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kkz-wniosek-zwolnienie/page-1.png",
+      "/previews/wzory/kkz-wniosek-zwolnienie/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_05_KKZ/06_Wniosek_o_zwolnienie_z_zajec_KKZ.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "wycieczki-karta",
+    "code": "PROC-06/Z-01",
+    "title": "Karta wycieczki",
+    "summary": "Karta zgodna zakresem z załącznikiem do rozporządzenia z 25 maja 2018 r.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/01_Karta_wycieczki.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-karta/page-1.png",
+      "/previews/wzory/wycieczki-karta/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/01_Karta_wycieczki.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "wycieczki-lista",
+    "code": "PROC-06/Z-02",
+    "title": "Lista uczniów biorących udział w wycieczce",
+    "summary": "Załącznik do karty wycieczki z telefonami rodziców wymaganymi rozporządzeniem.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/02_Lista_uczestnikow_wycieczki.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-lista/page-1.png",
+      "/previews/wzory/wycieczki-lista/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/02_Lista_uczestnikow_wycieczki.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "wycieczki-zgoda-rodzica",
+    "code": "PROC-06/Z-03",
+    "title": "Zgoda rodzica na udział ucznia w wycieczce",
+    "summary": "Zgoda obejmująca program, termin, transport i niezbędne informacje bezpieczeństwa.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/03_Zgoda_rodzica_na_wycieczke.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-zgoda-rodzica/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/03_Zgoda_rodzica_na_wycieczke.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "wycieczki-oswiadczenie-opiekuna",
+    "code": "PROC-06/Z-04",
+    "title": "Oświadczenie opiekuna wycieczki",
+    "summary": "Potwierdzenie przyjęcia obowiązków, znajomości programu i zasad bezpieczeństwa.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/04_Oswiadczenie_opiekuna_wycieczki.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-oswiadczenie-opiekuna/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/04_Oswiadczenie_opiekuna_wycieczki.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "wycieczki-rejestr-wyjsc",
+    "code": "PROC-06/Z-05",
+    "title": "Rejestr wyjść grupowych uczniów",
+    "summary": "Ewidencja krótkich wyjść poza teren szkoły, które nie są wycieczkami.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/05_Rejestr_wyjsc_grupowych.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-rejestr-wyjsc/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/05_Rejestr_wyjsc_grupowych.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "wycieczki-rozliczenie",
+    "code": "PROC-06/Z-06",
+    "title": "Rozliczenie wycieczki",
+    "summary": "Zestawienie wpłat, wydatków, dokumentów księgowych i sposobu rozliczenia różnicy.",
+    "groupId": "wycieczki",
+    "groupTitle": "Wyjścia i wycieczki szkolne",
+    "sourceDocumentId": "proc-wycieczki-propozycja",
+    "sourceDocumentTitle": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "docxRelativePath": "PROC_06_Wycieczki/06_Rozliczenie_wycieczki.docx",
+    "sources": [
+      {
+        "label": "Rozporządzenie z 25 maja 2018 r. w sprawie krajoznawstwa i turystyki",
+        "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Przykład szkolny: ZSZ nr 3 w Ostrołęce",
+        "url": "https://zsz3.ostroleka.edu.pl/wp-content/uploads/2025/12/REGULAMIN-WYCIECZEK-KRAJOZNAWCZO-TURYSTYCZNYCH.pdf"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/wycieczki-rozliczenie/page-1.png",
+      "/previews/wzory/wycieczki-rozliczenie/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_06_Wycieczki/06_Rozliczenie_wycieczki.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kryzys-notatka-interwencji",
+    "code": "PROC-07/Z-01",
+    "title": "Notatka z interwencji",
+    "summary": "Rzeczowy zapis sytuacji, obserwacji, działań ochronnych i powiadomień.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/01_Notatka_z_interwencji.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-notatka-interwencji/page-1.png",
+      "/previews/wzory/kryzys-notatka-interwencji/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/01_Notatka_z_interwencji.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kryzys-karta-zdarzenia",
+    "code": "PROC-07/Z-02",
+    "title": "Karta zdarzenia kryzysowego",
+    "summary": "Zbiorcza karta zarządzania zdarzeniem: ryzyko, role, decyzje, kontakty i zamknięcie.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/02_Karta_zdarzenia_kryzysowego.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-karta-zdarzenia/page-1.png",
+      "/previews/wzory/kryzys-karta-zdarzenia/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/02_Karta_zdarzenia_kryzysowego.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kryzys-lista-kontaktow",
+    "code": "PROC-07/Z-03",
+    "title": "Lista kontaktów alarmowych i kryzysowych",
+    "summary": "Kontrolowana lista numerów wewnętrznych i zewnętrznych z datą ostatniej weryfikacji.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/03_Lista_kontaktow_alarmowych.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-lista-kontaktow/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/03_Lista_kontaktow_alarmowych.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "kryzys-protokol-zespolu",
+    "code": "PROC-07/Z-04",
+    "title": "Protokół spotkania zespołu kryzysowego",
+    "summary": "Protokół decyzji zespołu z przydziałem zadań, terminów i sposobu monitorowania.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/04_Protokol_zespolu_kryzysowego.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-protokol-zespolu/page-1.png",
+      "/previews/wzory/kryzys-protokol-zespolu/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/04_Protokol_zespolu_kryzysowego.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kryzys-plan-dzialan",
+    "code": "PROC-07/Z-05",
+    "title": "Plan działań następczych po zdarzeniu",
+    "summary": "Plan wsparcia, monitorowania, komunikacji i zmian organizacyjnych po zakończeniu interwencji.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/05_Plan_dzialan_nastepczych.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-plan-dzialan/page-1.png",
+      "/previews/wzory/kryzys-plan-dzialan/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/05_Plan_dzialan_nastepczych.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "kryzys-komunikat-rodzice",
+    "code": "PROC-07/Z-06",
+    "title": "Komunikat do rodziców po zdarzeniu kryzysowym",
+    "summary": "Bezpieczny redakcyjnie szablon komunikatu bez danych identyfikujących i niepotwierdzonych informacji.",
+    "groupId": "kryzys",
+    "groupTitle": "Sytuacje kryzysowe",
+    "sourceDocumentId": "proc-kryzysowe-propozycja",
+    "sourceDocumentTitle": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "docxRelativePath": "PROC_07_Sytuacje_Kryzysowe/06_Komunikat_do_rodzicow.docx",
+    "sources": [
+      {
+        "label": "ORE: Kompetencje miękkie w sytuacjach kryzysowych, 2026",
+        "url": "https://ore.edu.pl/2026/05/daniela-bartosiak-kompetencje-miekkie-w-sytuacjach-kryzysowych/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie bezpieczeństwa i higieny w szkołach",
+        "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
+      },
+      {
+        "label": "Aktualny przykład procedur ZSCKR",
+        "url": "https://www.gov.pl/attachment/87f9e1d9-1801-4988-a616-b4677a7eb92d"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/kryzys-komunikat-rodzice/page-1.png",
+      "/previews/wzory/kryzys-komunikat-rodzice/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/PROC_07_Sytuacje_Kryzysowe/06_Komunikat_do_rodzicow.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "archiwum-spis-zdawczo-odbiorczy",
+    "code": "INS-01/Z-03",
+    "title": "Spis zdawczo-odbiorczy akt",
+    "summary": "Ewidencja dokumentacji przekazywanej przez komórkę organizacyjną do składnicy akt.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/03_Spis_zdawczo_odbiorczy_akt.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-spis-zdawczo-odbiorczy/page-1.png",
+      "/previews/wzory/archiwum-spis-zdawczo-odbiorczy/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/03_Spis_zdawczo_odbiorczy_akt.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "archiwum-opis-teczki",
+    "code": "INS-01/Z-04",
+    "title": "Opis teczki aktowej",
+    "summary": "Wzór elementów opisu okładki teczki zgodny z układem normatywów kancelaryjnych.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/04_Opis_teczki_aktowej.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-opis-teczki/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/04_Opis_teczki_aktowej.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "archiwum-rejestr-decyzji",
+    "code": "INS-01/Z-05",
+    "title": "Rejestr decyzji administracyjnych",
+    "summary": "Rejestr wydanych decyzji z kontrolą doręczenia, odwołania i ostateczności.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/05_Rejestr_decyzji_administracyjnych.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-rejestr-decyzji/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/05_Rejestr_decyzji_administracyjnych.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "archiwum-rejestr-pieczeci",
+    "code": "INS-01/Z-06",
+    "title": "Rejestr pieczęci i stempli",
+    "summary": "Ewidencja zamówienia, przyjęcia, powierzenia, zwrotu i likwidacji pieczęci.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/06_Rejestr_pieczeci.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-rejestr-pieczeci/page-1.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/06_Rejestr_pieczeci.docx",
+    "pageCount": 1
+  },
+  {
+    "id": "archiwum-ewidencja-udostepniania",
+    "code": "INS-01/Z-07",
+    "title": "Ewidencja udostępniania akt",
+    "summary": "Karta kontroli dostępu do dokumentacji ze wskazaniem celu, zakresu i terminu zwrotu.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/07_Ewidencja_udostepniania_akt.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-ewidencja-udostepniania/page-1.png",
+      "/previews/wzory/archiwum-ewidencja-udostepniania/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/07_Ewidencja_udostepniania_akt.docx",
+    "pageCount": 2
+  },
+  {
+    "id": "archiwum-spis-brakowanie",
+    "code": "INS-01/Z-08",
+    "title": "Spis dokumentacji niearchiwalnej przeznaczonej do brakowania",
+    "summary": "Wykaz jednostek przeznaczonych do brakowania, przygotowany do wniosku o zgodę archiwum państwowego.",
+    "groupId": "archiwum",
+    "groupTitle": "Kancelaria i archiwizacja",
+    "sourceDocumentId": "ins-kancelaryjna-propozycja",
+    "sourceDocumentTitle": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji",
+    "docxRelativePath": "INS_01_Kancelaria_Archiwizacja/08_Spis_dokumentacji_do_brakowania.docx",
+    "sources": [
+      {
+        "label": "Kuratorium Oświaty w Krakowie: normatywy kancelaryjno-archiwalne",
+        "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+      },
+      {
+        "label": "Archiwa Państwowe: brakowanie dokumentacji",
+        "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/"
+      },
+      {
+        "label": "Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji",
+        "url": "https://eli.gov.pl/eli/DU/2015/1743/ogl"
+      }
+    ],
+    "status": "proposal",
+    "previewPages": [
+      "/previews/wzory/archiwum-spis-brakowanie/page-1.png",
+      "/previews/wzory/archiwum-spis-brakowanie/page-2.png"
+    ],
+    "downloadUrl": "/docs/wzory/INS_01_Kancelaria_Archiwizacja/08_Spis_dokumentacji_do_brakowania.docx",
+    "pageCount": 2
+  }
+]
