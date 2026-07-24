@@ -65,7 +65,6 @@ export default async function StatuteChapterPage({ params }: PageProps) {
             <nav>
               {statuteChapters.map((item) => (
                 <a className={item.id === chapter.id ? "active" : ""} href={statuteChapterHref(item.id)} key={item.id}>
-                  <span>{item.sections.length} paragrafów</span>
                   {item.title}
                 </a>
               ))}

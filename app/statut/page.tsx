@@ -34,7 +34,6 @@ export default function StatuteIndexPage() {
             <nav>
               {statuteChapters.map((chapter) => (
                 <a href={statuteChapterHref(chapter.id)} key={chapter.id}>
-                  <span>{chapter.sections.length} paragrafów</span>
                   {chapter.title}
                 </a>
               ))}

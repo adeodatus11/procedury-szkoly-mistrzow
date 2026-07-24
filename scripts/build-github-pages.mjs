@@ -180,6 +180,7 @@ fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
 const generatedDate = new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(
   new Date(data.generatedAt),
 );
+const proposalDocuments = data.documents.filter((document) => document.status === "propozycja");
 
 const indexHtml = shell({
   title: "Procedury Szkoły Mistrzów",
@@ -302,6 +303,7 @@ function render() {
   document.querySelectorAll("[data-filter]").forEach((button) => button.classList.toggle("active", button.dataset.filter === state.category));
   $("document-list").innerHTML = result.docs.length ? result.docs.map((document) => \`
     <article class="doc-card">
+      <a class="card-cover-link" href="./dokumenty/\${esc(document.id)}/" aria-label="Czytaj: \${esc(document.title)}"></a>
       <div class="doc-card-head"><span class="pill">\${esc(document.category)}</span><span class="status status-\${esc(document.status.replaceAll(" ", "-"))}">\${esc(statusLabel(document.status))}</span></div>
       <h3>\${esc(document.title)}</h3>
       <p>\${esc(document.excerpt)}</p>
@@ -312,7 +314,7 @@ function render() {
   $("reader-toc").innerHTML = \`
     <div class="reader-toc-header"><strong>\${result.chapters.length}</strong><span>\${state.query ? "rozdziałów z trafieniami" : "rozdziałów"}</span></div>
     <a class="reader-download" href="./docs/Statut_Zespolu_Szkol_Zawodowych_nr_20251015.pdf">Pobierz oryginalny PDF</a>
-    <nav>\${result.chapters.map((chapter) => \`<a href="./statut/\${esc(chapter.id)}/"><span>\${chapter.sections.length} paragrafów</span>\${esc(chapter.title)}</a>\`).join("")}</nav>\`;
+    <nav>\${result.chapters.map((chapter) => \`<a href="./statut/\${esc(chapter.id)}/">\${esc(chapter.title)}</a>\`).join("")}</nav>\`;
   $("chapter-teaser").innerHTML = result.chapters.length ? \`
     <article class="reader-article chapter-teaser"><span>Podgląd</span><h3>\${esc(result.chapters[0].title)}</h3><p>Otwórz rozdział, żeby czytać statut w osobnym, krótszym widoku bez ładowania całego tekstu naraz.</p><a class="section-link" href="./statut/\${esc(result.chapters[0].id)}/">Otwórz rozdział</a></article>\`
     : '<p class="empty">Brak rozdziałów statutu dla tego filtra.</p>';
@@ -369,7 +371,7 @@ function statuteIndexPage() {
         <div class="reader-layout">
           <aside class="reader-toc" aria-label="Spis treści statutu">
             <div class="reader-toc-header"><strong>${data.statuteChapters.length}</strong><span>rozdziałów</span></div>
-            <nav>${data.statuteChapters.map((chapter) => `<a href="${chapterHref(chapter, prefix)}"><span>${chapter.sections.length} paragrafów</span>${esc(chapter.title)}</a>`).join("")}</nav>
+            <nav>${data.statuteChapters.map((chapter) => `<a href="${chapterHref(chapter, prefix)}">${esc(chapter.title)}</a>`).join("")}</nav>
           </aside>
           <article class="reader-article chapter-teaser"><span>Start</span><h2>${esc(firstChapter?.title || "Statut")}</h2><p>Otwórz pierwszy rozdział albo wybierz dowolny rozdział z menu po lewej.</p>${firstChapter ? `<a class="section-link" href="${chapterHref(firstChapter, prefix)}">Otwórz pierwszy rozdział</a>` : ""}</article>
         </div>
@@ -392,7 +394,7 @@ function statuteChapterPage(chapter) {
           <aside class="reader-toc" aria-label="Spis treści statutu">
             <div class="reader-toc-header"><strong>${data.statuteChapters.length}</strong><span>rozdziałów</span></div>
             <a class="reader-download" href="${fileHref(data.siteStats.statuteDownload, prefix)}">Pobierz oryginalny PDF</a>
-            <nav>${data.statuteChapters.map((item) => `<a class="${item.id === chapter.id ? "active" : ""}" href="${chapterHref(item, prefix)}"><span>${item.sections.length} paragrafów</span>${esc(item.title)}</a>`).join("")}</nav>
+            <nav>${data.statuteChapters.map((item) => `<a class="${item.id === chapter.id ? "active" : ""}" href="${chapterHref(item, prefix)}">${esc(item.title)}</a>`).join("")}</nav>
           </aside>
           <div class="statute-reader">
             ${chapter.sections
@@ -426,7 +428,16 @@ function missingPage() {
           <div><strong>${data.documents.length}</strong><span>dokumentów już zebranych</span></div>
         </div>
       </section>
-      <section class="share-note"><h2>Jak czytać tę listę</h2><p>Każda pozycja zawiera nazwę dokumentu, typ, podstawę w statucie oraz krótkie uzasadnienie. Lista jest robocza i służy do zaplanowania przygotowania brakujących aktów wewnętrznych szkoły.</p><p>Stan indeksu: ${esc(generatedDate)}</p></section>
+      <section class="share-note"><h2>Jak czytać tę listę</h2><p>Każda pozycja zawiera nazwę dokumentu, typ, podstawę w statucie oraz krótkie uzasadnienie. Lista jest robocza i służy do zaplanowania przygotowania brakujących aktów wewnętrznych szkoły. Jeżeli dla danego obszaru powstała już propozycja robocza, prowadzi do niej osobny odnośnik poniżej.</p><p>Stan indeksu: ${esc(generatedDate)}</p></section>
+      ${
+        proposalDocuments.length
+          ? `<section class="proposal-index" aria-label="Propozycje dokumentów"><div class="section-heading"><p>Propozycje robocze</p><h2>Dokumenty, dla których przygotowano propozycję</h2></div><div class="proposal-grid">${proposalDocuments
+              .map(
+                (document) => `<a class="proposal-card" href="${docHref(document, prefix)}"><span>${esc(document.category)}</span><h3>${esc(document.title)}</h3><p>Jest propozycja robocza do sprawdzenia i dalszej pracy.</p></a>`,
+              )
+              .join("")}</div></section>`
+          : ""
+      }
       <section class="share-missing-list" aria-label="Brakujące dokumenty">
         ${Object.entries(groups)
           .map(

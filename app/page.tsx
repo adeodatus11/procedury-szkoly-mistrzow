@@ -76,7 +76,7 @@ export default function Home() {
           <div className="topbar-links">
             <a href="#dokumenty">Dokumenty</a>
             <a href="#statut">Statut</a>
-            <a href="/braki">Braki</a>
+            <a href="./braki/">Braki</a>
             <a href="#zrodla">Źródła</a>
           </div>
         </nav>
@@ -175,6 +175,7 @@ export default function Home() {
           <div className="list-stack">
             {filteredDocuments.map((document) => (
               <article className="doc-card" key={document.id}>
+                <a className="card-cover-link" href={documentHref(document.id)} aria-label={`Czytaj: ${document.title}`} />
                 <div className="doc-card-head">
                   <span className="pill">{document.category}</span>
                   <span className={`status status-${document.status.replaceAll(" ", "-")}`}>
@@ -227,7 +228,6 @@ export default function Home() {
             <nav>
               {filteredChapters.map((chapter) => (
                 <a href={statuteChapterHref(chapter.id)} key={chapter.id}>
-                  <span>{chapter.sections.length} paragrafów</span>
                   {chapter.title}
                 </a>
               ))}
@@ -255,7 +255,7 @@ export default function Home() {
         <div className="section-heading">
           <p>Do opracowania</p>
           <h2>Dokumenty wskazane przez statut, których brakuje w katalogu</h2>
-          <a className="section-link" href="/braki">
+          <a className="section-link" href="./braki/">
             Otwórz osobną stronę z brakami
           </a>
         </div>

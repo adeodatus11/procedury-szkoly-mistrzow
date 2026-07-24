@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { documents, generatedAt, missingDocuments } from "../content";
+import { documentHref } from "../content-utils";
 
 function groupedMissing() {
   return missingDocuments.reduce<Record<string, typeof missingDocuments>>((groups, document) => {
@@ -10,6 +11,7 @@ function groupedMissing() {
 
 export default function MissingPage() {
   const groups = groupedMissing();
+  const proposalDocuments = documents.filter((document) => document.status === "propozycja");
   const generatedDate = new Intl.DateTimeFormat("pl-PL", {
     dateStyle: "long",
     timeStyle: "short",
@@ -57,10 +59,29 @@ export default function MissingPage() {
         <h2>Jak czytać tę listę</h2>
         <p>
           Każda pozycja zawiera nazwę dokumentu, typ, podstawę w statucie oraz krótkie uzasadnienie. Lista jest
-          robocza i służy do zaplanowania przygotowania brakujących aktów wewnętrznych szkoły.
+          robocza i służy do zaplanowania przygotowania brakujących aktów wewnętrznych szkoły. Jeżeli dla danego
+          obszaru powstała już propozycja robocza, prowadzi do niej osobny odnośnik poniżej.
         </p>
         <p>Stan indeksu: {generatedDate}</p>
       </section>
+
+      {proposalDocuments.length ? (
+        <section className="proposal-index" aria-label="Propozycje dokumentów">
+          <div className="section-heading">
+            <p>Propozycje robocze</p>
+            <h2>Dokumenty, dla których przygotowano propozycję</h2>
+          </div>
+          <div className="proposal-grid">
+            {proposalDocuments.map((document) => (
+              <a className="proposal-card" href={documentHref(document.id)} key={document.id}>
+                <span>{document.category}</span>
+                <h3>{document.title}</h3>
+                <p>Jest propozycja robocza do sprawdzenia i dalszej pracy.</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="share-missing-list" aria-label="Brakujące dokumenty">
         {Object.entries(groups).map(([category, items]) => (

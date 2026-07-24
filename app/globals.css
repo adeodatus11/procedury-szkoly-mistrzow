@@ -366,10 +366,29 @@ h1 {
   display: grid;
   gap: 12px;
   padding: 18px;
+  position: relative;
 }
 
 .workspace-single .list-stack {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+}
+
+.card-cover-link {
+  border-radius: 8px;
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.card-cover-link:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.doc-card > :not(.card-cover-link):not(.doc-actions) {
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
 }
 
 .doc-card-head,
@@ -379,6 +398,11 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.doc-actions {
+  position: relative;
+  z-index: 3;
 }
 
 .doc-card h3,
@@ -801,6 +825,7 @@ h1 {
 
 .share-hero,
 .share-note,
+.proposal-index,
 .share-missing-list {
   padding: 54px clamp(18px, 5vw, 72px);
 }
@@ -864,6 +889,51 @@ h1 {
   line-height: 1.65;
   margin-bottom: 8px;
   max-width: 880px;
+}
+
+.proposal-index {
+  background: #f8f9f3;
+  border-bottom: 1px solid var(--line);
+}
+
+.proposal-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.proposal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  display: grid;
+  gap: 10px;
+  min-height: 160px;
+  padding: 18px;
+}
+
+.proposal-card:hover {
+  border-color: var(--green);
+}
+
+.proposal-card span {
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.proposal-card h3 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+  margin-bottom: 0;
+}
+
+.proposal-card p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .share-missing-list {
@@ -1017,6 +1087,7 @@ h1 {
   .statute-grid,
   .source-list,
   .share-summary,
+  .proposal-grid,
   .workspace-single .list-stack {
     grid-template-columns: 1fr;
   }

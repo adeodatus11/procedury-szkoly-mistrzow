@@ -79,6 +79,7 @@ test("server-renders one statute chapter at a time", async () => {
   assert.match(html, /Rozdział 1\. Przepisy definiujące/);
   assert.match(html, /Wyświetlany jest tylko jeden rozdział/);
   assert.match(html, /class="active" href="\/statut\/rozdzial-1-przepisy-definiujace"/);
+  assert.doesNotMatch(html, /paragrafów/);
   assert.doesNotMatch(html, /<h2>§ 136\./);
   assert.doesNotMatch(html, /<h2>§ 140\./);
 });
@@ -90,6 +91,8 @@ test("server-renders the missing documents page after consolidation", async () =
   const html = await response.text();
   assert.match(html, /Braki w dokumentacji statutowej/);
   assert.match(html, /11<\/strong><span>dokumentów do opracowania/);
+  assert.match(html, /Dokumenty, dla których przygotowano propozycję/);
+  assert.match(html, /href="\/dokumenty\/ins-kancelaryjna-propozycja"/);
   assert.doesNotMatch(html, /Instrukcja kancelaryjna<\/h3>/);
   assert.match(html, /Instrukcja korzystania z dziennika elektronicznego/);
 });
