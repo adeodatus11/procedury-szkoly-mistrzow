@@ -416,6 +416,11 @@ h1 {
   color: var(--amber);
 }
 
+.status-propozycja {
+  background: #e9f0ff;
+  color: var(--blue);
+}
+
 .status-brak {
   background: #fbe8e5;
   color: var(--red);
@@ -463,13 +468,22 @@ h1 {
   justify-self: start;
 }
 
-.preview pre {
+.proposal-notice {
+  background: #fff8e9;
+  border: 1px solid #e6c985;
+  border-radius: 8px;
+  color: #6e4d12;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+  padding: 12px;
+}
+
+.document-reader {
   color: #26312d;
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.88rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.5;
   margin: 18px 0 0;
-  white-space: pre-wrap;
 }
 
 .statute-section {
@@ -582,9 +596,49 @@ h1 {
 .reader-text {
   color: #26312d;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.52;
   margin-bottom: 0;
-  white-space: pre-wrap;
+}
+
+.structured-line {
+  margin: 0 0 8px;
+  max-width: 92ch;
+}
+
+.structured-line:last-child {
+  margin-bottom: 0;
+}
+
+.line-chapter {
+  border-top: 1px solid var(--line);
+  color: var(--green-dark);
+  font-weight: 800;
+  margin-top: 18px;
+  padding-top: 14px;
+}
+
+.line-paragraph {
+  color: var(--ink);
+  font-weight: 800;
+  margin-top: 14px;
+}
+
+.line-ustep {
+  padding-left: 1.1rem;
+}
+
+.line-punkt {
+  padding-left: 2.5rem;
+}
+
+.line-litera {
+  padding-left: 4rem;
+}
+
+.line-source {
+  color: var(--muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
 .legal-link {

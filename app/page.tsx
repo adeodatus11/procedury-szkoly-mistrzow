@@ -14,6 +14,7 @@ const categories = [
   "Wszystko",
   "Statut",
   "Procedury",
+  "Instrukcje",
   "Regulaminy",
   "Programy",
   "Ocenianie",
@@ -36,6 +37,7 @@ function statusLabel(status: string) {
     obowiazujacy: "obowiązujący",
     gotowy: "gotowy",
     "do uzupelnienia": "do uzupełnienia",
+    propozycja: "propozycja",
     brak: "brak",
   };
   return labels[status] ?? status;
@@ -60,6 +62,10 @@ const legalReferences = [
     phrases: ["ustawa o systemie oświaty", "ustawy o systemie oświaty"],
   },
   {
+    url: sourceUrl("Kodeks postepowania administracyjnego"),
+    phrases: ["Kodeks postępowania administracyjnego", "Kodeksu postępowania administracyjnego"],
+  },
+  {
     url: sourceUrl("Pomoc psychologiczno-pedagogiczna"),
     phrases: ["pomoc psychologiczno-pedagogiczna", "pomocy psychologiczno-pedagogicznej"],
   },
@@ -70,6 +76,14 @@ const legalReferences = [
   {
     url: sourceUrl("Dokumentacja przebiegu nauczania"),
     phrases: ["dokumentacja przebiegu nauczania", "dokumentacji przebiegu nauczania"],
+  },
+  {
+    url: sourceUrl("Kwalifikacyjne kursy zawodowe"),
+    phrases: ["kwalifikacyjny kurs zawodowy", "kwalifikacyjnego kursu zawodowego", "kwalifikacyjnych kursów zawodowych"],
+  },
+  {
+    url: sourceUrl("Krajoznawstwo i turystyka"),
+    phrases: ["krajoznawstwo i turystyka", "krajoznawstwa i turystyki"],
   },
   {
     url: sourceUrl("Praktyczna nauka zawodu"),
@@ -112,6 +126,30 @@ function renderLinkedText(value: string) {
       </a>
     );
   });
+}
+
+function lineClassName(line: string) {
+  const trimmed = line.trim();
+  if (/^Rozdział\s+\d+/i.test(trimmed)) return "structured-line line-chapter";
+  if (/^§\s*\d+/.test(trimmed)) return "structured-line line-paragraph";
+  if (/^\d+[a-z]?\./i.test(trimmed)) return "structured-line line-ustep";
+  if (/^\d+\)/.test(trimmed)) return "structured-line line-punkt";
+  if (/^[-•]/.test(trimmed)) return "structured-line line-punkt";
+  if (/^[a-z]\)/i.test(trimmed)) return "structured-line line-litera";
+  if (/^https?:\/\//.test(trimmed)) return "structured-line line-source";
+  return "structured-line";
+}
+
+function renderStructuredText(value: string) {
+  return value
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean)
+    .map((block, index) => (
+      <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
+        {renderLinkedText(block)}
+      </p>
+    ));
 }
 
 export default function Home() {
@@ -310,8 +348,16 @@ export default function Home() {
                 Pobierz plik źródłowy
               </a>
             ) : null}
+            {selectedDocument.status === "propozycja" ? (
+              <div className="proposal-notice">
+                To jest propozycja robocza przygotowana na podstawie kwerendy. Nie jest jeszcze aktem obowiązującym
+                szkoły i wymaga konfrontacji z dokumentami ZSZ nr 5 oraz weryfikacji prawnej.
+              </div>
+            ) : null}
           </div>
-          <pre>{compactBody(selectedDocument.body, selectedDocument.id === "statut" ? 2200 : 1800)}</pre>
+          <div className="document-reader">
+            {renderStructuredText(compactBody(selectedDocument.body, selectedDocument.id === "statut" ? 2200 : 1800))}
+          </div>
         </aside>
       </section>
 
@@ -347,7 +393,7 @@ export default function Home() {
               <article className="reader-article" id={section.id} key={section.id}>
                 <span>{section.chapter}</span>
                 <h3>{section.title}</h3>
-                <p className="reader-text">{renderLinkedText(section.body)}</p>
+                <div className="reader-text">{renderStructuredText(section.body)}</div>
               </article>
             ))}
             {!filteredSections.length ? <p className="empty">Brak paragrafów statutu dla tego filtra.</p> : null}

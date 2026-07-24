@@ -49,6 +49,102 @@ export const documents = [
     "sourcePath": "procedury/PROC_02_Egzaminy_Klasyfikacyjne_Poprawkowe.md"
   },
   {
+    "id": "proc-skreslenie-propozycja",
+    "title": "Procedura postępowania w sprawie skreślenia ucznia z listy uczniów",
+    "category": "Procedury",
+    "source": "procedury/PROC_03_Skreslenie_Ucznia_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 88-89",
+      "art. 68 Prawa oświatowego"
+    ],
+    "status": "propozycja",
+    "body": "Procedura postępowania w sprawie skreślenia ucznia z listy uczniów\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga sprawdzenia przez dyrektora, radę pedagogiczną, obsługę prawną szkoły oraz dostosowania do aktualnego brzmienia statutu i praktyki Dolnośląskiego Kuratorium Oświaty.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nDotyczy: Technikum nr 5, Branżowej Szkoły I stopnia nr 5 oraz Branżowej Szkoły II stopnia nr 5.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Cel procedury\n\n1. Procedura opisuje czynności podejmowane przed wydaniem decyzji administracyjnej o skreśleniu ucznia z listy uczniów.\n2. Procedura ma zapewnić:\n   1) zgodność działania szkoły z art. 68 ust. 2 Prawa oświatowego;\n   2) udokumentowanie wykorzystanych oddziaływań wychowawczych;\n   3) udział rady pedagogicznej i samorządu uczniowskiego;\n   4) zachowanie prawa ucznia i rodziców do informacji, wypowiedzenia się i wglądu w dokumenty sprawy.\n3. Procedura nie zastępuje statutu. Skreślenie może nastąpić wyłącznie w przypadkach określonych w statucie szkoły.\n\n 2. Podstawa prawna i statutowa\n\n1. Art. 68 ust. 2 ustawy z dnia 14 grudnia 2016 r. - Prawo oświatowe.\n2. Przepisy Kodeksu postępowania administracyjnego dotyczące postępowania dowodowego, decyzji administracyjnej, doręczeń i odwołań.\n3. Statut Zespołu Szkół Zawodowych nr 5 we Wrocławiu, w szczególności § 88-89.\n4. Regulamin Rady Pedagogicznej i Regulamin Samorządu Uczniowskiego.\n\n 3. Zasady ogólne\n\n1. Skreślenie jest środkiem ostatecznym. Przed skierowaniem sprawy do rady pedagogicznej szkoła dokumentuje wcześniejsze działania wychowawcze, pomocowe i dyscyplinujące, chyba że charakter zdarzenia wymaga natychmiastowego działania.\n2. Uczeń objęty obowiązkiem szkolnym nie może zostać skreślony w zwykłym trybie. W uzasadnionych przypadkach stosuje się tryb przeniesienia przez kuratora oświaty do innej szkoły.\n3. W sprawie ucznia niepełnoletniego szkoła zawiadamia rodziców lub opiekunów prawnych.\n4. Pełnoletni uczeń występuje jako strona postępowania. Rodzice pełnoletniego ucznia mogą otrzymywać informacje wyłącznie w zakresie dopuszczalnym przez przepisy i upoważnienia.\n5. Wszystkie czynności istotne dla rozstrzygnięcia dokumentuje się w formie notatek, protokołów, wydruków z dziennika elektronicznego, oświadczeń lub innych dowodów.\n\n 4. Etapy postępowania\n\n1. Zgłoszenie zdarzenia:\n   1) nauczyciel, wychowawca, pedagog, psycholog, pracownik szkoły albo inna osoba zgłasza zdarzenie dyrektorowi;\n   2) zgłoszenie powinno zawierać datę, miejsce, opis zdarzenia, osoby uczestniczące, świadków i dostępne dowody;\n   3) w razie zagrożenia bezpieczeństwa szkoła najpierw podejmuje działania ochronne i interwencyjne.\n2. Wstępna analiza dyrektora:\n   1) dyrektor sprawdza, czy zarzucane zachowanie mieści się w katalogu statutowych przesłanek skreślenia;\n   2) dyrektor wskazuje osobę odpowiedzialną za zebranie dokumentacji sprawy;\n   3) jeżeli przesłanki statutowe nie występują, sprawę prowadzi się w trybie wychowawczym lub dyscyplinującym bez uruchamiania procedury skreślenia.\n3. Zawiadomienie strony:\n   1) uczeń pełnoletni albo rodzice ucznia niepełnoletniego otrzymują pisemną informację o wszczęciu czynności;\n   2) zawiadomienie wskazuje opis sprawy, możliwe konsekwencje, prawo złożenia wyjaśnień i prawo wglądu do akt;\n   3) uczniowi zapewnia się możliwość wskazania osoby wspierającej, np. wychowawcy, pedagoga lub psychologa.\n4. Zebranie materiału:\n   1) wychowawca przedstawia dotychczasową sytuację ucznia, zastosowane środki i okoliczności łagodzące;\n   2) pedagog lub psycholog przedstawia informację o udzielonej pomocy i możliwych formach wsparcia;\n   3) dyrektor umożliwia stronie złożenie wyjaśnień przed skierowaniem sprawy do rady pedagogicznej.\n5. Posiedzenie rady pedagogicznej:\n   1) dyrektor przedstawia sprawę radzie pedagogicznej;\n   2) rada analizuje, czy wykorzystano dostępne środki wychowawcze i pomocowe;\n   3) rada podejmuje uchwałę w sprawie skreślenia albo odstąpienia od skreślenia, zgodnie z regulaminem rady.\n6. Opinia samorządu uczniowskiego:\n   1) dyrektor przekazuje samorządowi uczniowskiemu uchwałę rady pedagogicznej albo wniosek o opinię;\n   2) opinia samorządu jest wymagana, ale nie wiąże dyrektora;\n   3) brak opinii po bezskutecznym upływie wyznaczonego terminu dokumentuje się notatką.\n7. Decyzja dyrektora:\n   1) dyrektor bada kompletność i legalność postępowania;\n   2) decyzja zawiera oznaczenie organu, datę, oznaczenie strony, podstawę prawną, rozstrzygnięcie, uzasadnienie faktyczne i prawne, pouczenie o odwołaniu oraz podpis;\n   3) w pouczeniu wskazuje się organ odwoławczy i sposób wniesienia odwołania za pośrednictwem dyrektora szkoły.\n8. Doręczenie i wykonanie decyzji:\n   1) decyzję doręcza się stronie za potwierdzeniem odbioru;\n   2) czynności związane z rozliczeniem ucznia, wydaniem dokumentów i kartą obiegową wykonuje się po uwzględnieniu rygorów wynikających z ostateczności albo wykonalności decyzji;\n   3) dokumentację sprawy przekazuje się do akt zgodnie z instrukcją kancelaryjną i JRWA.\n\n 5. Minimalny zestaw dokumentów\n\n1. Notatka służbowa o zdarzeniu.\n2. Dowody, oświadczenia świadków, wydruki z dziennika elektronicznego, dokumentacja interwencji.\n3. Informacja wychowawcy o sytuacji ucznia.\n4. Informacja pedagoga lub psychologa o działaniach pomocowych, jeżeli dotyczy.\n5. Zawiadomienie strony o wszczęciu czynności.\n6. Protokół albo wyciąg z protokołu rady pedagogicznej.\n7. Uchwała rady pedagogicznej.\n8. Opinia samorządu uczniowskiego albo notatka o jej braku mimo wystąpienia.\n9. Decyzja dyrektora wraz z dowodem doręczenia.\n10. Karta obiegowa ucznia, jeżeli znajduje zastosowanie.\n\n 6. Wzory załączników do opracowania\n\n1. Wzór notatki służbowej.\n2. Wzór zawiadomienia o wszczęciu czynności.\n3. Wzór wniosku do rady pedagogicznej.\n4. Wzór wystąpienia do samorządu uczniowskiego.\n5. Wzór decyzji administracyjnej.\n6. Wzór karty obiegowej ucznia.\n\n 7. Źródła wykorzystane w kwerendzie\n\n1. Prawo oświatowe, art. 68 - https://eli.gov.pl/api/acts/DU/2026/820/text/T/D20260820L.pdf\n2. Kodeks postępowania administracyjnego - https://eli.gov.pl/eli/DU/2024/572/ogl\n3. Statut ZSZ nr 5, § 88-89.\n4. Przykład szkolny: Zespół Szkół Ekonomicznych, procedura postępowania w przypadku skreślenia ucznia z listy uczniów - https://zse.edu.pl/pliki/regulaminy/10%20procedurapostepowaniawprzypadkuskreslenia.pdf\n5. Przykład szkolny: Zespół Szkół nr 32 im. K. K. Baczyńskiego, wykaz procedur szkolnych - https://zs32.edu.pl/dokumenty-szkolne/",
+    "excerpt": "Procedura postępowania w sprawie skreślenia ucznia z listy uczniów PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga sprawdzenia przez dyrektora, radę pedagogiczną, obsługę prawną szkoły oraz dostosowania...",
+    "hasDownload": false,
+    "sourcePath": "procedury/PROC_03_Skreslenie_Ucznia_Propozycja.md"
+  },
+  {
+    "id": "proc-indywidualne-nauczanie-propozycja",
+    "title": "Procedura organizacji indywidualnego nauczania",
+    "category": "Procedury",
+    "source": "procedury/PROC_04_Indywidualne_Nauczanie_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 26-35"
+    ],
+    "status": "propozycja",
+    "body": "Procedura organizacji indywidualnego nauczania\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga weryfikacji z aktualnymi orzeczeniami poradni, arkuszem organizacji, możliwościami kadrowymi szkoły oraz praktyką organu prowadzącego.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nDotyczy: Technikum nr 5, Branżowej Szkoły I stopnia nr 5 oraz Branżowej Szkoły II stopnia nr 5.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Cel procedury\n\n1. Procedura porządkuje działania szkoły od wpływu orzeczenia o potrzebie indywidualnego nauczania do zakończenia tej formy nauki.\n2. Celem jest zapewnienie uczniowi realizacji podstawy programowej, bezpieczeństwa zdrowotnego, kontaktu ze szkołą w dopuszczalnym zakresie i rzetelnego dokumentowania przebiegu nauczania.\n\n 2. Podstawa prawna i statutowa\n\n1. Rozporządzenie MEN z dnia 9 sierpnia 2017 r. w sprawie indywidualnego obowiązkowego rocznego przygotowania przedszkolnego dzieci i indywidualnego nauczania dzieci i młodzieży.\n2. Rozporządzenie MEN z dnia 25 sierpnia 2017 r. w sprawie dokumentacji przebiegu nauczania, działalności wychowawczej i opiekuńczej oraz rodzajów tej dokumentacji.\n3. Rozporządzenie MEN z dnia 9 sierpnia 2017 r. w sprawie pomocy psychologiczno-pedagogicznej.\n4. Statut ZSZ nr 5, w szczególności § 26-35.\n\n 3. Uruchomienie procedury\n\n1. Podstawą organizacji indywidualnego nauczania jest orzeczenie poradni psychologiczno-pedagogicznej.\n2. Rodzic ucznia niepełnoletniego albo pełnoletni uczeń składa do dyrektora:\n   1) wniosek o organizację indywidualnego nauczania;\n   2) orzeczenie poradni;\n   3) informacje organizacyjne potrzebne do ustalenia miejsca i warunków prowadzenia zajęć.\n3. Sekretariat rejestruje wpływ dokumentów i przekazuje sprawę dyrektorowi.\n4. Dyrektor analizuje orzeczenie, w szczególności:\n   1) okres obowiązywania;\n   2) zalecenia dotyczące miejsca nauczania;\n   3) ograniczenia zdrowotne;\n   4) możliwość udziału ucznia w wybranych zajęciach z oddziałem, jeżeli orzeczenie i stan zdrowia na to pozwalają.\n\n 4. Organizacja zajęć\n\n1. Dyrektor ustala tygodniowy wymiar zajęć z zachowaniem wymiaru przewidzianego dla uczniów szkół ponadpodstawowych.\n2. Dla uczniów szkół ponadpodstawowych tygodniowy wymiar zajęć indywidualnego nauczania wynosi co do zasady od 12 do 16 godzin i powinien być realizowany w ciągu co najmniej 3 dni.\n3. Obniżenie wymiaru poniżej minimum może nastąpić tylko w przypadkach uzasadnionych stanem zdrowia ucznia, na wniosek rodziców albo pełnoletniego ucznia, z uwzględnieniem konieczności realizacji podstawy programowej.\n4. Zwiększenie wymiaru powyżej maksimum wymaga zgody organu prowadzącego.\n5. Dyrektor wyznacza nauczycieli prowadzących zajęcia i przygotowuje plan nauczania uwzględniający:\n   1) przedmioty objęte indywidualnym nauczaniem;\n   2) kwalifikacje nauczycieli;\n   3) możliwości psychofizyczne ucznia;\n   4) zalecenia poradni;\n   5) konieczność dokumentowania zajęć w dzienniku.\n\n 5. Kontakt ucznia ze szkołą\n\n1. Szkoła podejmuje działania ułatwiające uczniowi powrót do oddziału i utrzymanie kontaktu ze społecznością szkolną.\n2. Jeżeli stan zdrowia ucznia i orzeczenie na to pozwalają, dyrektor może umożliwić udział w wybranych zajęciach, uroczystościach, konsultacjach lub działaniach integracyjnych.\n3. Nauczyciele obserwują funkcjonowanie ucznia i przekazują wychowawcy informacje potrzebne do dalszego planowania wsparcia.\n\n 6. Dokumentowanie\n\n1. Zajęcia dokumentuje się w dzienniku zgodnie z przepisami o dokumentacji przebiegu nauczania.\n2. Wychowawca prowadzi kontakt z rodzicami albo pełnoletnim uczniem i odnotowuje istotne ustalenia.\n3. Dokumentację sprawy przechowuje się zgodnie z instrukcją kancelaryjną i zasadami ochrony danych osobowych.\n4. Po zakończeniu okresu wskazanego w orzeczeniu dyrektor zamyka organizację indywidualnego nauczania albo podejmuje czynności na podstawie nowego orzeczenia.\n\n 7. Zakończenie lub zmiana organizacji\n\n1. Organizacja indywidualnego nauczania kończy się z upływem okresu wskazanego w orzeczeniu.\n2. Jeżeli zespół orzekający wskaże możliwość powrotu ucznia do nauki w oddziale, dyrektor zaprzestaje organizacji indywidualnego nauczania zgodnie z przepisami i informuje zainteresowane strony.\n3. Zmiana miejsca, wymiaru albo sposobu prowadzenia zajęć wymaga udokumentowanej decyzji organizacyjnej dyrektora.\n\n 8. Wzory załączników do opracowania\n\n1. Wniosek o organizację indywidualnego nauczania.\n2. Karta analizy orzeczenia.\n3. Decyzja organizacyjna dyrektora.\n4. Plan zajęć indywidualnego nauczania.\n5. Notatka z uzgodnień z rodzicem albo pełnoletnim uczniem.\n\n 9. Źródła wykorzystane w kwerendzie\n\n1. Rozporządzenie o indywidualnym nauczaniu - https://eli.gov.pl/api/acts/DU/2023/2468/text.html\n2. Rozporządzenie o dokumentacji przebiegu nauczania - https://eli.gov.pl/api/acts/DU/2024/50/text.html\n3. Rozporządzenie o pomocy psychologiczno-pedagogicznej - https://eli.gov.pl/api/acts/DU/2023/1798/text.html\n4. Statut ZSZ nr 5, § 26-35.\n5. Przykłady statutowe szkół ponadpodstawowych z kwerendy: Zespół Szkół Handlowych w Poznaniu, Zespół Szkół nr 1 w Milanówku.",
+    "excerpt": "Procedura organizacji indywidualnego nauczania PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga weryfikacji z aktualnymi orzeczeniami poradni, arkuszem organizacji, możliwościami kadrowymi szkoły oraz pr...",
+    "hasDownload": false,
+    "sourcePath": "procedury/PROC_04_Indywidualne_Nauczanie_Propozycja.md"
+  },
+  {
+    "id": "proc-kkz-propozycja",
+    "title": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
+    "category": "Procedury",
+    "source": "procedury/PROC_05_KKZ_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 66"
+    ],
+    "status": "propozycja",
+    "body": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga uzgodnienia z kierownikiem szkolenia praktycznego, osobą odpowiedzialną za dokumentację kursu, organem prowadzącym i aktualną ofertą kwalifikacji.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nDotyczy: kwalifikacyjnych kursów zawodowych organizowanych przez ZSZ nr 5, w szczególności w kwalifikacjach właściwych dla zawodów fryzjerskich i handlowych.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Cel procedury\n\n1. Procedura określa minimalny obieg czynności przy planowaniu, rekrutacji, prowadzeniu, zaliczaniu i dokumentowaniu kwalifikacyjnych kursów zawodowych.\n2. Procedura ma zapewnić zgodność kursu z podstawą programową kształcenia w zawodzie, statutem szkoły, dokumentacją przebiegu nauczania i zasadami rekrutacji.\n\n 2. Podstawa prawna i statutowa\n\n1. Prawo oświatowe, w szczególności przepisy o kształceniu ustawicznym w formach pozaszkolnych i kwalifikacyjnych kursach zawodowych.\n2. Rozporządzenie MEN z dnia 19 marca 2019 r. w sprawie kształcenia ustawicznego w formach pozaszkolnych.\n3. Rozporządzenie MEiN z dnia 18 listopada 2022 r. w sprawie przeprowadzania postępowania rekrutacyjnego.\n4. Rozporządzenie w sprawie dokumentacji przebiegu nauczania.\n5. Statut ZSZ nr 5, w szczególności § 66.\n\n 3. Decyzja o uruchomieniu kursu\n\n1. Dyrektor analizuje potrzebę uruchomienia kursu, uwzględniając:\n   1) kwalifikację i zawód;\n   2) minimalną liczbę kandydatów;\n   3) możliwości kadrowe i lokalowe;\n   4) dostępność pracowni, materiałów i wyposażenia;\n   5) zgodność z potrzebami rynku pracy i profilem szkoły.\n2. Dyrektor wyznacza koordynatora kursu.\n3. Koordynator przygotowuje kartę kursu obejmującą:\n   1) nazwę i symbol kwalifikacji;\n   2) liczbę godzin;\n   3) plan nauczania;\n   4) formę zajęć;\n   5) warunki zaliczenia;\n   6) wykaz prowadzących;\n   7) sposób dokumentowania.\n\n 4. Rekrutacja\n\n1. Rekrutację prowadzi komisja powołana przez dyrektora, jeżeli wymagają tego przepisy albo przyjęte zasady organizacyjne.\n2. Kandydat składa wniosek oraz dokumenty potwierdzające spełnienie warunków udziału.\n3. Komisja albo osoba upoważniona weryfikuje kompletność dokumentów.\n4. Lista kandydatów zakwalifikowanych i przyjętych jest sporządzana w sposób zgodny z przepisami rekrutacyjnymi i zasadami ochrony danych osobowych.\n5. Kandydat otrzymuje informację o terminie rozpoczęcia zajęć, regulaminie kursu, wymaganiach i zasadach zaliczenia.\n\n 5. Organizacja zajęć\n\n1. Kurs prowadzi się zgodnie z planem nauczania i harmonogramem zatwierdzonym przez dyrektora.\n2. Zajęcia mogą obejmować część teoretyczną i praktyczną.\n3. Obecność słuchaczy dokumentuje się w dzienniku zajęć.\n4. Zmiany w harmonogramie zatwierdza koordynator kursu albo dyrektor.\n5. W przypadku zajęć praktycznych koordynator zapewnia zgodność stanowisk z wymaganiami BHP oraz podstawą programową.\n\n 6. Zwolnienia z części zajęć\n\n1. Osoba podejmująca kształcenie może złożyć wniosek o zwolnienie z zajęć dotyczących efektów kształcenia zrealizowanych wcześniej, jeżeli przepisy i organizacja kursu na to pozwalają.\n2. Decyzję organizacyjną w sprawie zwolnienia podejmuje dyrektor albo osoba upoważniona na podstawie przedstawionych dokumentów.\n3. Zwolnienie odnotowuje się w dokumentacji kursu.\n\n 7. Zaliczenie kursu i zaświadczenie\n\n1. Kurs kończy się zaliczeniem w formie ustalonej przez podmiot prowadzący kurs.\n2. Warunki zaliczenia podaje się słuchaczom przed rozpoczęciem zajęć.\n3. Osoba, która uzyska zaliczenie, otrzymuje zaświadczenie o ukończeniu kwalifikacyjnego kursu zawodowego.\n4. Dokumentację zaliczenia przechowuje się zgodnie z przepisami o dokumentacji przebiegu nauczania i instrukcją kancelaryjną.\n\n 8. Wzory załączników do opracowania\n\n1. Wniosek o przyjęcie na kwalifikacyjny kurs zawodowy.\n2. Karta kursu.\n3. Harmonogram zajęć.\n4. Lista słuchaczy.\n5. Protokół zaliczenia.\n6. Wniosek o zwolnienie z części zajęć.\n\n 9. Źródła wykorzystane w kwerendzie\n\n1. Prawo oświatowe - https://eli.gov.pl/api/acts/DU/2026/820/text/T/D20260820L.pdf\n2. Rozporządzenie o kształceniu ustawicznym w formach pozaszkolnych - https://eli.gov.pl/api/acts/DU/2017/1632/text/O/D20171632.pdf\n3. Rozporządzenie o rekrutacji - https://eli.gov.pl/api/acts/DU/2024/989/text.html\n4. Rozporządzenie o dokumentacji przebiegu nauczania - https://eli.gov.pl/api/acts/DU/2024/50/text.html\n5. Przykład szkolny: Zespół Szkół Zawodowych nr 1 w Białej Podlaskiej, wykaz dokumentów z regulaminem KKZ - https://www.zsz1.edu.pl/organizacja/dokumenty-szkolne\n6. Przykład szkolny: Zespół Szkół Centrum Kształcenia Rolniczego w Leśnej Podlaskiej, statut z regulaminem KKZ jako załącznikiem - https://lesna.zsckr.edu.pl/wp-content/uploads/2023/05/Statut-ZSCKR.pdf",
+    "excerpt": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga uzgodnienia z kierownikiem szkolenia praktycznego, osobą odpowiedzialną za doku...",
+    "hasDownload": false,
+    "sourcePath": "procedury/PROC_05_KKZ_Propozycja.md"
+  },
+  {
+    "id": "proc-wycieczki-propozycja",
+    "title": "Procedura organizowania wyjść i wycieczek szkolnych",
+    "category": "Procedury",
+    "source": "procedury/PROC_06_Wycieczki_Szkolne_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 86 ust. 7",
+      "§ 119 ust. 14"
+    ],
+    "status": "propozycja",
+    "body": "Procedura organizowania wyjść i wycieczek szkolnych\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga dostosowania do regulacji organu prowadzącego, ubezpieczenia, przyjętych wzorów kart wycieczki i praktyki zatwierdzania wyjść w dzienniku elektronicznym.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nDotyczy: wyjść grupowych, wycieczek przedmiotowych, krajoznawczo-turystycznych, zawodowych, integracyjnych i innych form zajęć poza terenem szkoły.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Cel procedury\n\n1. Procedura opisuje przygotowanie, zatwierdzanie, realizację i rozliczanie wyjść oraz wycieczek szkolnych.\n2. Celem jest zapewnienie bezpieczeństwa uczniów i słuchaczy, przejrzystej odpowiedzialności opiekunów oraz kompletnej dokumentacji.\n\n 2. Podstawa prawna i statutowa\n\n1. Rozporządzenie MEN z dnia 25 maja 2018 r. w sprawie warunków i sposobu organizowania przez publiczne przedszkola, szkoły i placówki krajoznawstwa i turystyki.\n2. Rozporządzenie MENiS z dnia 31 grudnia 2002 r. w sprawie bezpieczeństwa i higieny w publicznych i niepublicznych szkołach i placówkach.\n3. Statut ZSZ nr 5, w szczególności § 86 ust. 7 i § 119 ust. 14.\n\n 3. Rodzaje aktywności\n\n1. Wyjście grupowe - krótkie wyjście poza teren szkoły, które nie jest wycieczką w rozumieniu przepisów o krajoznawstwie i turystyce.\n2. Wycieczka przedmiotowa lub zawodowa - forma realizacji podstawy programowej, doradztwa zawodowego albo programu wychowawczo-profilaktycznego.\n3. Wycieczka krajoznawczo-turystyczna - forma poznawania środowiska, kultury, historii, tradycji lub walorów przyrodniczych.\n4. Wyjazd specjalistyczny - wyjazd wymagający dodatkowych warunków, np. zawody, konkursy, targi branżowe, praktyczne pokazy zawodowe.\n\n 4. Przygotowanie wyjścia lub wycieczki\n\n1. Kierownik wycieczki przygotowuje program, trasę, listę uczestników, przewidywane koszty, zasady bezpieczeństwa i propozycję opiekunów.\n2. Program powinien być dostosowany do wieku, stanu zdrowia, możliwości psychofizycznych oraz potrzeb edukacyjnych uczestników.\n3. Kierownik sprawdza, czy wymagane są zgody rodziców uczniów niepełnoletnich.\n4. W przypadku uczniów z chorobami przewlekłymi, niepełnosprawnościami albo szczególnymi potrzebami kierownik uzgadnia z rodzicami i dyrektorem warunki udziału.\n5. Dyrektor zatwierdza wycieczkę przed jej rozpoczęciem.\n\n 5. Dokumentacja\n\n1. Dla wycieczki przygotowuje się co najmniej:\n   1) kartę wycieczki;\n   2) program i harmonogram;\n   3) listę uczestników;\n   4) zgody rodziców, jeżeli są wymagane;\n   5) oświadczenia opiekunów o zapoznaniu się z obowiązkami;\n   6) informację o kosztach i sposobie rozliczenia, jeżeli dotyczy.\n2. Dla wyjścia grupowego prowadzi się rejestr wyjść grupowych uczniów zawierający datę, miejsce, godzinę wyjścia lub zbiórki, cel lub program, godzinę powrotu, imiona i nazwiska opiekunów, liczbę uczniów oraz podpisy opiekunów i dyrektora.\n3. Dokumentację przechowuje się zgodnie z instrukcją kancelaryjną.\n\n 6. Obowiązki kierownika i opiekunów\n\n1. Kierownik odpowiada za przygotowanie dokumentacji, zapoznanie uczestników z zasadami bezpieczeństwa i koordynację wycieczki.\n2. Opiekun sprawuje stały nadzór nad powierzoną grupą.\n3. Niedopuszczalne jest pozostawienie uczestników bez opieki.\n4. W razie wypadku, zagubienia uczestnika, nagłego zachorowania lub innej sytuacji nadzwyczajnej kierownik niezwłocznie podejmuje działania ratunkowe, informuje dyrektora i dokumentuje zdarzenie.\n\n 7. Rozliczenie i ewaluacja\n\n1. Po zakończeniu wycieczki kierownik przekazuje dokumentację do sekretariatu albo osoby wskazanej przez dyrektora.\n2. Jeżeli wycieczka była finansowana ze środków uczestników, kierownik przygotowuje rozliczenie.\n3. Wnioski dotyczące bezpieczeństwa i organizacji kolejnych wyjść przekazuje się dyrektorowi.\n\n 8. Wzory załączników do opracowania\n\n1. Karta wycieczki.\n2. Lista uczestników.\n3. Zgoda rodzica.\n4. Oświadczenie opiekuna.\n5. Rejestr wyjść grupowych.\n6. Rozliczenie wycieczki.\n\n 9. Źródła wykorzystane w kwerendzie\n\n1. Rozporządzenie o krajoznawstwie i turystyce - https://eli.gov.pl/api/acts/DU/2018/1055/text/O/D20181055.pdf\n2. Rozporządzenie BHP w szkołach - https://eli.gov.pl/api/acts/DU/2020/1604/text.html\n3. Statut ZSZ nr 5, § 86 ust. 7 i § 119 ust. 14.\n4. Przykładowe wykazy dokumentów szkół ponadpodstawowych: Zespół Szkół nr 32 im. K. K. Baczyńskiego - https://zs32.edu.pl/dokumenty-szkolne/",
+    "excerpt": "Procedura organizowania wyjść i wycieczek szkolnych PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga dostosowania do regulacji organu prowadzącego, ubezpieczenia, przyjętych wzorów kart wycieczki i prakt...",
+    "hasDownload": false,
+    "sourcePath": "procedury/PROC_06_Wycieczki_Szkolne_Propozycja.md"
+  },
+  {
+    "id": "proc-kryzysowe-propozycja",
+    "title": "Procedury postępowania w sytuacjach kryzysowych w szkole",
+    "category": "Procedury",
+    "source": "procedury/PROC_07_Sytuacje_Kryzysowe_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 119 ust. 1"
+    ],
+    "status": "propozycja",
+    "body": "Procedury postępowania w sytuacjach kryzysowych w szkole\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga uzgodnienia z dyrektorem, pedagogiem, psychologiem, inspektorem BHP, specjalistą ds. ochrony małoletnich, organem prowadzącym oraz służbami współpracującymi ze szkołą.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nDotyczy: sytuacji zagrażających bezpieczeństwu uczniów, słuchaczy, pracowników i osób przebywających na terenie szkoły.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Cel dokumentu\n\n1. Procedury określają wspólny schemat reagowania na zdarzenia kryzysowe.\n2. Dokument powinien być spójny ze Standardami Ochrony Małoletnich, planem ewakuacji, procedurą powypadkową, regulaminem dyżurów, instrukcją kancelaryjną i zasadami ochrony danych osobowych.\n3. Celem jest szybkie zabezpieczenie osób, jasny podział ról i rzetelne udokumentowanie zdarzenia.\n\n 2. Zasady nadrzędne\n\n1. Najpierw zabezpiecza się życie i zdrowie osób.\n2. Nauczyciel lub pracownik, który zauważył zdarzenie, niezwłocznie podejmuje działania adekwatne do zagrożenia i informuje dyrektora albo osobę zastępującą.\n3. W razie potrzeby wzywa się odpowiednie służby: 112, Policję, pogotowie ratunkowe, straż pożarną, straż miejską albo inne właściwe instytucje.\n4. Informowanie rodziców prowadzi dyrektor, wychowawca albo osoba wskazana przez dyrektora.\n5. Informacje dla mediów i komunikaty zewnętrzne przekazuje wyłącznie dyrektor albo osoba przez niego upoważniona.\n6. Każde zdarzenie dokumentuje się notatką służbową, a w razie wypadku także dokumentacją powypadkową.\n\n 3. Minimalny schemat reakcji\n\n1. Rozpoznanie zdarzenia:\n   1) co się stało;\n   2) kto jest zagrożony;\n   3) gdzie doszło do zdarzenia;\n   4) czy potrzebna jest pomoc medyczna lub interwencja służb.\n2. Zabezpieczenie:\n   1) oddzielenie osób zagrożonych od źródła zagrożenia;\n   2) udzielenie pierwszej pomocy;\n   3) zapewnienie opieki pozostałym uczniom;\n   4) zabezpieczenie miejsca zdarzenia, jeżeli nie koliduje to z ratowaniem osób.\n3. Powiadomienie:\n   1) dyrektor lub osoba zastępująca;\n   2) rodzice ucznia, jeżeli dotyczy;\n   3) służby lub instytucje zewnętrzne;\n   4) organ prowadzący i organ nadzoru, jeżeli wymagają tego przepisy lub skala zdarzenia.\n4. Dokumentacja:\n   1) notatka służbowa;\n   2) lista osób uczestniczących i świadków;\n   3) opis podjętych działań;\n   4) kopie zawiadomień i potwierdzeń;\n   5) wnioski po zdarzeniu.\n5. Działania następcze:\n   1) pomoc psychologiczno-pedagogiczna;\n   2) rozmowy z klasą lub grupą;\n   3) analiza ryzyka;\n   4) aktualizacja procedur, jeżeli zdarzenie ujawniło lukę organizacyjną.\n\n 4. Zakres procedur szczegółowych do opracowania\n\n1. Wypadek ucznia albo nagłe zachorowanie.\n2. Podejrzenie krzywdzenia małoletniego.\n3. Agresja fizyczna lub psychiczna.\n4. Cyberprzemoc i naruszenie dóbr osobistych w sieci.\n5. Posiadanie albo użycie substancji psychoaktywnych.\n6. Podejrzenie popełnienia czynu karalnego.\n7. Zagrożenie samobójcze, samookaleczenie albo poważny kryzys psychiczny.\n8. Obca osoba na terenie szkoły.\n9. Zagrożenie pożarem, ewakuacja albo alarm.\n10. Zagrożenie bombowe lub inna groźba wobec szkoły.\n11. Naruszenie bezpieczeństwa danych osobowych.\n\n 5. Zespół kryzysowy\n\n1. Dyrektor powołuje szkolny zespół kryzysowy albo wskazuje skład osób uruchamianych w sytuacji kryzysowej.\n2. W skład zespołu powinni wchodzić co najmniej:\n   1) dyrektor lub wicedyrektor;\n   2) pedagog;\n   3) psycholog;\n   4) wychowawca klasy, jeżeli dotyczy;\n   5) pracownik odpowiedzialny za BHP albo administrację;\n   6) specjalista ds. ochrony małoletnich, jeżeli sprawa dotyczy małoletniego.\n3. Zespół po zdarzeniu przygotowuje krótką informację dla dyrektora: przebieg, decyzje, dokumenty, ryzyka, działania następcze.\n\n 6. Dokumentowanie i ochrona danych\n\n1. Dokumentacja kryzysowa jest przechowywana w sposób ograniczający dostęp osób nieuprawnionych.\n2. W sprawach dotyczących małoletnich stosuje się Standardy Ochrony Małoletnich i zasadę minimalizacji informacji.\n3. Notatki, zgłoszenia, protokoły i korespondencję klasyfikuje się zgodnie z instrukcją kancelaryjną i JRWA.\n\n 7. Wzory załączników do opracowania\n\n1. Notatka z interwencji.\n2. Karta zdarzenia kryzysowego.\n3. Lista kontaktów alarmowych.\n4. Protokół spotkania zespołu kryzysowego.\n5. Plan działań następczych.\n6. Wzór komunikatu do rodziców.\n\n 8. Źródła wykorzystane w kwerendzie\n\n1. Rozporządzenie BHP w szkołach - https://eli.gov.pl/api/acts/DU/2020/1604/text.html\n2. Ustawa o przeciwdziałaniu zagrożeniom przestępczością na tle seksualnym i ochronie małoletnich - https://eli.gov.pl/eli/DU/2026/110/ogl\n3. ORE, poradnik dotyczący interwencji kryzysowej w szkołach - https://ore.edu.pl/wp-content/uploads/phocadownload/EFS/Poradnik-wspomaganie-szkolwzakresieinterwencjiK.CiszewskaS.Zyza.pdf\n4. Przykład szkolny: Zespół Szkół Ekonomiczno-Usługowych w Żychlinie - https://zychlin.edu.pl/dla-rodzicow/procedury-postepowania-w-sytuacjach-kryzysowych-w-zseu-zychlin\n5. Przykład szkolny: Zespół Szkół nr 32 im. K. K. Baczyńskiego - https://zs32.edu.pl/dokumenty-szkolne/",
+    "excerpt": "Procedury postępowania w sytuacjach kryzysowych w szkole PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga uzgodnienia z dyrektorem, pedagogiem, psychologiem, inspektorem BHP, specjalistą ds. ochrony mało...",
+    "hasDownload": false,
+    "sourcePath": "procedury/PROC_07_Sytuacje_Kryzysowe_Propozycja.md"
+  },
+  {
+    "id": "ins-kancelaryjna-propozycja",
+    "title": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej",
+    "category": "Instrukcje",
+    "source": "instrukcje/INS_01_Instrukcja_Kancelaryjna_Obieg_Archiwizacja_Propozycja.md",
+    "download": "",
+    "statuteRefs": [
+      "§ 21",
+      "§ 39 ust. 3 pkt 7",
+      "§ 77",
+      "§ 136",
+      "§ 137"
+    ],
+    "status": "propozycja",
+    "body": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej\n\nPROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga szczególnej pracy: uzgodnienia z właściwym Archiwum Państwowym, organem prowadzącym, inspektorem ochrony danych, sekretariatem, kadrami, księgowością oraz osobą odpowiedzialną za składnicę akt. To jest szkielet do dalszych prac, a nie gotowa instrukcja do podpisu.\n\nZespół Szkół Zawodowych nr 5 we Wrocławiu\n\nZakres: kancelaria, obieg dokumentów, znakowanie spraw, dokumentacja elektroniczna, przekazywanie akt do składnicy, brakowanie i archiwizacja.\n\nStan kwerendy: 24 lipca 2026 r.\n\n---\n\n 1. Założenie konstrukcyjne\n\n1. Instrukcja powinna być jednym dokumentem głównym obejmującym:\n   1) zasady kancelaryjne, czyli przyjmowanie, rejestrowanie, znakowanie, dekretację, prowadzenie i załatwianie spraw;\n   2) obieg dokumentów wewnątrz szkoły, w tym dokumentacji pedagogicznej, kadrowej, administracyjnej i korespondencji elektronicznej;\n   3) zasady przekazywania, przechowywania, brakowania i archiwizacji dokumentacji szkolnej.\n2. Ze względów archiwalnych instrukcja powinna być powiązana z jednolitym rzeczowym wykazem akt oraz instrukcją składnicy akt albo archiwum zakładowego.\n3. Wersja docelowa powinna wskazywać, czy ZSZ nr 5 prowadzi składnicę akt czy archiwum zakładowe, oraz jakie uzgodnienia obowiązują z właściwym miejscowo archiwum państwowym.\n\n 2. Cel instrukcji\n\n1. Instrukcja określa jednolite zasady postępowania z dokumentacją od momentu wpływu albo wytworzenia dokumentu do zakończenia sprawy i przekazania akt do przechowywania.\n2. Instrukcja ma zapewnić:\n   1) możliwość odtworzenia przebiegu sprawy;\n   2) terminowe przekazywanie dokumentów między sekretariatem, dyrektorem, nauczycielami i komórkami organizacyjnymi;\n   3) ochronę danych osobowych;\n   4) prawidłowe stosowanie JRWA;\n   5) przygotowanie dokumentacji do archiwizacji albo brakowania.\n\n 3. Zakres podmiotowy\n\n1. Instrukcja obowiązuje wszystkich pracowników ZSZ nr 5, którzy tworzą, otrzymują, przetwarzają albo przechowują dokumentację szkolną.\n2. Szczególne obowiązki dotyczą:\n   1) dyrektora - nadzór nad całością dokumentacji;\n   2) sekretariatu - obsługa wpływu, wysyłki, rejestrów i obiegu spraw;\n   3) pracownika odpowiedzialnego za składnicę akt - przejmowanie, ewidencja, przechowywanie i brakowanie dokumentacji;\n   4) wychowawców i nauczycieli - prawidłowe prowadzenie dokumentacji pedagogicznej;\n   5) kierowników i koordynatorów - kompletowanie dokumentacji powierzonych obszarów;\n   6) inspektora ochrony danych - konsultowanie rozwiązań dotyczących danych osobowych.\n\n 4. Słownik roboczy\n\n1. Dokumentacja - wszelkie pisma, akta, rejestry, protokoły, notatki, decyzje, formularze, wiadomości elektroniczne i inne utrwalone informacje powstałe lub otrzymane w związku z działalnością szkoły.\n2. Sprawa - zdarzenie lub zagadnienie wymagające rozpatrzenia, rozstrzygnięcia, odpowiedzi albo udokumentowania.\n3. Znak sprawy - oznaczenie pozwalające powiązać dokumenty z daną sprawą, komórką organizacyjną, klasą JRWA i rokiem.\n4. Akta sprawy - komplet dokumentów dotyczących jednej sprawy.\n5. JRWA - jednolity rzeczowy wykaz akt określający klasyfikację i kwalifikację archiwalną dokumentacji.\n6. Składnica akt - miejsce i system przechowywania dokumentacji niearchiwalnej oraz przygotowywania jej do brakowania albo dalszego przechowywania.\n\n 5. Przyjmowanie korespondencji\n\n1. Korespondencję wpływającą przyjmuje sekretariat albo osoba upoważniona.\n2. Korespondencja może wpływać:\n   1) papierowo;\n   2) przez ePUAP;\n   3) przez e-Doręczenia;\n   4) przez pocztę elektroniczną;\n   5) przez dziennik elektroniczny;\n   6) osobiście do sekretariatu.\n3. Dokument wpływający powinien zostać opatrzony datą wpływu i przekazany do dekretacji.\n4. Korespondencję zawierającą dane wrażliwe albo informacje objęte ograniczonym dostępem przekazuje się bez zbędnego kopiowania i z zachowaniem poufności.\n\n 6. Dekretacja i obieg dokumentów\n\n1. Dyrektor albo osoba upoważniona dekretuje sprawę do właściwego pracownika lub komórki.\n2. Dekretacja powinna wskazywać:\n   1) osobę odpowiedzialną;\n   2) termin załatwienia, jeżeli jest wymagany;\n   3) sposób załatwienia albo oczekiwane działanie;\n   4) potrzebę konsultacji, jeżeli dotyczy.\n3. Pracownik prowadzący sprawę odpowiada za kompletność akt i terminowe załatwienie.\n4. Przekazywanie dokumentów między pracownikami odbywa się w sposób umożliwiający ustalenie, kto i kiedy otrzymał dokument.\n5. Dokumentów zawierających dane osobowe uczniów, rodziców lub pracowników nie pozostawia się w miejscach ogólnodostępnych.\n\n 7. Zakładanie i znakowanie spraw\n\n1. Sprawę zakłada się, gdy dokumentacja dotyczy nowego zagadnienia wymagającego udokumentowanego załatwienia.\n2. Nie zakłada się nowej sprawy dla pisma należącego do sprawy już prowadzonej.\n3. Znak sprawy powinien być zgodny z JRWA i zawierać co najmniej:\n   1) oznaczenie szkoły lub komórki;\n   2) symbol klasy z JRWA;\n   3) numer sprawy;\n   4) rok.\n4. Proponowany format do dalszego uzgodnienia:\n   ZSZ5.[komórka].[symbol JRWA].[numer].[rok]\n5. Docelowy format znaku sprawy musi zostać ustalony po analizie obowiązujących normatywów kancelaryjno-archiwalnych szkoły.\n\n 8. Dokumentacja pedagogiczna\n\n1. Dokumentację przebiegu nauczania prowadzi się zgodnie z rozporządzeniem o dokumentacji przebiegu nauczania.\n2. Dzienniki, arkusze ocen, księgi uczniów, protokoły egzaminów, dokumentacja klasyfikacji, dokumentacja pomocy psychologiczno-pedagogicznej i dokumentacja praktycznej nauki zawodu podlegają szczególnej kontroli kompletności.\n3. Wychowawca odpowiada za kompletność dokumentacji oddziału w zakresie powierzonym przez dyrektora.\n4. Dokumenty zawierające dane o zdrowiu, orzeczenia, opinie i dokumentację pomocy psychologiczno-pedagogicznej przechowuje się w sposób ograniczający dostęp do osób upoważnionych.\n\n 9. Dokumentacja elektroniczna\n\n1. Wiadomość elektroniczna stanowi dokumentację sprawy, jeżeli zawiera ustalenia, wnioski, decyzje, zgody, zawiadomienia albo inne informacje istotne dla załatwienia sprawy.\n2. Pracownik prowadzący sprawę odpowiada za włączenie istotnej korespondencji elektronicznej do akt sprawy w sposób przyjęty w szkole.\n3. Systemy specjalistyczne, takie jak dziennik elektroniczny, SIO, system kadrowo-płacowy albo system finansowo-księgowy, prowadzi się zgodnie z odrębnymi przepisami i instrukcjami, ale informacje istotne dla sprawy powinny być możliwe do odtworzenia.\n4. Dokumentów zawierających dane osobowe nie przekazuje się prywatnymi kanałami komunikacji, jeżeli szkoła zapewnia kanał służbowy.\n\n 10. Zamknięcie sprawy\n\n1. Sprawę uznaje się za zakończoną po wykonaniu czynności merytorycznych, wysłaniu odpowiedzi, wydaniu decyzji albo sporządzeniu dokumentu kończącego.\n2. Pracownik prowadzący porządkuje akta sprawy, usuwa kopie robocze, sprawdza kompletność dokumentów i opisuje teczkę albo zbiór elektroniczny.\n3. Akta spraw zakończonych przekazuje się do składnicy akt w terminie ustalonym przez dyrektora.\n\n 11. Przekazywanie akt do składnicy\n\n1. Do składnicy akt przekazuje się dokumentację uporządkowaną, kompletną i opisaną.\n2. Przekazanie następuje na podstawie spisu zdawczo-odbiorczego.\n3. Spis powinien zawierać co najmniej:\n   1) nazwę komórki przekazującej;\n   2) znak albo tytuł teczki;\n   3) daty skrajne;\n   4) kategorię archiwalną;\n   5) liczbę tomów albo jednostek;\n   6) podpis przekazującego i przejmującego.\n4. Dokumentacja nieuporządkowana wraca do komórki prowadzącej do poprawy.\n\n 12. Przechowywanie i udostępnianie akt\n\n1. Dokumentację przechowuje się w warunkach zabezpieczających ją przed zniszczeniem, utratą i dostępem osób nieupoważnionych.\n2. Udostępnienie akt pracownikowi szkoły następuje w zakresie niezbędnym do wykonania obowiązków służbowych.\n3. Udostępnienie dokumentacji osobom zewnętrznym wymaga podstawy prawnej, upoważnienia albo decyzji dyrektora.\n4. Udostępnienie akt odnotowuje się w ewidencji.\n\n 13. Brakowanie dokumentacji\n\n1. Dokumentację niearchiwalną można brakować po upływie okresu przechowywania wynikającego z JRWA i po uzyskaniu wymaganej zgody właściwego archiwum państwowego, jeżeli taka zgoda jest wymagana.\n2. Do wniosku o brakowanie przygotowuje się spisy dokumentacji niearchiwalnej przeznaczonej do zniszczenia.\n3. Osobne spisy sporządza się dla dokumentacji oznaczonej symbolami B, BE i Bc, jeżeli takie rozróżnienie występuje.\n4. Zniszczenie dokumentacji odbywa się w sposób uniemożliwiający odtworzenie danych.\n5. Z czynności brakowania zachowuje się dokumentację potwierdzającą zgodę i wykonanie zniszczenia.\n\n 14. Dokumentacja kategorii A i materiały archiwalne\n\n1. Dokumentację o wartości archiwalnej kwalifikuje się zgodnie z JRWA i uzgodnieniami z właściwym archiwum państwowym.\n2. Przekazanie materiałów archiwalnych do archiwum państwowego wymaga przygotowania dokumentacji zgodnie z przepisami archiwalnymi.\n3. Szkoła nie może samodzielnie zmieniać kwalifikacji archiwalnej bez podstawy wynikającej z uzgodnionych normatywów.\n\n 15. Minimalne rejestry\n\n1. Rejestr korespondencji wpływającej i wychodzącej, jeżeli stosowany.\n2. Rejestr decyzji administracyjnych.\n3. Rejestr zarządzeń dyrektora.\n4. Rejestr upoważnień.\n5. Rejestr pieczęci.\n6. Rejestr wyjść grupowych.\n7. Spisy zdawczo-odbiorcze.\n8. Ewidencja udostępniania akt.\n9. Ewidencja brakowania dokumentacji.\n\n 16. Elementy wymagające dopracowania z ZSZ nr 5\n\n1. Aktualny wykaz komórek organizacyjnych i stanowisk.\n2. Obowiązujący albo projektowany JRWA.\n3. Informacja, czy szkoła ma składnicę akt czy archiwum zakładowe.\n4. Aktualne rejestry prowadzone w sekretariacie.\n5. Obieg dokumentów PPP, dokumentacji ucznia, decyzji administracyjnych i korespondencji przez e-Doręczenia.\n6. Sposób eksportu i utrwalania dokumentów z dziennika elektronicznego.\n7. Zasady dostępu do dokumentacji przez nauczycieli, rodziców, pełnoletnich uczniów i absolwentów.\n8. Szczegółowe okresy przechowywania dla dokumentacji szkolnej, kadrowej, finansowej i projektowej.\n\n 17. Załączniki do opracowania\n\n1. Jednolity rzeczowy wykaz akt ZSZ nr 5.\n2. Instrukcja składnicy akt albo archiwum zakładowego.\n3. Wzór spisu zdawczo-odbiorczego.\n4. Wzór opisu teczki.\n5. Wzór rejestru decyzji.\n6. Wzór rejestru pieczęci.\n7. Wzór ewidencji udostępniania akt.\n8. Wzór spisu dokumentacji przeznaczonej do brakowania.\n\n 18. Źródła wykorzystane w kwerendzie\n\n1. Kuratorium Oświaty w Krakowie, Normatywy kancelaryjno-archiwalne dla szkół i przedszkoli - https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/\n2. Archiwa Państwowe, Przepisy kancelaryjne i archiwalne - https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/przepisy-kancelaryjne-i-archiwalne/\n3. Archiwa Państwowe, przykładowa klasyfikacja i kwalifikacja dokumentacji ze szkół - https://archiwa.gov.pl/wp-content/uploads/2022/05/Przykladowa-klasyfikacja-i-kwalifikacja-dokumentacji-ze-szkol-2011.pdf\n4. Archiwa Państwowe, brakowanie dokumentacji - https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/brakowanie-dokumentacji/\n5. Rozporządzenie o dokumentacji przebiegu nauczania - https://eli.gov.pl/api/acts/DU/2024/50/text.html\n6. Rozporządzenie w sprawie klasyfikowania i kwalifikowania dokumentacji - https://eli.gov.pl/eli/DU/2015/1743/ogl\n7. Przykład szkolny: Zespół Szkół i Placówek w Wołkowyi, instrukcja kancelaryjna, JRWA i instrukcja składnicy akt - https://bip.zswolkowyja.pl/wp-content/uploads/zarzadzenia/20202021/zarzadzenienr621.pdf",
+    "excerpt": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej PROPOZYCJA ROBOCZA - dokument nie jest aktem obowiązującym ZSZ nr 5. Wymaga szczególnej pracy: uzgodnienia z właściwym Archiwum Państwowym, organem pr...",
+    "hasDownload": false,
+    "sourcePath": "instrukcje/INS_01_Instrukcja_Kancelaryjna_Obieg_Archiwizacja_Propozycja.md"
+  },
+  {
     "id": "pwp",
     "title": "Program Wychowawczo-Profilaktyczny",
     "category": "Programy",
@@ -1224,46 +1320,6 @@ export const statuteSections = [
 export const missingDocuments = [
   {
     "id": "missing-1",
-    "title": "Procedura skreslenia ucznia z listy uczniow",
-    "category": "Procedury",
-    "ref": "§ 88-89",
-    "note": "W statucie jest opisana procedura; warto wydzielic ja jako osobny dokument z wzorami pism.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-2",
-    "title": "Procedura organizacji indywidualnego nauczania",
-    "category": "Procedury",
-    "ref": "§ 26-35",
-    "note": "Statut opisuje tryb i dokumenty, ale brak osobnej instrukcji operacyjnej.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-3",
-    "title": "Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego",
-    "category": "Procedury",
-    "ref": "§ 66",
-    "note": "Statut wprost wskazuje odrebna procedure.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-4",
-    "title": "Procedura organizowania wycieczek szkolnych",
-    "category": "Procedury",
-    "ref": "§ 86 ust. 7, § 119 ust. 14",
-    "note": "Statut wymaga jej stosowania przy wyjsciach i wycieczkach.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-5",
-    "title": "Procedury postepowania w sytuacjach kryzysowych w szkole",
-    "category": "Procedury",
-    "ref": "§ 119 ust. 1",
-    "note": "Statut wskazuje je jako podstawowe narzedzie zapewniania bezpieczenstwa.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-6",
     "title": "Standardy Ochrony Maloletnich",
     "category": "Programy i standardy",
     "ref": "§ 84 ust. 5, § 85 ust. 3 pkt 1",
@@ -1271,31 +1327,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-7",
-    "title": "Instrukcja kancelaryjna",
-    "category": "Instrukcje",
-    "ref": "§ 21",
-    "note": "Statut odsyla do niej przy obiegu dokumentow PPP.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-8",
-    "title": "Instrukcja obiegu dokumentow",
-    "category": "Instrukcje",
-    "ref": "§ 21, § 77, § 136",
-    "note": "Praktyczne rozwiniecie kancelarii, dokumentacji i archiwizacji.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-9",
-    "title": "Instrukcja archiwizacji dokumentacji szkolnej",
-    "category": "Instrukcje",
-    "ref": "§ 39 ust. 3 pkt 7, § 136",
-    "note": "Dyrektor odpowiada za prowadzenie i archiwizacje dokumentacji.",
-    "status": "brak"
-  },
-  {
-    "id": "missing-10",
+    "id": "missing-2",
     "title": "Instrukcja korzystania z dziennika elektronicznego",
     "category": "Instrukcje",
     "ref": "§ 1 pkt 9, § 73, § 77",
@@ -1303,7 +1335,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-11",
+    "id": "missing-3",
     "title": "Regulamin wejscia do szkoly i kart magnetycznych",
     "category": "Regulaminy",
     "ref": "§ 61 ust. 14",
@@ -1311,7 +1343,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-12",
+    "id": "missing-4",
     "title": "Plan ewakuacji szkoly",
     "category": "Dokumentacja BHP",
     "ref": "§ 10 ust. 9",
@@ -1319,7 +1351,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-13",
+    "id": "missing-5",
     "title": "Rejestr pieczeci",
     "category": "Dokumentacja administracyjna",
     "ref": "§ 137",
@@ -1327,7 +1359,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-14",
+    "id": "missing-6",
     "title": "Karta obiegowa ucznia",
     "category": "Wzory dokumentow",
     "ref": "§ 85 ust. 4",
@@ -1335,7 +1367,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-15",
+    "id": "missing-7",
     "title": "Plan pracy szkoly",
     "category": "Dokumenty roczne",
     "ref": "§ 79, § 1123",
@@ -1343,7 +1375,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-16",
+    "id": "missing-8",
     "title": "Plan pracy wychowawczo-profilaktycznej",
     "category": "Dokumenty roczne",
     "ref": "§ 72",
@@ -1351,7 +1383,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-17",
+    "id": "missing-9",
     "title": "Plan dyzurow nauczycielskich",
     "category": "Dokumenty roczne",
     "ref": "§ 61 ust. 13",
@@ -1359,7 +1391,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-18",
+    "id": "missing-10",
     "title": "Szkolny zestaw programow nauczania",
     "category": "Rejestry",
     "ref": "§ 5 ust. 5-11",
@@ -1367,7 +1399,7 @@ export const missingDocuments = [
     "status": "brak"
   },
   {
-    "id": "missing-19",
+    "id": "missing-11",
     "title": "Roczny zestaw podrecznikow i materialow",
     "category": "Rejestry",
     "ref": "§ 5 ust. 12-14",
@@ -1380,6 +1412,10 @@ export const externalSources = [
   {
     "title": "Prawo oswiatowe",
     "url": "https://eli.gov.pl/eli/DU/2026/820/ogl/pol"
+  },
+  {
+    "title": "Kodeks postepowania administracyjnego",
+    "url": "https://eli.gov.pl/eli/DU/2024/572/ogl"
   },
   {
     "title": "Ustawa o systemie oswiaty",
@@ -1402,18 +1438,34 @@ export const externalSources = [
     "url": "https://eli.gov.pl/eli/DU/2019/391/ogl"
   },
   {
+    "title": "Kwalifikacyjne kursy zawodowe",
+    "url": "https://eli.gov.pl/eli/DU/2017/1632/ogl"
+  },
+  {
+    "title": "Krajoznawstwo i turystyka",
+    "url": "https://eli.gov.pl/eli/DU/2018/1055/ogl"
+  },
+  {
     "title": "BHP w szkolach",
     "url": "https://eli.gov.pl/eli/DU/2020/1604/ogl"
   },
   {
     "title": "Ochrona maloletnich",
     "url": "https://eli.gov.pl/eli/DU/2026/110/ogl"
+  },
+  {
+    "title": "Normatywy kancelaryjno-archiwalne dla szkol",
+    "url": "https://kuratorium.krakow.pl/normatywy-kancelaryjno-archiwalne-dla-szkol-i-przedszkoli/"
+  },
+  {
+    "title": "Archiwa Panstwowe - przepisy kancelaryjne",
+    "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/przepisy-kancelaryjne-i-archiwalne/"
   }
 ] as const;
 
 export const siteStats = {
-  documentCount: 21,
+  documentCount: 27,
   statuteSectionCount: 149,
-  missingCount: 19,
+  missingCount: 11,
   statuteDownload: "/docs/Statut_Zespolu_Szkol_Zawodowych_nr_20251015.pdf",
 } as const;
