@@ -6,7 +6,7 @@ const siteRoot = process.cwd();
 const publicDocs = path.join(siteRoot, "public", "docs");
 const publicData = path.join(siteRoot, "public", "search-data.json");
 const outputPath = path.join(siteRoot, "app", "content.ts");
-const generatedAt = "2026-07-23T20:17:33.147Z";
+const generatedAt = "2026-07-24T08:08:07.000Z";
 
 const sourceFiles = [
   {
@@ -25,6 +25,15 @@ const sourceFiles = [
     source: "procedury/PROC_01_Pomoc_PPP.md",
     download: "/docs/PROC_01_Pomoc_PPP.docx",
     statuteRefs: ["§ 14-25a"],
+    status: "gotowy",
+  },
+  {
+    id: "proc-egzaminy-klasyfikacyjne-poprawkowe",
+    title: "Procedura egzaminu klasyfikacyjnego, egzaminu poprawkowego i komisyjnego sprawdzianu wiadomości i umiejętności",
+    category: "Procedury",
+    source: "procedury/PROC_02_Egzaminy_Klasyfikacyjne_Poprawkowe.md",
+    download: "/docs/PROC_02_Egzaminy_Klasyfikacyjne_Poprawkowe.pdf",
+    statuteRefs: ["§ 102 ust. 25", "§ 103 ust. 11", "§ 105 ust. 17"],
     status: "gotowy",
   },
   {
@@ -148,7 +157,6 @@ const sourceFiles = [
 const missingDocuments = [
   ["Procedura skreslenia ucznia z listy uczniow", "Procedury", "§ 88-89", "W statucie jest opisana procedura; warto wydzielic ja jako osobny dokument z wzorami pism."],
   ["Procedura organizacji indywidualnego nauczania", "Procedury", "§ 26-35", "Statut opisuje tryb i dokumenty, ale brak osobnej instrukcji operacyjnej."],
-  ["Procedura egzaminu klasyfikacyjnego, poprawkowego i komisyjnego sprawdzianu", "Procedury", "§ 102 ust. 25, § 103 ust. 11, § 105 ust. 17", "Statut wprost odsyla do tej procedury."],
   ["Procedura organizowania i funkcjonowania kwalifikacyjnego kursu zawodowego", "Procedury", "§ 66", "Statut wprost wskazuje odrebna procedure."],
   ["Procedura organizowania wycieczek szkolnych", "Procedury", "§ 86 ust. 7, § 119 ust. 14", "Statut wymaga jej stosowania przy wyjsciach i wycieczkach."],
   ["Procedury postepowania w sytuacjach kryzysowych w szkole", "Procedury", "§ 119 ust. 1", "Statut wskazuje je jako podstawowe narzedzie zapewniania bezpieczenstwa."],
@@ -192,6 +200,7 @@ function readSource(relativePath) {
 
 function plainText(markdown) {
   return markdown
+    .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/<a id="[^"]+"><\/a>/g, "")
     .replace(/^> ?/gm, "")
     .replace(/[#*_`\\]/g, "")

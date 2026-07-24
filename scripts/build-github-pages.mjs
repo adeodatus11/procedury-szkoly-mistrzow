@@ -30,6 +30,13 @@ function esc(value) {
     .replaceAll('"', "&quot;");
 }
 
+function groupedMissing() {
+  return data.missingDocuments.reduce((groups, document) => {
+    groups[document.category] = [...(groups[document.category] || []), document];
+    return groups;
+  }, {});
+}
+
 fs.rmSync(outputDir, { recursive: true, force: true });
 ensureDir(outputDir);
 copyDir(path.join(publicDir, "assets"), path.join(outputDir, "assets"));
@@ -52,7 +59,7 @@ const html = `<!doctype html>
         <div class="topbar-links">
           <a href="#dokumenty">Dokumenty</a>
           <a href="#statut">Statut</a>
-          <a href="#braki">Braki</a>
+          <a href="./braki/">Braki</a>
           <a href="#zrodla">Źródła</a>
         </div>
       </nav>
@@ -117,7 +124,7 @@ const html = `<!doctype html>
     </section>
 
     <section class="missing-section" id="braki">
-      <div class="section-heading"><p>Do opracowania</p><h2>Dokumenty wskazane przez statut, których brakuje w katalogu</h2></div>
+      <div class="section-heading"><p>Do opracowania</p><h2>Dokumenty wskazane przez statut, których brakuje w katalogu</h2><a class="section-link" href="./braki/">Otwórz osobną stronę z brakami</a></div>
       <div class="missing-list" id="missing-list"></div>
     </section>
 
@@ -130,6 +137,71 @@ const html = `<!doctype html>
 
     <script id="search-data" type="application/json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>
     <script src="./app.js"></script>
+  </body>
+</html>`;
+
+const missingGroups = groupedMissing();
+const missingHtml = `<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Braki w dokumentacji statutowej</title>
+    <meta name="description" content="Lista brakujących procedur, regulaminów i dokumentów wynikających ze statutu ZSZ nr 5.">
+    <link rel="icon" href="../assets/logo.png">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <main>
+      <header class="site-header">
+        <nav class="topbar" aria-label="Główna nawigacja">
+          <a class="brand" href="../"><img src="../assets/logo.png" alt="procedury.szkolamistrzow.info"></a>
+          <div class="topbar-links">
+            <a href="../">Strona główna</a>
+            <a href="../#dokumenty">Dokumenty</a>
+            <a href="../#statut">Statut</a>
+          </div>
+        </nav>
+      </header>
+
+      <section class="share-hero">
+        <p class="eyebrow">Lista do przekazania</p>
+        <h1>Braki w dokumentacji statutowej</h1>
+        <p class="lead">Zestawienie dokumentów, procedur, instrukcji i rejestrów, które wynikają ze statutu albo są potrzebne do jego praktycznego stosowania, ale nie są jeszcze włączone do katalogu dokumentów.</p>
+        <div class="share-summary" aria-label="Podsumowanie listy braków">
+          <div><strong>${data.missingDocuments.length}</strong><span>dokumentów do opracowania</span></div>
+          <div><strong>${Object.keys(missingGroups).length}</strong><span>kategorii</span></div>
+          <div><strong>${data.documents.length}</strong><span>dokumentów już zebranych</span></div>
+        </div>
+      </section>
+
+      <section class="share-note">
+        <h2>Jak czytać tę listę</h2>
+        <p>Każda pozycja zawiera nazwę dokumentu, typ, podstawę w statucie oraz krótkie uzasadnienie. Lista jest robocza i służy do zaplanowania przygotowania brakujących aktów wewnętrznych szkoły.</p>
+        <p>Stan indeksu: ${esc(new Intl.DateTimeFormat("pl-PL", { dateStyle: "long", timeStyle: "short" }).format(new Date(data.generatedAt)))}</p>
+      </section>
+
+      <section class="share-missing-list" aria-label="Brakujące dokumenty">
+        ${Object.entries(missingGroups)
+          .map(
+            ([category, items]) => `<article class="share-group">
+          <div class="share-group-header"><h2>${esc(category)}</h2><span>${items.length}</span></div>
+          <div class="share-items">
+            ${items
+              .map(
+                (document, index) => `<section class="share-item">
+              <span>${index + 1}</span>
+              <div><h3>${esc(document.title)}</h3><p>${esc(document.note)}</p></div>
+              <strong>${esc(document.ref)}</strong>
+            </section>`,
+              )
+              .join("")}
+          </div>
+        </article>`,
+          )
+          .join("")}
+      </section>
+    </main>
   </body>
 </html>`;
 
@@ -233,5 +305,7 @@ fs.writeFileSync(path.join(outputDir, "index.html"), html);
 fs.writeFileSync(path.join(outputDir, "styles.css"), css);
 fs.writeFileSync(path.join(outputDir, "app.js"), js);
 fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
+ensureDir(path.join(outputDir, "braki"));
+fs.writeFileSync(path.join(outputDir, "braki", "index.html"), missingHtml);
 
 console.log(`Built GitHub Pages site in ${path.relative(siteRoot, outputDir)}`);

@@ -172,7 +172,7 @@ export default function Home() {
           <div className="topbar-links">
             <a href="#dokumenty">Dokumenty</a>
             <a href="#statut">Statut</a>
-            <a href="#braki">Braki</a>
+            <a href="/braki">Braki</a>
             <a href="#zrodla">Źródła</a>
           </div>
         </nav>
@@ -359,6 +359,9 @@ export default function Home() {
         <div className="section-heading">
           <p>Do opracowania</p>
           <h2>Dokumenty wskazane przez statut, których brakuje w katalogu</h2>
+          <a className="section-link" href="/braki">
+            Otwórz osobną stronę z brakami
+          </a>
         </div>
         <div className="missing-list">
           {filteredMissing.map((document) => (
