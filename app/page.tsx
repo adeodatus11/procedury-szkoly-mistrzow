@@ -7,8 +7,10 @@ import {
   generatedAt,
   missingDocuments,
   siteStats,
+  statuteChapters,
   statuteSections,
 } from "./content";
+import { documentHref, includesQuery, statuteChapterHref, statusLabel } from "./content-utils";
 
 const categories = [
   "Wszystko",
@@ -21,141 +23,9 @@ const categories = [
   "Braki",
 ] as const;
 
-function normalize(value: string) {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "");
-}
-
-function includesQuery(value: string, query: string) {
-  return normalize(value).includes(normalize(query));
-}
-
-function statusLabel(status: string) {
-  const labels: Record<string, string> = {
-    obowiazujacy: "obowiązujący",
-    gotowy: "gotowy",
-    "do uzupelnienia": "do uzupełnienia",
-    propozycja: "propozycja",
-    brak: "brak",
-  };
-  return labels[status] ?? status;
-}
-
-function compactBody(value: string, limit = 900) {
-  if (value.length <= limit) return value;
-  return `${value.slice(0, limit).trim()}...`;
-}
-
-function sourceUrl(title: string) {
-  return externalSources.find((source) => normalize(source.title) === normalize(title))?.url ?? "#zrodla";
-}
-
-const legalReferences = [
-  {
-    url: sourceUrl("Prawo oswiatowe"),
-    phrases: ["Prawo oświatowe", "Prawa oświatowego"],
-  },
-  {
-    url: sourceUrl("Ustawa o systemie oswiaty"),
-    phrases: ["ustawa o systemie oświaty", "ustawy o systemie oświaty"],
-  },
-  {
-    url: sourceUrl("Kodeks postepowania administracyjnego"),
-    phrases: ["Kodeks postępowania administracyjnego", "Kodeksu postępowania administracyjnego"],
-  },
-  {
-    url: sourceUrl("Pomoc psychologiczno-pedagogiczna"),
-    phrases: ["pomoc psychologiczno-pedagogiczna", "pomocy psychologiczno-pedagogicznej"],
-  },
-  {
-    url: sourceUrl("Indywidualne nauczanie"),
-    phrases: ["indywidualne nauczanie", "indywidualnego nauczania"],
-  },
-  {
-    url: sourceUrl("Dokumentacja przebiegu nauczania"),
-    phrases: ["dokumentacja przebiegu nauczania", "dokumentacji przebiegu nauczania"],
-  },
-  {
-    url: sourceUrl("Kwalifikacyjne kursy zawodowe"),
-    phrases: ["kwalifikacyjny kurs zawodowy", "kwalifikacyjnego kursu zawodowego", "kwalifikacyjnych kursów zawodowych"],
-  },
-  {
-    url: sourceUrl("Krajoznawstwo i turystyka"),
-    phrases: ["krajoznawstwo i turystyka", "krajoznawstwa i turystyki"],
-  },
-  {
-    url: sourceUrl("Praktyczna nauka zawodu"),
-    phrases: ["praktyczna nauka zawodu", "praktycznej nauki zawodu"],
-  },
-  {
-    url: sourceUrl("BHP w szkolach"),
-    phrases: ["bezpieczeństwa i higieny pracy", "BHP"],
-  },
-  {
-    url: sourceUrl("Ochrona maloletnich"),
-    phrases: ["Standardy Ochrony Małoletnich", "ochrony małoletnich"],
-  },
-];
-
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-const legalReferenceMatcher = new RegExp(
-  `(${legalReferences
-    .flatMap((reference) => reference.phrases)
-    .sort((a, b) => b.length - a.length)
-    .map(escapeRegExp)
-    .join("|")})`,
-  "gi",
-);
-
-function renderLinkedText(value: string) {
-  return value.split(legalReferenceMatcher).map((part, index) => {
-    const reference = legalReferences.find((item) =>
-      item.phrases.some((phrase) => normalize(phrase) === normalize(part)),
-    );
-
-    if (!reference) return part;
-
-    return (
-      <a className="legal-link" href={reference.url} key={`${part}-${index}`} rel="noreferrer" target="_blank">
-        {part}
-      </a>
-    );
-  });
-}
-
-function lineClassName(line: string) {
-  const trimmed = line.trim();
-  if (/^Rozdział\s+\d+/i.test(trimmed)) return "structured-line line-chapter";
-  if (/^§\s*\d+/.test(trimmed)) return "structured-line line-paragraph";
-  if (/^\d+[a-z]?\./i.test(trimmed)) return "structured-line line-ustep";
-  if (/^\d+\)/.test(trimmed)) return "structured-line line-punkt";
-  if (/^[-•]/.test(trimmed)) return "structured-line line-punkt";
-  if (/^[a-z]\)/i.test(trimmed)) return "structured-line line-litera";
-  if (/^https?:\/\//.test(trimmed)) return "structured-line line-source";
-  return "structured-line";
-}
-
-function renderStructuredText(value: string) {
-  return value
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter(Boolean)
-    .map((block, index) => (
-      <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
-        {renderLinkedText(block)}
-      </p>
-    ));
-}
-
 export default function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<(typeof categories)[number]>("Wszystko");
-  const [selectedDocumentId, setSelectedDocumentId] = useState(documents[0].id);
 
   const filteredDocuments = useMemo(() => {
     return documents.filter((document) => {
@@ -164,8 +34,7 @@ export default function Home() {
         category === document.category ||
         (category === "Programy" && document.category === "Programy");
       const haystack = `${document.title} ${document.category} ${document.status} ${document.statuteRefs.join(" ")} ${document.body}`;
-      const matchesQuery = !query || includesQuery(haystack, query);
-      return matchesCategory && matchesQuery;
+      return matchesCategory && (!query || includesQuery(haystack, query));
     });
   }, [category, query]);
 
@@ -177,6 +46,13 @@ export default function Home() {
     });
   }, [category, query]);
 
+  const filteredChapters = useMemo(() => {
+    if (category !== "Wszystko" && category !== "Statut") return [];
+    if (!query) return statuteChapters;
+    const matchingChapterTitles = new Set(filteredSections.map((section) => section.chapter));
+    return statuteChapters.filter((chapter) => matchingChapterTitles.has(chapter.title));
+  }, [category, filteredSections, query]);
+
   const filteredMissing = useMemo(() => {
     if (category !== "Wszystko" && category !== "Braki") return [];
     return missingDocuments.filter((document) => {
@@ -184,16 +60,6 @@ export default function Home() {
       return !query || includesQuery(haystack, query);
     });
   }, [category, query]);
-
-  const selectedDocument =
-    documents.find((document) => document.id === selectedDocumentId) ??
-    filteredDocuments[0] ??
-    documents[0];
-
-  const updateSelection = (id: string) => {
-    setSelectedDocumentId(id);
-    document.getElementById("preview")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   const generatedDate = new Intl.DateTimeFormat("pl-PL", {
     dateStyle: "medium",
@@ -238,8 +104,8 @@ export default function Home() {
               <span>dokumentów</span>
             </div>
             <div>
-              <strong>{siteStats.statuteSectionCount}</strong>
-              <span>sekcji statutu</span>
+              <strong>{siteStats.statuteChapterCount}</strong>
+              <span>rozdziałów statutu</span>
             </div>
             <div>
               <strong>{siteStats.missingCount}</strong>
@@ -300,7 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="workspace" id="dokumenty">
+      <section className="workspace workspace-single" id="dokumenty">
         <div className="document-list">
           <div className="section-heading">
             <p>Dokumenty zebrane</p>
@@ -317,86 +183,70 @@ export default function Home() {
                 </div>
                 <h3>{document.title}</h3>
                 <p>{document.excerpt}</p>
+                {document.status === "propozycja" ? (
+                  <div className="proposal-notice">
+                    Propozycja robocza. Pełna treść jest na osobnej stronie dokumentu.
+                  </div>
+                ) : null}
                 <div className="refs">
                   {document.statuteRefs.map((ref) => (
                     <span key={ref}>{ref}</span>
                   ))}
                 </div>
                 <div className="doc-actions">
-                  <button type="button" onClick={() => updateSelection(document.id)}>
+                  <a className="read-link" href={documentHref(document.id)}>
                     Czytaj
-                  </button>
-                  {document.hasDownload && document.download ? (
-                    <a href={document.download}>Pobierz</a>
-                  ) : null}
+                  </a>
+                  {document.hasDownload && document.download ? <a href={document.download}>Pobierz</a> : null}
                 </div>
               </article>
             ))}
             {!filteredDocuments.length ? <p className="empty">Brak dokumentów dla tego filtra.</p> : null}
           </div>
         </div>
-
-        <aside className="preview" id="preview">
-          <div className="preview-header">
-            <span className="pill">{selectedDocument.category}</span>
-            <h2>{selectedDocument.title}</h2>
-            <p>
-              Podstawa w statucie: <strong>{selectedDocument.statuteRefs.join(", ")}</strong>
-            </p>
-            {selectedDocument.hasDownload && selectedDocument.download ? (
-              <a className="download-link" href={selectedDocument.download}>
-                Pobierz plik źródłowy
-              </a>
-            ) : null}
-            {selectedDocument.status === "propozycja" ? (
-              <div className="proposal-notice">
-                To jest propozycja robocza przygotowana na podstawie kwerendy. Nie jest jeszcze aktem obowiązującym
-                szkoły i wymaga konfrontacji z dokumentami ZSZ nr 5 oraz weryfikacji prawnej.
-              </div>
-            ) : null}
-          </div>
-          <div className="document-reader">
-            {renderStructuredText(compactBody(selectedDocument.body, selectedDocument.id === "statut" ? 2200 : 1800))}
-          </div>
-        </aside>
       </section>
 
       <section className="statute-section" id="statut">
         <div className="section-heading">
           <p>Statut tekstowy</p>
-          <h2>Pełny aktualny statut do czytania</h2>
+          <h2>Statut podzielony na rozdziały</h2>
           <p className="section-lead">
-            To jest cały tekst statutu w formie HTML. Wyszukiwarka zawęża widoczne paragrafy, a rozpoznane
-            odwołania do aktów zewnętrznych prowadzą do oficjalnych publikacji.
+            Każdy rozdział otwiera się jako osobna strona. Menu rozdziałów zostaje po lewej, a po prawej wyświetla
+            się tylko jeden wybrany rozdział.
           </p>
         </div>
         <div className="reader-layout">
           <aside className="reader-toc" aria-label="Spis treści statutu">
             <div className="reader-toc-header">
-              <strong>{filteredSections.length}</strong>
-              <span>{query ? "trafień" : "paragrafów"}</span>
+              <strong>{filteredChapters.length}</strong>
+              <span>{query ? "rozdziałów z trafieniami" : "rozdziałów"}</span>
             </div>
             <a className="reader-download" href={siteStats.statuteDownload}>
               Pobierz oryginalny PDF
             </a>
             <nav>
-              {filteredSections.map((section) => (
-                <a href={`#${section.id}`} key={section.id}>
-                  <span>{section.chapter}</span>
-                  {section.title}
+              {filteredChapters.map((chapter) => (
+                <a href={statuteChapterHref(chapter.id)} key={chapter.id}>
+                  <span>{chapter.sections.length} paragrafów</span>
+                  {chapter.title}
                 </a>
               ))}
             </nav>
           </aside>
           <div className="statute-reader">
-            {filteredSections.map((section) => (
-              <article className="reader-article" id={section.id} key={section.id}>
-                <span>{section.chapter}</span>
-                <h3>{section.title}</h3>
-                <div className="reader-text">{renderStructuredText(section.body)}</div>
+            {filteredChapters.slice(0, 1).map((chapter) => (
+              <article className="reader-article chapter-teaser" key={chapter.id}>
+                <span>Podgląd</span>
+                <h3>{chapter.title}</h3>
+                <p>
+                  Otwórz rozdział, żeby czytać statut w osobnym, krótszym widoku bez ładowania całego tekstu naraz.
+                </p>
+                <a className="section-link" href={statuteChapterHref(chapter.id)}>
+                  Otwórz rozdział
+                </a>
               </article>
             ))}
-            {!filteredSections.length ? <p className="empty">Brak paragrafów statutu dla tego filtra.</p> : null}
+            {!filteredChapters.length ? <p className="empty">Brak rozdziałów statutu dla tego filtra.</p> : null}
           </div>
         </div>
       </section>

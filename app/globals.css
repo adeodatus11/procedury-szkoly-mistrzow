@@ -316,6 +316,10 @@ h1 {
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
 }
 
+.workspace-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .section-heading h2 {
   font-size: 2rem;
   line-height: 1.1;
@@ -362,6 +366,10 @@ h1 {
   display: grid;
   gap: 12px;
   padding: 18px;
+}
+
+.workspace-single .list-stack {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .doc-card-head,
@@ -437,8 +445,14 @@ h1 {
   color: #fff;
 }
 
-.doc-actions button:hover {
+.doc-actions button:hover,
+.read-link:hover {
   background: #000;
+}
+
+.read-link {
+  background: var(--ink);
+  color: #fff;
 }
 
 .preview {
@@ -559,6 +573,11 @@ h1 {
   background: #eef2ec;
 }
 
+.reader-toc nav a.active {
+  background: #e4eee7;
+  box-shadow: inset 3px 0 0 var(--green);
+}
+
 .reader-toc nav span {
   color: var(--green);
   font-size: 0.72rem;
@@ -639,6 +658,75 @@ h1 {
   color: var(--muted);
   font-size: 0.9rem;
   overflow-wrap: anywhere;
+}
+
+.document-page {
+  padding: 54px clamp(18px, 5vw, 72px);
+}
+
+.document-shell {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.document-meta,
+.document-full {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.document-meta {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  position: sticky;
+  top: 12px;
+}
+
+.document-meta p {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.document-meta strong {
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.document-full {
+  padding: clamp(22px, 4vw, 44px);
+}
+
+.document-full h1 {
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 1.05;
+  margin-bottom: 22px;
+  max-width: 980px;
+}
+
+.document-reader-full {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin-top: 24px;
+}
+
+.chapter-teaser {
+  align-content: start;
+  display: grid;
+  gap: 12px;
+}
+
+.chapter-teaser p {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .legal-link {
@@ -868,18 +956,21 @@ h1 {
 @media (max-width: 1040px) {
   .hero,
   .workspace,
-  .reader-layout {
+  .reader-layout,
+  .document-shell {
     grid-template-columns: 1fr;
   }
 
   .preview,
-  .reader-toc {
+  .reader-toc,
+  .document-meta {
     max-height: none;
     position: static;
   }
 
   .statute-grid,
-  .source-list {
+  .source-list,
+  .workspace-single .list-stack {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -925,7 +1016,8 @@ h1 {
   .dashboard,
   .statute-grid,
   .source-list,
-  .share-summary {
+  .share-summary,
+  .workspace-single .list-stack {
     grid-template-columns: 1fr;
   }
 

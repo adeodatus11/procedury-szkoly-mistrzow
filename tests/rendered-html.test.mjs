@@ -32,10 +32,13 @@ test("server-renders the ZSZ5 document catalogue", async () => {
   assert.match(html, /<title>Procedury Szkoły Mistrzów<\/title>/i);
   assert.match(html, /System dokumentacji ZSZ nr 5/);
   assert.match(html, /27<\/strong><span>dokumentów/);
+  assert.match(html, /17<\/strong><span>rozdziałów statutu/);
   assert.match(html, /11<\/strong><span>braków do opracowania/);
   assert.match(html, /Procedura organizacji indywidualnego nauczania/);
   assert.match(html, /Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/);
   assert.match(html, /status-propozycja/);
+  assert.match(html, /href="\/dokumenty\/proc-indywidualne-nauczanie-propozycja"/);
+  assert.match(html, /href="\/statut\/rozdzial-1-przepisy-definiujace"/);
   assert.match(html, /class="filters"[^]*Instrukcje/);
 });
 
@@ -46,12 +49,38 @@ test("keeps generated search data aligned with proposed documents", async () => 
 
   assert.equal(data.documents.length, 27);
   assert.equal(data.siteStats.missingCount, 11);
+  assert.equal(data.siteStats.statuteChapterCount, 17);
+  assert.equal(data.statuteChapters.length, 17);
   assert.equal(proposals.length, 6);
+  assert.equal(data.statuteChapters[0].id, "rozdzial-1-przepisy-definiujace");
   assert.ok(proposals.some((document) => document.id === "ins-kancelaryjna-propozycja"));
   assert.ok(proposals.every((document) => /PROPOZYCJA ROBOCZA/.test(document.body)));
   assert.ok(!missingTitles.includes("Instrukcja kancelaryjna"));
   assert.ok(!missingTitles.includes("Instrukcja obiegu dokumentow"));
   assert.ok(!missingTitles.includes("Instrukcja archiwizacji dokumentacji szkolnej"));
+});
+
+test("server-renders a full proposed procedure page", async () => {
+  const response = await render("/dokumenty/proc-indywidualne-nauczanie-propozycja");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Procedura organizacji indywidualnego nauczania/);
+  assert.match(html, /To jest propozycja robocza przygotowana na podstawie kwerendy/);
+  assert.match(html, /document-reader-full/);
+  assert.match(html, /Źródła wykorzystane w kwerendzie/);
+});
+
+test("server-renders one statute chapter at a time", async () => {
+  const response = await render("/statut/rozdzial-1-przepisy-definiujace");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Rozdział 1\. Przepisy definiujące/);
+  assert.match(html, /Wyświetlany jest tylko jeden rozdział/);
+  assert.match(html, /class="active" href="\/statut\/rozdzial-1-przepisy-definiujace"/);
+  assert.doesNotMatch(html, /<h2>§ 136\./);
+  assert.doesNotMatch(html, /<h2>§ 140\./);
 });
 
 test("server-renders the missing documents page after consolidation", async () => {

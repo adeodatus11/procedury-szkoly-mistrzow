@@ -265,14 +265,31 @@ function excerpt(text) {
   return compact.length > 230 ? `${compact.slice(0, 230)}...` : compact;
 }
 
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .replaceAll("ł", "l")
+    .replaceAll("Ł", "l")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function parseStatuteSections(markdown) {
   const lines = markdown.split(/\r?\n/);
   const sections = [];
   let current = null;
+  let currentChapter = "Statut";
 
   for (const line of lines) {
     const paragraphMatch = line.match(/^###\s+(§\s*[\da-zA-Z]+\.?.*)/);
     const chapterMatch = line.match(/^##\s+(.+)/);
+
+    if (chapterMatch && !line.startsWith("###")) {
+      currentChapter = chapterMatch[1].trim();
+      continue;
+    }
 
     if (paragraphMatch) {
       if (current) sections.push(current);
@@ -280,16 +297,9 @@ function parseStatuteSections(markdown) {
       current = {
         id: `statute-${sections.length + 1}`,
         title,
-        chapter: sections.length ? sections[sections.length - 1].chapter : "Statut",
+        chapter: currentChapter,
         body: "",
       };
-      continue;
-    }
-
-    if (chapterMatch && !line.startsWith("###")) {
-      if (current && current.body.trim()) {
-        current.body += `\n${line}`;
-      }
       continue;
     }
 
@@ -298,16 +308,10 @@ function parseStatuteSections(markdown) {
 
   if (current) sections.push(current);
 
-  let chapter = "Statut";
-  return sections.map((section) => {
-    const chapterInBody = section.body.match(/##\s+(Rozdział[^\n]+)/);
-    if (chapterInBody) chapter = chapterInBody[1].trim();
-    return {
-      ...section,
-      chapter,
-      body: plainText(section.body),
-    };
-  });
+  return sections.map((section) => ({
+    ...section,
+    body: plainText(section.body),
+  }));
 }
 
 const docs = sourceFiles.map((item) => {
@@ -327,12 +331,27 @@ const docs = sourceFiles.map((item) => {
 
 const statute = docs.find((doc) => doc.id === "statut");
 const statuteSections = parseStatuteSections(readSource("Statut_Zespolu_Szkol_Zawodowych_nr_20251015.md"));
+const statuteChapters = statuteSections.reduce((chapters, section) => {
+  let chapter = chapters.find((item) => item.title === section.chapter);
+  if (!chapter) {
+    chapter = {
+      id: slugify(section.chapter),
+      title: section.chapter,
+      sections: [],
+    };
+    chapters.push(chapter);
+  }
+  chapter.sections.push(section);
+  return chapters;
+}, []);
 
 const payload = `export const generatedAt = ${JSON.stringify(generatedAt)};
 
 export const documents = ${JSON.stringify(docs, null, 2)} as const;
 
 export const statuteSections = ${JSON.stringify(statuteSections, null, 2)} as const;
+
+export const statuteChapters = ${JSON.stringify(statuteChapters, null, 2)} as const;
 
 export const missingDocuments = ${JSON.stringify(missingDocuments, null, 2)} as const;
 
@@ -341,6 +360,7 @@ export const externalSources = ${JSON.stringify(externalSources, null, 2)} as co
 export const siteStats = {
   documentCount: ${docs.length},
   statuteSectionCount: ${statuteSections.length},
+  statuteChapterCount: ${statuteChapters.length},
   missingCount: ${missingDocuments.length},
   statuteDownload: ${JSON.stringify(statute?.download ?? "")},
 } as const;
@@ -354,11 +374,13 @@ fs.writeFileSync(
       generatedAt,
       documents: docs,
       statuteSections,
+      statuteChapters,
       missingDocuments,
       externalSources,
       siteStats: {
         documentCount: docs.length,
         statuteSectionCount: statuteSections.length,
+        statuteChapterCount: statuteChapters.length,
         missingCount: missingDocuments.length,
         statuteDownload: statute?.download ?? "",
       },
