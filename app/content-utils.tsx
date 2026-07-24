@@ -185,19 +185,41 @@ function renderMarkdownTable(block: string, index: number) {
   );
 }
 
+function shouldSplitStructuredBlock(lines: string[]) {
+  if (lines.length < 2) return false;
+  return lines.some((line) => lineClassName(line) !== "structured-line");
+}
+
+function renderTextBlock(block: string, index: number) {
+  const lines = block
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (shouldSplitStructuredBlock(lines)) {
+    return lines.map((line, lineIndex) => (
+      <p className={lineClassName(line)} key={`${line.slice(0, 28)}-${index}-${lineIndex}`}>
+        {renderLinkedText(line)}
+      </p>
+    ));
+  }
+
+  return (
+    <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
+      {renderLinkedText(block)}
+    </p>
+  );
+}
+
 export function renderStructuredText(value: string) {
   return value
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block, index) => {
+    .flatMap((block, index) => {
       const table = renderMarkdownTable(block, index);
       if (table) return table;
 
-      return (
-        <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
-          {renderLinkedText(block)}
-        </p>
-      );
+      return renderTextBlock(block, index);
     });
 }

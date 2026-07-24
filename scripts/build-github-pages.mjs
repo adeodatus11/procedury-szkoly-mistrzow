@@ -163,12 +163,30 @@ function markdownTableHtml(block) {
     .join("")}</tbody></table></div>`;
 }
 
+function shouldSplitStructuredBlock(lines) {
+  if (lines.length < 2) return false;
+  return lines.some((line) => lineClassName(line) !== "structured-line");
+}
+
+function structuredBlockHtml(block) {
+  const lines = String(block)
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (shouldSplitStructuredBlock(lines)) {
+    return lines.map((line) => `<p class="${lineClassName(line)}">${linkedText(line)}</p>`).join("");
+  }
+
+  return `<p class="${lineClassName(block)}">${linkedText(block)}</p>`;
+}
+
 function structuredHtml(value) {
   return String(value)
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block) => markdownTableHtml(block) || `<p class="${lineClassName(block)}">${linkedText(block)}</p>`)
+    .map((block) => markdownTableHtml(block) || structuredBlockHtml(block))
     .join("");
 }
 

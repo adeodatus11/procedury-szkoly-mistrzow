@@ -82,6 +82,17 @@ test("server-renders markdown tables as readable HTML tables", async () => {
   assert.doesNotMatch(html, /\| Rola \| Zakres odpowiedzialności \|/);
 });
 
+test("server-renders numbered paragraphs and subpoints on separate lines", async () => {
+  const response = await render("/dokumenty/proc-ppp");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<p class="structured-line line-ustep">1\. Potrzeba udzielenia PPP/);
+  assert.match(html, /<p class="structured-line line-litera">a\) ucznia \(pełnoletniego\);<\/p>/);
+  assert.match(html, /<p class="structured-line line-litera">e\) pomocy nauczyciela/);
+  assert.doesNotMatch(html, /na wniosek: a\) ucznia/);
+});
+
 test("server-renders one statute chapter at a time", async () => {
   const response = await render("/statut/rozdzial-1-przepisy-definiujace");
   assert.equal(response.status, 200);
