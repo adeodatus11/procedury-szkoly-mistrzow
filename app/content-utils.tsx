@@ -126,14 +126,78 @@ function lineClassName(line: string) {
   return "structured-line";
 }
 
+function splitMarkdownRow(line: string) {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function isTableSeparator(line: string) {
+  return /^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?$/.test(line.trim());
+}
+
+function parseMarkdownTable(block: string) {
+  const lines = block
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2 || !lines[0].includes("|") || !isTableSeparator(lines[1])) return null;
+
+  const headers = splitMarkdownRow(lines[0]);
+  const rows = lines.slice(2).filter((line) => line.includes("|")).map(splitMarkdownRow);
+
+  if (!headers.length || !rows.length) return null;
+
+  return { headers, rows };
+}
+
+function renderMarkdownTable(block: string, index: number) {
+  const table = parseMarkdownTable(block);
+  if (!table) return null;
+
+  return (
+    <div className="table-scroll" key={`table-${index}`}>
+      <table className="document-table">
+        <thead>
+          <tr>
+            {table.headers.map((header, cellIndex) => (
+              <th key={`${header}-${cellIndex}`} scope="col">
+                {renderLinkedText(header)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row, rowIndex) => (
+            <tr key={`${row.join("-")}-${rowIndex}`}>
+              {table.headers.map((_, cellIndex) => (
+                <td key={`${rowIndex}-${cellIndex}`}>{renderLinkedText(row[cellIndex] ?? "")}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export function renderStructuredText(value: string) {
   return value
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block, index) => (
-      <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
-        {renderLinkedText(block)}
-      </p>
-    ));
+    .map((block, index) => {
+      const table = renderMarkdownTable(block, index);
+      if (table) return table;
+
+      return (
+        <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
+          {renderLinkedText(block)}
+        </p>
+      );
+    });
 }

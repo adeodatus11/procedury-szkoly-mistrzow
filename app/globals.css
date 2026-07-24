@@ -524,6 +524,41 @@ h1 {
   margin: 18px 0 0;
 }
 
+.table-scroll {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 18px 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.document-table {
+  background: var(--surface);
+  border-collapse: collapse;
+  min-width: min(760px, 100%);
+  width: 100%;
+}
+
+.document-table th,
+.document-table td {
+  border-bottom: 1px solid var(--line);
+  line-height: 1.45;
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.document-table th {
+  background: #eef2ec;
+  color: var(--green-dark);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.document-table tr:last-child td {
+  border-bottom: 0;
+}
+
 .statute-section {
   background: #f0f1ea;
 }

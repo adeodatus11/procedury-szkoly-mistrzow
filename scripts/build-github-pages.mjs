@@ -125,12 +125,50 @@ function lineClassName(line) {
   return "structured-line";
 }
 
+function splitMarkdownRow(line) {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function isTableSeparator(line) {
+  return /^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?$/.test(line.trim());
+}
+
+function markdownTableHtml(block) {
+  const lines = String(block)
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2 || !lines[0].includes("|") || !isTableSeparator(lines[1])) return "";
+
+  const headers = splitMarkdownRow(lines[0]);
+  const rows = lines.slice(2).filter((line) => line.includes("|")).map(splitMarkdownRow);
+
+  if (!headers.length || !rows.length) return "";
+
+  return `<div class="table-scroll"><table class="document-table"><thead><tr>${headers
+    .map((header) => `<th scope="col">${linkedText(header)}</th>`)
+    .join("")}</tr></thead><tbody>${rows
+    .map(
+      (row) =>
+        `<tr>${headers
+          .map((_, cellIndex) => `<td>${linkedText(row[cellIndex] || "")}</td>`)
+          .join("")}</tr>`,
+    )
+    .join("")}</tbody></table></div>`;
+}
+
 function structuredHtml(value) {
   return String(value)
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block) => `<p class="${lineClassName(block)}">${linkedText(block)}</p>`)
+    .map((block) => markdownTableHtml(block) || `<p class="${lineClassName(block)}">${linkedText(block)}</p>`)
     .join("");
 }
 

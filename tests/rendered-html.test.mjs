@@ -71,6 +71,17 @@ test("server-renders a full proposed procedure page", async () => {
   assert.match(html, /Źródła wykorzystane w kwerendzie/);
 });
 
+test("server-renders markdown tables as readable HTML tables", async () => {
+  const response = await render("/dokumenty/proc-ppp");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<table class="document-table">/);
+  assert.match(html, /<th scope="col">Rola<\/th>/);
+  assert.match(html, /<td>Dyrektor szkoły<\/td>/);
+  assert.doesNotMatch(html, /\| Rola \| Zakres odpowiedzialności \|/);
+});
+
 test("server-renders one statute chapter at a time", async () => {
   const response = await render("/statut/rozdzial-1-przepisy-definiujace");
   assert.equal(response.status, 200);
