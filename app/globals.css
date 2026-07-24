@@ -61,20 +61,20 @@ button {
   display: flex;
   gap: 24px;
   justify-content: space-between;
-  min-height: 112px;
-  padding: 18px clamp(18px, 5vw, 72px);
+  min-height: 148px;
+  padding: 22px clamp(18px, 5vw, 72px);
 }
 
 .brand {
   align-items: center;
   display: inline-flex;
-  height: 76px;
+  height: 112px;
 }
 
 .brand img {
   display: block;
-  height: 76px;
-  max-width: min(560px, 66vw);
+  height: 112px;
+  max-width: min(720px, 68vw);
   object-fit: contain;
 }
 
@@ -838,12 +838,12 @@ h1 {
   }
 
   .brand {
-    height: 62px;
+    height: 86px;
   }
 
   .brand img {
-    height: 62px;
-    max-width: min(480px, 90vw);
+    height: 86px;
+    max-width: min(560px, 92vw);
   }
 
   .topbar-links {
