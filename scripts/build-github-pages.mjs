@@ -14,6 +14,8 @@ const statuteProposalData = JSON.parse(
   fs.readFileSync(path.join(siteRoot, "app", "statute-proposals-data.json"), "utf8"),
 );
 const globalSearchDataPath = path.join(publicDir, "global-search-data.json");
+const buildVersion = JSON.parse(fs.readFileSync(globalSearchDataPath, "utf8"))
+  .generatedAt.replace(/\D/g, "");
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -349,9 +351,9 @@ function shell({ title, description, depth = 0, body }) {
     <title>${esc(title)}</title>
     <meta name="description" content="${esc(description)}">
     <link rel="icon" href="${prefix}assets/logo.png">
-    <link rel="stylesheet" href="${prefix}styles.css">
+    <link rel="stylesheet" href="${prefix}styles.css?v=${buildVersion}">
   </head>
-  <body>${body}<script src="${prefix}site.js" defer></script></body>
+  <body>${body}<script src="${prefix}site.js?v=${buildVersion}" defer></script></body>
 </html>`;
 }
 
@@ -369,7 +371,7 @@ function topbar(prefix, current = "") {
           <a href="${prefix}pakiety/"${current === "pakiety" ? ' aria-current="page"' : ""}>Paczki ZIP</a>
           <a href="${prefix}braki/"${current === "braki" ? ' aria-current="page"' : ""}>Braki</a>
         </div>
-        <div class="global-search" role="search" data-search-root="${prefix}">
+        <div class="global-search" role="search" data-search-root="${prefix}" data-search-version="${buildVersion}">
           <label class="visually-hidden" for="global-search">Szukaj w całym serwisie</label>
           <input aria-autocomplete="list" aria-controls="global-search-results" aria-expanded="false" id="global-search" placeholder="Szukaj w całym serwisie" type="search">
           <div class="global-search-results" hidden id="global-search-results" role="listbox"></div>
@@ -478,7 +480,7 @@ const indexHtml = shell({
     </section>
 
     <script id="search-data" type="application/json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=${buildVersion}"></script>
   </main>`,
 });
 
@@ -545,7 +547,7 @@ const siteJs = `(() => {
     const input = search.querySelector("input");
     const resultsBox = search.querySelector(".global-search-results");
     let entries = [];
-    fetch((search.dataset.searchRoot || "./") + "global-search-data.json")
+    fetch((search.dataset.searchRoot || "./") + "global-search-data.json?v=" + (search.dataset.searchVersion || "1"))
       .then((response) => response.json())
       .then((data) => {
         entries = data.entries || [];
