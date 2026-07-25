@@ -122,7 +122,21 @@ test("server-renders numbered document sections above indented lists", async () 
   assert.match(html, /<p class="structured-line line-ustep">1\. Notatka służbowa o zdarzeniu\.<\/p>/);
   assert.match(html, /<p class="structured-line line-section">6\. Wzory załączników do opracowania<\/p>/);
   assert.match(html, /<p class="structured-line line-section">7\. Źródła wykorzystane w kwerendzie<\/p>/);
-  assert.match(html, /<p class="structured-line line-ustep">1\. <a class="legal-link"[^>]*>Prawo oświatowe<\/a>, art\. 68/);
+  assert.match(html, /<p class="structured-line line-ustep">1\. Prawo oświatowe, art\. 68/);
+});
+
+test("links legal acts only inside the legal basis section", async () => {
+  const response = await render("/dokumenty/proc-skreslenie-propozycja");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const legalBasisStart = html.indexOf("2. Podstawa prawna i statutowa");
+  const nextSectionStart = html.indexOf("3. Zasady ogólne");
+  const sourcesStart = html.indexOf("7. Źródła wykorzystane w kwerendzie");
+
+  assert.ok(legalBasisStart >= 0 && nextSectionStart > legalBasisStart && sourcesStart > nextSectionStart);
+  assert.match(html.slice(legalBasisStart, nextSectionStart), /class="legal-link"/);
+  assert.doesNotMatch(html.slice(nextSectionStart), /class="legal-link"/);
 });
 
 test("server-renders one statute chapter at a time", async () => {
@@ -216,8 +230,13 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   const sectionStart = procedureHtml.indexOf("8. Wzory załączników do opracowania");
   const embeddedForms = procedureHtml.indexOf("Podgląd i pliki do pobrania");
   const sourcesStart = procedureHtml.indexOf("9. Źródła wykorzystane w kwerendzie");
+  const legalBasisStart = procedureHtml.indexOf("2. Podstawa prawna i statutowa");
+  const nextSectionStart = procedureHtml.indexOf("3. Uruchomienie procedury");
 
   assert.ok(sectionStart >= 0 && embeddedForms > sectionStart && sourcesStart > embeddedForms);
+  assert.ok(legalBasisStart >= 0 && nextSectionStart > legalBasisStart);
+  assert.match(procedureHtml.slice(legalBasisStart, nextSectionStart), /class="legal-link"/);
+  assert.doesNotMatch(procedureHtml.slice(sourcesStart), /class="legal-link"/);
   assert.equal((procedureHtml.match(/class="form-inline-thumbnail"/g) ?? []).length, 5);
   assert.equal((procedureHtml.match(/Pobierz DOCX/g) ?? []).length, 5);
   assert.match(procedureHtml, /href="\.\.\/\.\.\/previews\/wzory\/indywidualne-wniosek\/page-1\.png"/);

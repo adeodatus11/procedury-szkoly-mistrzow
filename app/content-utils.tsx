@@ -98,7 +98,9 @@ const legalReferenceMatcher = new RegExp(
   "gi",
 );
 
-function renderLinkedText(value: string) {
+function renderLinkedText(value: string, linkLegalReferences: boolean) {
+  if (!linkLegalReferences) return value;
+
   return value.split(legalReferenceMatcher).map((part, index) => {
     const reference = legalReferences.find((item) =>
       item.phrases.some((phrase) => normalize(phrase) === normalize(part)),
@@ -164,7 +166,7 @@ function parseMarkdownTable(block: string) {
   return { headers, rows };
 }
 
-function renderMarkdownTable(block: string, index: number) {
+function renderMarkdownTable(block: string, index: number, linkLegalReferences: boolean) {
   const table = parseMarkdownTable(block);
   if (!table) return null;
 
@@ -175,7 +177,7 @@ function renderMarkdownTable(block: string, index: number) {
           <tr>
             {table.headers.map((header, cellIndex) => (
               <th key={`${header}-${cellIndex}`} scope="col">
-                {renderLinkedText(header)}
+                {renderLinkedText(header, linkLegalReferences)}
               </th>
             ))}
           </tr>
@@ -184,7 +186,9 @@ function renderMarkdownTable(block: string, index: number) {
           {table.rows.map((row, rowIndex) => (
             <tr key={`${row.join("-")}-${rowIndex}`}>
               {table.headers.map((_, cellIndex) => (
-                <td key={`${rowIndex}-${cellIndex}`}>{renderLinkedText(row[cellIndex] ?? "")}</td>
+                <td key={`${rowIndex}-${cellIndex}`}>
+                  {renderLinkedText(row[cellIndex] ?? "", linkLegalReferences)}
+                </td>
               ))}
             </tr>
           ))}
@@ -199,7 +203,7 @@ function shouldSplitStructuredBlock(lines: string[]) {
   return lines.some((line) => lineClassName(line) !== "structured-line");
 }
 
-function renderTextBlock(block: string, index: number) {
+function renderTextBlock(block: string, index: number, linkLegalReferences: boolean) {
   const lines = block
     .split("\n")
     .map((line) => line.trim())
@@ -211,7 +215,7 @@ function renderTextBlock(block: string, index: number) {
         <hr className="document-rule" key={`rule-${index}-${lineIndex}`} />
       ) : (
         <p className={lineClassName(line)} key={`${line.slice(0, 28)}-${index}-${lineIndex}`}>
-          {renderLinkedText(line)}
+          {renderLinkedText(line, linkLegalReferences)}
         </p>
       ),
     );
@@ -219,24 +223,46 @@ function renderTextBlock(block: string, index: number) {
 
   return (
     <p className={lineClassName(block)} key={`${block.slice(0, 28)}-${index}`}>
-      {renderLinkedText(block)}
+      {renderLinkedText(block, linkLegalReferences)}
     </p>
   );
 }
 
+function firstBlockLine(block: string) {
+  return block.split("\n", 1)[0].trim();
+}
+
+function isLegalBasisHeading(block: string) {
+  return /\bpodstaw(?:a|y) prawn(?:a|e)\b/i.test(normalize(firstBlockLine(block)));
+}
+
+function startsDocumentSection(block: string) {
+  const className = lineClassName(firstBlockLine(block));
+  return /\bline-(?:chapter|paragraph|section)\b/.test(className);
+}
+
 export function renderStructuredText(value: string) {
+  let linkLegalReferences = false;
+
   return value
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
     .flatMap((block, index) => {
       if (/^-{3,}$/.test(block)) {
+        linkLegalReferences = false;
         return <hr className="document-rule" key={`rule-${index}`} />;
       }
 
-      const table = renderMarkdownTable(block, index);
+      if (isLegalBasisHeading(block)) {
+        linkLegalReferences = true;
+      } else if (startsDocumentSection(block)) {
+        linkLegalReferences = false;
+      }
+
+      const table = renderMarkdownTable(block, index, linkLegalReferences);
       if (table) return table;
 
-      return renderTextBlock(block, index);
+      return renderTextBlock(block, index, linkLegalReferences);
     });
 }

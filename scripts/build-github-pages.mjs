@@ -128,7 +128,9 @@ const legalMatcher = new RegExp(
   "gi",
 );
 
-function linkedText(value) {
+function linkedText(value, linkLegalReferences) {
+  if (!linkLegalReferences) return esc(value);
+
   return esc(value)
     .split(legalMatcher)
     .map((part) => {
@@ -172,7 +174,7 @@ function isTableSeparator(line) {
   return /^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?$/.test(line.trim());
 }
 
-function markdownTableHtml(block) {
+function markdownTableHtml(block, linkLegalReferences) {
   const lines = String(block)
     .split("\n")
     .map((line) => line.trim())
@@ -186,12 +188,12 @@ function markdownTableHtml(block) {
   if (!headers.length || !rows.length) return "";
 
   return `<div class="table-scroll"><table class="document-table"><thead><tr>${headers
-    .map((header) => `<th scope="col">${linkedText(header)}</th>`)
+    .map((header) => `<th scope="col">${linkedText(header, linkLegalReferences)}</th>`)
     .join("")}</tr></thead><tbody>${rows
     .map(
       (row) =>
         `<tr>${headers
-          .map((_, cellIndex) => `<td>${linkedText(row[cellIndex] || "")}</td>`)
+          .map((_, cellIndex) => `<td>${linkedText(row[cellIndex] || "", linkLegalReferences)}</td>`)
           .join("")}</tr>`,
     )
     .join("")}</tbody></table></div>`;
@@ -202,7 +204,7 @@ function shouldSplitStructuredBlock(lines) {
   return lines.some((line) => lineClassName(line) !== "structured-line");
 }
 
-function structuredBlockHtml(block) {
+function structuredBlockHtml(block, linkLegalReferences) {
   const lines = String(block)
     .split("\n")
     .map((line) => line.trim())
@@ -213,24 +215,48 @@ function structuredBlockHtml(block) {
       .map((line) =>
         /^-{3,}$/.test(line)
           ? '<hr class="document-rule">'
-          : `<p class="${lineClassName(line)}">${linkedText(line)}</p>`,
+          : `<p class="${lineClassName(line)}">${linkedText(line, linkLegalReferences)}</p>`,
       )
       .join("");
   }
 
-  return `<p class="${lineClassName(block)}">${linkedText(block)}</p>`;
+  return `<p class="${lineClassName(block)}">${linkedText(block, linkLegalReferences)}</p>`;
+}
+
+function firstBlockLine(block) {
+  return String(block).split("\n", 1)[0].trim();
+}
+
+function isLegalBasisHeading(block) {
+  return /\bpodstaw(?:a|y) prawn(?:a|e)\b/i.test(normalize(firstBlockLine(block)));
+}
+
+function startsDocumentSection(block) {
+  const className = lineClassName(firstBlockLine(block));
+  return /\bline-(?:chapter|paragraph|section)\b/.test(className);
 }
 
 function structuredHtml(value) {
+  let linkLegalReferences = false;
+
   return String(value)
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block) =>
-      /^-{3,}$/.test(block)
-        ? '<hr class="document-rule">'
-        : markdownTableHtml(block) || structuredBlockHtml(block),
-    )
+    .map((block) => {
+      if (/^-{3,}$/.test(block)) {
+        linkLegalReferences = false;
+        return '<hr class="document-rule">';
+      }
+
+      if (isLegalBasisHeading(block)) {
+        linkLegalReferences = true;
+      } else if (startsDocumentSection(block)) {
+        linkLegalReferences = false;
+      }
+
+      return markdownTableHtml(block, linkLegalReferences) || structuredBlockHtml(block, linkLegalReferences);
+    })
     .join("");
 }
 
