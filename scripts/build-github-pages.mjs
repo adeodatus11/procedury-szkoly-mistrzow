@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { buildInlineDiff, buildTextDiff } from "../app/statute-diff.mjs";
 
 const siteRoot = process.cwd();
 const outputDir = path.join(siteRoot, "_site");
@@ -288,6 +289,25 @@ function structuredHtml(value) {
 
       return markdownTableHtml(block, linkLegalReferences) || structuredBlockHtml(block, linkLegalReferences);
     })
+    .join("");
+}
+
+function statuteDiffSegmentsHtml(segments) {
+  return segments
+    .map((segment) =>
+      segment.kind === "unchanged"
+        ? esc(segment.text)
+        : `<span class="statute-diff statute-diff-${esc(segment.kind)}">${esc(segment.text)}</span>`,
+    )
+    .join("");
+}
+
+function statuteDiffBodyHtml(current, proposed) {
+  return buildTextDiff(current, proposed)
+    .map(
+      (line) =>
+        `<p class="${lineClassName(line.source)} statute-diff-line">${statuteDiffSegmentsHtml(line.segments)}</p>`,
+    )
     .join("");
 }
 
@@ -735,6 +755,12 @@ function statuteChapterPage(chapter) {
             <span>${Object.keys(statuteProposalData.proposals).length} paragrafów z propozycją zmiany</span>
             <span>Pozostałe paragrafy zachowane bez zmian</span>
           </div>
+          <div class="statute-diff-legend" aria-label="Legenda oznaczeń zmian">
+            <strong>Oznaczenia zmian:</strong>
+            <span><span class="statute-diff statute-diff-removed">tekst usunięty</span></span>
+            <span><span class="statute-diff statute-diff-changed">tekst zmieniony</span></span>
+            <span><span class="statute-diff statute-diff-added">tekst nowy</span></span>
+          </div>
         </div>
         <section class="statute-legal-basis" aria-labelledby="statute-legal-basis-title">
           <div><p>Podstawa prawna i źródła metodyczne</p><h2 id="statute-legal-basis-title">Źródła wykorzystane do porównania</h2></div>
@@ -760,8 +786,8 @@ function statuteChapterPage(chapter) {
                   </section>
                   <section class="statute-version statute-version-proposed proposal-${esc(proposal.kind)}" aria-label="Proponowane brzmienie ${esc(proposal.title)}">
                     <div class="statute-version-heading"><span>Proponowane brzmienie</span><small>${esc(proposal.label)}</small></div>
-                    <h2>${esc(proposal.title)}</h2>
-                    <div class="reader-text">${structuredHtml(proposal.body)}</div>
+                    <h2>${proposal.changed ? statuteDiffSegmentsHtml(buildInlineDiff(section.title, proposal.title)) : esc(proposal.title)}</h2>
+                    <div class="reader-text">${proposal.changed ? statuteDiffBodyHtml(section.body, proposal.body) : structuredHtml(proposal.body)}</div>
                     ${proposal.rationale ? `<p class="statute-rationale">${esc(proposal.rationale)}</p>` : ""}
                   </section>
                 </article>`;

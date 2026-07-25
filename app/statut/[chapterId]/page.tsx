@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteStats, statuteChapters } from "../../content";
-import { renderStructuredText, statuteChapterHref } from "../../content-utils";
+import { getStructuredLineClassName, renderStructuredText, statuteChapterHref } from "../../content-utils";
+import { buildInlineDiff, buildTextDiff } from "../../statute-diff.mjs";
 import {
   getStatuteProposal,
   statuteProposalChangeCount,
@@ -13,6 +14,26 @@ type PageProps = {
     chapterId: string;
   }>;
 };
+
+function DiffSegments({ segments }: { segments: ReturnType<typeof buildInlineDiff> }) {
+  return segments.map((segment, index) =>
+    segment.kind === "unchanged" ? (
+      segment.text
+    ) : (
+      <span className={`statute-diff statute-diff-${segment.kind}`} key={`${segment.kind}-${index}`}>
+        {segment.text}
+      </span>
+    ),
+  );
+}
+
+function StatuteDiffBody({ current, proposed }: { current: string; proposed: string }) {
+  return buildTextDiff(current, proposed).map((line, index) => (
+    <p className={`${getStructuredLineClassName(line.source)} statute-diff-line`} key={`${line.source.slice(0, 28)}-${index}`}>
+      <DiffSegments segments={line.segments} />
+    </p>
+  ));
+}
 
 export function generateStaticParams() {
   return statuteChapters.map((chapter) => ({
@@ -68,6 +89,18 @@ export default async function StatuteChapterPage({ params }: PageProps) {
             <span>Stan kwerendy: {statuteProposalMeta.asOf}</span>
             <span>{statuteProposalChangeCount} paragrafów z propozycją zmiany</span>
             <span>Pozostałe paragrafy zachowane bez zmian</span>
+          </div>
+          <div className="statute-diff-legend" aria-label="Legenda oznaczeń zmian">
+            <strong>Oznaczenia zmian:</strong>
+            <span>
+              <span className="statute-diff statute-diff-removed">tekst usunięty</span>
+            </span>
+            <span>
+              <span className="statute-diff statute-diff-changed">tekst zmieniony</span>
+            </span>
+            <span>
+              <span className="statute-diff statute-diff-added">tekst nowy</span>
+            </span>
           </div>
         </div>
         <section className="statute-legal-basis" aria-labelledby="statute-legal-basis-title">
@@ -126,8 +159,20 @@ export default async function StatuteChapterPage({ params }: PageProps) {
                       <span>Proponowane brzmienie</span>
                       <small>{proposal.label}</small>
                     </div>
-                    <h2>{proposal.title}</h2>
-                    <div className="reader-text">{renderStructuredText(proposal.body)}</div>
+                    <h2>
+                      {proposal.changed ? (
+                        <DiffSegments segments={buildInlineDiff(section.title, proposal.title)} />
+                      ) : (
+                        proposal.title
+                      )}
+                    </h2>
+                    <div className="reader-text">
+                      {proposal.changed ? (
+                        <StatuteDiffBody current={section.body} proposed={proposal.body} />
+                      ) : (
+                        renderStructuredText(proposal.body)
+                      )}
+                    </div>
                     {proposal.rationale ? <p className="statute-rationale">{proposal.rationale}</p> : null}
                   </section>
                 </article>

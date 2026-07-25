@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { buildInlineDiff, buildTextDiff } from "../app/statute-diff.mjs";
 
 async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -23,6 +24,27 @@ async function render(pathname = "/") {
     },
   );
 }
+
+test("classifies removed, changed, and newly added statute wording", () => {
+  const inline = buildInlineDiff(
+    "Dz.U. z 2025 r. poz. 1043",
+    "Dz.U. z 2026 r. poz. 820",
+  );
+  const lines = buildTextDiff("1. Dotychczasowe brzmienie.", "1. Zmienione brzmienie.\n\n2. Nowy ustęp.");
+
+  assert.deepEqual(
+    inline.filter((segment) => segment.kind !== "unchanged"),
+    [
+      { kind: "removed", text: "2025 " },
+      { kind: "changed", text: "2026 " },
+      { kind: "removed", text: "1043" },
+      { kind: "changed", text: "820" },
+    ],
+  );
+  assert.ok(lines[0].segments.some((segment) => segment.kind === "removed"));
+  assert.ok(lines[0].segments.some((segment) => segment.kind === "changed"));
+  assert.deepEqual(lines[1].segments, [{ kind: "added", text: "2. Nowy ustęp." }]);
+});
 
 test("server-renders the ZSZ5 document catalogue", async () => {
   const response = await render();
@@ -167,12 +189,21 @@ test("server-renders one statute chapter at a time", async () => {
   assert.match(html, /Aktualne brzmienie/);
   assert.match(html, /Proponowane brzmienie/);
   assert.match(html, /Dz\.U\. z 2025 r\. poz\. 1043/);
-  assert.match(html, /Dz\.U\. z 2026 r\. poz\. 820/);
+  assert.match(html, /statute-diff-removed[^>]*>2025 /);
+  assert.match(html, /statute-diff-changed[^>]*>2026 /);
+  assert.match(html, /statute-diff-removed[^>]*>1043/);
+  assert.match(html, /statute-diff-changed[^>]*>820/);
+  assert.match(html, /Legenda oznaczeń zmian/);
   assert.match(html, /39(?:<!-- -->)? paragrafów z propozycją zmiany/);
   assert.match(html, /href="\/statut\/rozdzial-1-przepisy-definiujace" class="active"/);
   assert.doesNotMatch(menu, /paragrafów/);
   assert.doesNotMatch(html, /<h2>§ 136\./);
   assert.doesNotMatch(html, /<h2>§ 140\./);
+
+  const unchangedStart = html.indexOf('id="statute-2"');
+  const unchangedProposalStart = html.indexOf("statute-version-proposed", unchangedStart);
+  const unchangedEnd = html.indexOf("</section>", unchangedProposalStart);
+  assert.doesNotMatch(html.slice(unchangedProposalStart, unchangedEnd), /statute-diff-(?:removed|changed|added)/);
 });
 
 test("consolidates detailed PPP provisions into one proposed paragraph", async () => {
@@ -188,6 +219,7 @@ test("consolidates detailed PPP provisions into one proposed paragraph", async (
   assert.ok(consolidatedStart >= 0 && consolidatedEnd > consolidatedStart && repealedEnd > repealedStart);
   assert.match(html.slice(consolidatedStart, consolidatedEnd), /Procedura udzielania pomocy psychologiczno-pedagogicznej/);
   assert.match(html.slice(repealedStart, repealedEnd), /§ 15\. \(uchylony\)\./);
+  assert.match(html.slice(repealedStart, repealedEnd), /statute-diff-removed/);
 });
 
 test("proposes one coherent documentation and archival system", async () => {
@@ -204,6 +236,7 @@ test("proposes one coherent documentation and archival system", async () => {
   assert.match(section, /jednolity rzeczowy wykaz akt/);
   assert.match(section, /instrukcja organizacji i zakresu działania składnicy akt/);
   assert.match(section, /właściwym Archiwum Państwowym/);
+  assert.match(section, /statute-diff-added/);
 });
 
 test("simplifies grading without removing vocational-school specifics", async () => {
@@ -221,8 +254,8 @@ test("simplifies grading without removing vocational-school specifics", async ()
   assert.ok(sectionStart >= 0 && proposalStart > sectionStart && sectionEnd > proposalStart);
   assert.match(proposal, /nie jest automatycznym wynikiem średniej arytmetycznej ani ważonej/);
   assert.match(proposal, /kształcenia zawodowego i praktycznej nauki zawodu/);
-  assert.doesNotMatch(proposal, /5,75 - 6,00/);
-  assert.doesNotMatch(proposal, /Znak „\+” ma wartość/);
+  assert.match(proposal, /statute-diff-removed[^>]*>1\) celujący 5,75 - 6,00;/);
+  assert.match(proposal, /statute-diff-removed[^>]*>3a\. Znak „\+” ma wartość/);
 });
 
 test("server-renders the missing documents page after consolidation", async () => {
@@ -321,6 +354,9 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   assert.match(formsIndexHtml, /35<\/strong><span>wzorów DOCX/);
   assert.match(formPageHtml, /Wszystkie strony dokumentu/);
   assert.match(statuteChapterHtml, /statute-comparison-row has-proposal/);
+  assert.match(statuteChapterHtml, /statute-diff-removed/);
+  assert.match(statuteChapterHtml, /statute-diff-changed/);
+  assert.match(statuteChapterHtml, /statute-diff-added/);
   assert.match(
     statuteChapterHtml,
     /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/,

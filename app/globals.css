@@ -694,6 +694,57 @@ h1 {
   font-weight: 700;
 }
 
+.statute-diff-legend {
+  align-items: center;
+  border-top: 1px solid #e3d49c;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.statute-diff-legend > strong {
+  color: #473812;
+  display: inline;
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.statute-diff-legend > span {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.statute-diff {
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.05em 0.14em;
+}
+
+.statute-diff-removed {
+  background: #f9d6d8;
+  color: #7a1820;
+  text-decoration: line-through;
+  text-decoration-color: #a9202c;
+  text-decoration-thickness: 2px;
+}
+
+.statute-diff-changed {
+  background: #ffe994;
+  color: #493900;
+}
+
+.statute-diff-added {
+  background: #d8eaff;
+  color: #123f6b;
+}
+
+.statute-diff-line {
+  overflow-wrap: anywhere;
+}
+
 .statute-legal-basis {
   align-items: start;
   background: #f8fafb;

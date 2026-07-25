@@ -137,6 +137,10 @@ function lineClassName(line: string) {
   return "structured-line";
 }
 
+export function getStructuredLineClassName(line: string) {
+  return lineClassName(line);
+}
+
 function splitMarkdownRow(line: string) {
   return line
     .trim()
