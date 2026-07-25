@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { documents } from "../../content";
 import { renderStructuredText, statusLabel } from "../../content-utils";
-import { formTemplateHref, templatesForDocument } from "../../form-templates";
+import { FormTemplateQuickEntry } from "../../form-template-quick-entry";
+import { templatesForDocument } from "../../form-templates";
 
 type PageProps = {
   params: Promise<{
@@ -84,11 +85,11 @@ export default async function DocumentPage({ params }: PageProps) {
                 </div>
                 <div className="related-forms-list">
                   {relatedTemplates.map((template) => (
-                    <Link href={formTemplateHref(template.id)} key={template.id}>
-                      <span>{template.code}</span>
-                      <strong>{template.title}</strong>
-                      <small>Podgląd PNG i plik Word do pobrania</small>
-                    </Link>
+                    <FormTemplateQuickEntry
+                      key={template.id}
+                      template={template}
+                      variant="compact"
+                    />
                   ))}
                 </div>
               </section>

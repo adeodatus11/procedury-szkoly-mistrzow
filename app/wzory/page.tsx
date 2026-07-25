@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { formTemplateGroups, formTemplates, formTemplateHref } from "../form-templates";
+import { FormTemplateQuickEntry } from "../form-template-quick-entry";
+import { formTemplateGroups, formTemplates } from "../form-templates";
 
 export const metadata = {
   title: "Wzory pism i formularzy | Procedury Szkoły Mistrzów",
@@ -66,15 +67,7 @@ export default function FormTemplatesPage() {
             </header>
             <div className="forms-list">
               {group.templates.map((template, index) => (
-                <Link className="form-row" href={formTemplateHref(template.id)} key={template.id}>
-                  <span className="form-number">{index + 1}</span>
-                  <div>
-                    <span className="form-code">{template.code}</span>
-                    <h3>{template.title}</h3>
-                    <p>{template.summary}</p>
-                  </div>
-                  <strong>{template.pageCount} {template.pageCount === 1 ? "strona" : "strony"}</strong>
-                </Link>
+                <FormTemplateQuickEntry index={index} key={template.id} template={template} />
               ))}
             </div>
           </article>

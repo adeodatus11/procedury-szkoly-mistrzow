@@ -144,6 +144,11 @@ test("server-renders the full form template catalogue", async () => {
   assert.match(html, /Kancelaria i archiwizacja/);
   assert.match(html, /href="\/wzory\/skreslenie-decyzja"/);
   assert.match(html, /href="\/dokumenty\/proc-skreslenie-propozycja"/);
+  assert.match(html, /class="form-hover-preview"/);
+  assert.match(html, /href="\/previews\/wzory\/skreslenie-notatka-sluzbowa\/page-1\.png"/);
+  assert.match(html, /download="" href="\/docs\/wzory\/PROC_03_Skreslenie_Ucznia\/01_Notatka_sluzbowa_o_zdarzeniu\.docx"/);
+  assert.match(html, /Podgląd PNG/);
+  assert.match(html, /Pobierz DOCX/);
 });
 
 test("server-renders a form preview with direct Word download and research links", async () => {
@@ -167,5 +172,7 @@ test("links proposed form templates from their source procedure", async () => {
   assert.match(html, /Propozycje wzorów pism i formularzy/);
   assert.match(html, /href="\/wzory\/skreslenie-notatka-sluzbowa"/);
   assert.match(html, /href="\/wzory\/skreslenie-decyzja"/);
-  assert.match(html, /Podgląd PNG i plik Word do pobrania/);
+  assert.match(html, /href="\/previews\/wzory\/skreslenie-notatka-sluzbowa\/page-1\.png"/);
+  assert.match(html, /download="" href="\/docs\/wzory\/PROC_03_Skreslenie_Ucznia\/01_Notatka_sluzbowa_o_zdarzeniu\.docx"/);
+  assert.match(html, /Pobierz DOCX/);
 });
