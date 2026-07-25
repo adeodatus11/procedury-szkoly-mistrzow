@@ -23,9 +23,12 @@ export default function StatuteIndexPage() {
 
       <section className="statute-section">
         <div className="section-heading">
-          <p>Statut tekstowy</p>
-          <h1>Rozdziały statutu</h1>
-          <p className="section-lead">Wybierz rozdział z menu. Każdy rozdział otwiera się jako osobna strona.</p>
+          <p>Porównanie statutu</p>
+          <h1>Aktualne brzmienie i propozycja</h1>
+          <p className="section-lead">
+            Wybierz rozdział, aby porównać obowiązujący tekst z umiarkowanie uproszczoną propozycją. Każdy rozdział
+            otwiera się jako osobna strona.
+          </p>
         </div>
         <div className="reader-layout">
           <aside className="reader-toc" aria-label="Spis treści statutu">
@@ -44,7 +47,10 @@ export default function StatuteIndexPage() {
           <article className="reader-article chapter-teaser">
             <span>Start</span>
             <h2>{firstChapter?.title ?? "Statut"}</h2>
-            <p>Otwórz pierwszy rozdział albo wybierz dowolny rozdział z menu po lewej.</p>
+            <p>
+              Po lewej stronie zobaczysz tekst z 15 października 2025 r., a po prawej proponowane brzmienie i
+              uzasadnienie zmiany.
+            </p>
             {firstChapter ? (
               <Link className="section-link" href={statuteChapterHref(firstChapter.id)}>
                 Otwórz pierwszy rozdział

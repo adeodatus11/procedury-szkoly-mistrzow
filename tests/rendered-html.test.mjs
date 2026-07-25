@@ -61,6 +61,21 @@ test("keeps generated search data aligned with proposed documents", async () => 
   assert.ok(!missingTitles.includes("Instrukcja archiwizacji dokumentacji szkolnej"));
 });
 
+test("keeps statute proposals aligned with existing sections and links outside their wording", async () => {
+  const data = JSON.parse(await readFile(new URL("../public/search-data.json", import.meta.url), "utf8"));
+  const proposals = JSON.parse(await readFile(new URL("../app/statute-proposals-data.json", import.meta.url), "utf8"));
+  const sectionIds = new Set(data.statuteChapters.flatMap((chapter) => chapter.sections.map((section) => section.id)));
+
+  assert.equal(Object.keys(proposals.proposals).length, 39);
+  assert.ok(Object.keys(proposals.proposals).every((id) => sectionIds.has(id)));
+  assert.ok(
+    Object.values(proposals.proposals).every((proposal) => {
+      const wording = [proposal.title, proposal.body, proposal.rationale].filter(Boolean).join("\n");
+      return !/https?:\/\//.test(wording);
+    }),
+  );
+});
+
 test("server-renders a full proposed procedure page", async () => {
   const response = await render("/dokumenty/proc-indywidualne-nauczanie-propozycja");
   assert.equal(response.status, 200);
@@ -144,12 +159,70 @@ test("server-renders one statute chapter at a time", async () => {
   assert.equal(response.status, 200);
 
   const html = await response.text();
+  const menuStart = html.indexOf('<aside class="reader-toc"');
+  const menuEnd = html.indexOf("</aside>", menuStart);
+  const menu = html.slice(menuStart, menuEnd);
+
   assert.match(html, /Rozdział 1\. Przepisy definiujące/);
-  assert.match(html, /Wyświetlany jest tylko jeden rozdział/);
+  assert.match(html, /Aktualne brzmienie/);
+  assert.match(html, /Proponowane brzmienie/);
+  assert.match(html, /Dz\.U\. z 2025 r\. poz\. 1043/);
+  assert.match(html, /Dz\.U\. z 2026 r\. poz\. 820/);
+  assert.match(html, /39(?:<!-- -->)? paragrafów z propozycją zmiany/);
   assert.match(html, /href="\/statut\/rozdzial-1-przepisy-definiujace" class="active"/);
-  assert.doesNotMatch(html, /paragrafów/);
+  assert.doesNotMatch(menu, /paragrafów/);
   assert.doesNotMatch(html, /<h2>§ 136\./);
   assert.doesNotMatch(html, /<h2>§ 140\./);
+});
+
+test("consolidates detailed PPP provisions into one proposed paragraph", async () => {
+  const response = await render("/statut/rozdzial-4-organizacja-pomocy-psychologiczno-pedagogicznej");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const consolidatedStart = html.indexOf('id="statute-15"');
+  const consolidatedEnd = html.indexOf('id="statute-16"', consolidatedStart);
+  const repealedStart = consolidatedEnd;
+  const repealedEnd = html.indexOf('id="statute-17"', repealedStart);
+
+  assert.ok(consolidatedStart >= 0 && consolidatedEnd > consolidatedStart && repealedEnd > repealedStart);
+  assert.match(html.slice(consolidatedStart, consolidatedEnd), /Procedura udzielania pomocy psychologiczno-pedagogicznej/);
+  assert.match(html.slice(repealedStart, repealedEnd), /§ 15\. \(uchylony\)\./);
+});
+
+test("proposes one coherent documentation and archival system", async () => {
+  const response = await render("/statut/rozdzial-17-przepisy-koncowe");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const sectionStart = html.indexOf('id="statute-145"');
+  const sectionEnd = html.indexOf('id="statute-146"', sectionStart);
+  const section = html.slice(sectionStart, sectionEnd);
+
+  assert.ok(sectionStart >= 0 && sectionEnd > sectionStart);
+  assert.match(section, /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/);
+  assert.match(section, /jednolity rzeczowy wykaz akt/);
+  assert.match(section, /instrukcja organizacji i zakresu działania składnicy akt/);
+  assert.match(section, /właściwym Archiwum Państwowym/);
+});
+
+test("simplifies grading without removing vocational-school specifics", async () => {
+  const response = await render(
+    "/statut/rozdzial-14-szczegolowe-warunki-i-sposob-oceniania-wewnatrzszkolnego-uczniow",
+  );
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const sectionStart = html.indexOf('id="statute-104"');
+  const proposalStart = html.indexOf("statute-version-proposed", sectionStart);
+  const sectionEnd = html.indexOf('id="statute-105"', proposalStart);
+  const proposal = html.slice(proposalStart, sectionEnd);
+
+  assert.ok(sectionStart >= 0 && proposalStart > sectionStart && sectionEnd > proposalStart);
+  assert.match(proposal, /nie jest automatycznym wynikiem średniej arytmetycznej ani ważonej/);
+  assert.match(proposal, /kształcenia zawodowego i praktycznej nauki zawodu/);
+  assert.doesNotMatch(proposal, /5,75 - 6,00/);
+  assert.doesNotMatch(proposal, /Znak „\+” ma wartość/);
 });
 
 test("server-renders the missing documents page after consolidation", async () => {
@@ -226,6 +299,10 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
     new URL("../_site/wzory/indywidualne-wniosek/index.html", import.meta.url),
     "utf8",
   );
+  const statuteChapterHtml = await readFile(
+    new URL("../_site/statut/rozdzial-17-przepisy-koncowe/index.html", import.meta.url),
+    "utf8",
+  );
 
   const sectionStart = procedureHtml.indexOf("8. Wzory załączników do opracowania");
   const embeddedForms = procedureHtml.indexOf("Podgląd i pliki do pobrania");
@@ -243,4 +320,9 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   assert.match(procedureHtml, /download href="\.\.\/\.\.\/docs\/wzory\/PROC_04_Indywidualne_Nauczanie\/01_Wniosek_o_indywidualne_nauczanie\.docx"/);
   assert.match(formsIndexHtml, /35<\/strong><span>wzorów DOCX/);
   assert.match(formPageHtml, /Wszystkie strony dokumentu/);
+  assert.match(statuteChapterHtml, /statute-comparison-row has-proposal/);
+  assert.match(
+    statuteChapterHtml,
+    /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/,
+  );
 });

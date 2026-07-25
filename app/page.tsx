@@ -218,11 +218,11 @@ export default function Home() {
 
       <section className="statute-section" id="statut">
         <div className="section-heading">
-          <p>Statut tekstowy</p>
-          <h2>Statut podzielony na rozdziały</h2>
+          <p>Porównanie statutu</p>
+          <h2>Aktualne i proponowane brzmienie</h2>
           <p className="section-lead">
-            Każdy rozdział otwiera się jako osobna strona. Menu rozdziałów zostaje po lewej, a po prawej wyświetla
-            się tylko jeden wybrany rozdział.
+            Każdy rozdział otwiera się jako osobna strona z aktualnym tekstem po lewej i propozycją po prawej.
+            Menu rozdziałów pozostaje po lewej stronie.
           </p>
         </div>
         <div className="reader-layout">

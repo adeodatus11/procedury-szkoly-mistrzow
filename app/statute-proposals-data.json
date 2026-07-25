@@ -1,0 +1,318 @@
+{
+  "asOf": "25 lipca 2026 r.",
+  "notice": "Propozycja robocza do konsultacji. Nie jest obowiązującym statutem i nie zastępuje uchwały właściwego organu szkoły.",
+  "method": "Zachowano numerację i rozwiązania charakterystyczne dla ZSZ nr 5. Skrócono przede wszystkim powtórzenia ustaw i rozporządzeń, nadmiernie techniczne instrukcje oraz mechanizmy, które mogą zostać opisane w procedurach szkolnych.",
+  "sources": [
+    {
+      "label": "Prawo oświatowe - tekst jednolity, Dz.U. 2026 poz. 820",
+      "url": "https://eli.gov.pl/eli/DU/2026/820/ogl/pol"
+    },
+    {
+      "label": "Ustawa o systemie oświaty - tekst jednolity, Dz.U. 2025 poz. 881",
+      "url": "https://eli.gov.pl/eli/DU/2025/881/ogl/pol"
+    },
+    {
+      "label": "Spółdzielnie uczniowskie - Dz.U. 2026 poz. 904, wejście w życie 1.09.2026 r.",
+      "url": "https://www.dziennikustaw.gov.pl/D2026000090401.pdf"
+    },
+    {
+      "label": "Informacja Prezydenta RP o wecie do druku 2449 z 2.07.2026 r.",
+      "url": "https://www.prezydent.pl/prawo/ustawy-zawetowane/prezydent-podpisal-5-ustaw-2-zawetowal-i-jedna-skierowal-do-tk-w-trybie-kontroli-prewencyjnej,122829"
+    },
+    {
+      "label": "Statut Nieumarły - wzór statutu szkoły z komentarzem",
+      "url": "https://statut.umarlestatuty.pl/"
+    },
+    {
+      "label": "Archiwa Państwowe - przepisy kancelaryjne i archiwalne",
+      "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/przepisy-kancelaryjne-i-archiwalne/"
+    }
+  ],
+  "proposals": {
+    "statute-1": {
+      "kind": "legal-update",
+      "label": "aktualizacja prawa",
+      "rationale": "Aktualizacja metryki Prawa oświatowego do obowiązującego tekstu jednolitego. Nie dodano definicji ani organów wynikających z zawetowanego druku 2449.",
+      "replacements": [
+        [
+          "tekst jedn.: Dz.U. z 2025 r. poz. 1043 z późn. zm.",
+          "tekst jedn.: Dz.U. z 2026 r. poz. 820 z późn. zm."
+        ]
+      ]
+    },
+    "statute-15": {
+      "kind": "consolidation",
+      "label": "scalenie",
+      "rationale": "W jednym paragrafie pozostawiono sposób realizacji zadania przez szkołę. Szczegółowe katalogi z rozporządzenia przeniesiono do procedury PPP.",
+      "title": "§ 14. Organizacja pomocy psychologiczno-pedagogicznej.",
+      "body": "1. Szkoła organizuje pomoc psychologiczno-pedagogiczną dla uczniów, ich rodziców i nauczycieli zgodnie z przepisami prawa oraz rozpoznanymi potrzebami społeczności szkolnej.\n\n2. Pomoc organizuje dyrektor, a udzielają jej nauczyciele, wychowawcy i specjaliści, we współpracy z rodzicami, poradniami psychologiczno-pedagogicznymi oraz innymi podmiotami działającymi na rzecz ucznia.\n\n3. Pomoc jest dobrowolna i nieodpłatna. Jej formy i okres udzielania ustala się odpowiednio do potrzeb ucznia, zaleceń poradni oraz możliwości organizacyjnych szkoły.\n\n4. Rozpoznawanie potrzeb, planowanie pomocy, obieg informacji i dokumentowanie działań określa Procedura udzielania pomocy psychologiczno-pedagogicznej uczniom ZSZ nr 5.\n\n5. Dokumentację pomocy przechowuje się zgodnie z przepisami o dokumentacji przebiegu nauczania, ochronie danych osobowych oraz jednolitą instrukcją kancelaryjną, obiegu dokumentów i archiwizacji dokumentacji szkolnej."
+    },
+    "statute-16": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Katalog przesłanek udzielania PPP wynika z rozporządzenia i procedury szkolnej.",
+      "title": "§ 15. (uchylony).",
+      "body": ""
+    },
+    "statute-17": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Treść została ujęta syntetycznie w proponowanym § 14.",
+      "title": "§ 16. (uchylony).",
+      "body": ""
+    },
+    "statute-18": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Szczegółowy katalog zadań specjalistów powinien pozostać w procedurze i zakresach czynności.",
+      "title": "§ 17. (uchylony).",
+      "body": ""
+    },
+    "statute-19": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Formy PPP określają przepisy powszechnie obowiązujące; statut wskazuje sposób organizacji pomocy w szkole.",
+      "title": "§ 18. (uchylony).",
+      "body": ""
+    },
+    "statute-20": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Współpraca z podmiotami zewnętrznymi została zachowana w proponowanym § 14 ust. 2.",
+      "title": "§ 19. (uchylony).",
+      "body": ""
+    },
+    "statute-21": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Katalog osób uprawnionych do inicjowania pomocy wynika z rozporządzenia i jest powtórzony w procedurze PPP.",
+      "title": "§ 20. (uchylony).",
+      "body": ""
+    },
+    "statute-22": {
+      "kind": "legal-update",
+      "label": "ujednolicenie dokumentów",
+      "rationale": "Zastąpiono ogólne odwołanie pełną nazwą jednego dokumentu obejmującego kancelarię, obieg i archiwizację.",
+      "replacements": [
+        [
+          "instrukcją kancelaryjną",
+          "jednolitą instrukcją kancelaryjną, obiegu dokumentów i archiwizacji dokumentacji szkolnej"
+        ]
+      ]
+    },
+    "statute-23": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Odpowiedzialność dyrektora została zachowana w proponowanym § 14 ust. 2.",
+      "title": "§ 22. (uchylony).",
+      "body": ""
+    },
+    "statute-24": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Szczegółowy tok planowania i dokumentowania pomocy powinien znajdować się w procedurze PPP.",
+      "title": "§ 23. (uchylony).",
+      "body": ""
+    },
+    "statute-25": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Miejsce i sposób przechowywania dokumentacji należy określić w instrukcji kancelaryjnej i procedurze PPP.",
+      "title": "§ 23a. (uchylony).",
+      "body": ""
+    },
+    "statute-26": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Zasada dobrowolności i nieodpłatności została zachowana w proponowanym § 14 ust. 3.",
+      "title": "§ 24. (uchylony).",
+      "body": ""
+    },
+    "statute-27": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Szczegółowe obowiązki dokumentacyjne przeniesiono do procedury PPP.",
+      "title": "§ 25. (uchylony).",
+      "body": ""
+    },
+    "statute-28": {
+      "kind": "consolidation",
+      "label": "scalone z § 14",
+      "rationale": "Treść wykonawcza została objęta procedurą PPP.",
+      "title": "§ 25a. (uchylony).",
+      "body": ""
+    },
+    "statute-29": {
+      "kind": "consolidation",
+      "label": "scalenie",
+      "rationale": "Zachowano lokalny tok organizacji indywidualnego nauczania, usuwając powtórzenia rozporządzenia.",
+      "title": "§ 26. Organizacja indywidualnego nauczania.",
+      "body": "1. Szkoła organizuje indywidualne nauczanie uczniowi posiadającemu ważne orzeczenie o potrzebie indywidualnego nauczania, zgodnie z przepisami prawa i zaleceniami zawartymi w orzeczeniu.\n\n2. Po wpływie orzeczenia dyrektor, w uzgodnieniu z rodzicami albo pełnoletnim uczniem, ustala miejsce, okres, tygodniowy wymiar, plan zajęć i nauczycieli prowadzących zajęcia.\n\n3. Organizacja zajęć uwzględnia stan zdrowia ucznia, konieczność realizacji podstawy programowej oraz możliwość utrzymywania kontaktu ze społecznością szkolną w zakresie dopuszczonym przez orzeczenie.\n\n4. Zajęcia dokumentuje się w dzienniku, a dokumentację sprawy przechowuje się zgodnie z przepisami i jednolitą instrukcją kancelaryjną, obiegu dokumentów i archiwizacji dokumentacji szkolnej.\n\n5. Szczegółowy obieg dokumentów, podział odpowiedzialności i wzory pism określa Procedura organizacji indywidualnego nauczania w ZSZ nr 5."
+    },
+    "statute-30": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Treść została ujęta w proponowanym § 26 ust. 1-2.",
+      "title": "§ 27. (uchylony).",
+      "body": ""
+    },
+    "statute-31": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Szczegółowy tok wpływu orzeczenia określa procedura indywidualnego nauczania.",
+      "title": "§ 27a. (uchylony).",
+      "body": ""
+    },
+    "statute-32": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Dobór nauczycieli został zachowany w proponowanym § 26 ust. 2.",
+      "title": "§ 28. (uchylony).",
+      "body": ""
+    },
+    "statute-33": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Organizacja zajęć wynika z orzeczenia, przepisów i decyzji organizacyjnej dyrektora.",
+      "title": "§ 29. (uchylony).",
+      "body": ""
+    },
+    "statute-34": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Treść wykonawcza została przeniesiona do procedury.",
+      "title": "§ 30. (uchylony).",
+      "body": ""
+    },
+    "statute-35": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Sposób realizacji zaleceń orzeczenia został zachowany w proponowanym § 26 ust. 2-3.",
+      "title": "§ 31. (uchylony).",
+      "body": ""
+    },
+    "statute-36": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Zakres, miejsce i organizację zajęć określa proponowany § 26 ust. 2.",
+      "title": "§ 32. (uchylony).",
+      "body": ""
+    },
+    "statute-37": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Treść szczegółową pozostawiono w przepisach odrębnych i procedurze.",
+      "title": "§ 33. (uchylony).",
+      "body": ""
+    },
+    "statute-38": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Tygodniowy wymiar i liczba dni wynikają z rozporządzenia; nie powinny być powtarzane w statucie.",
+      "title": "§ 34. (uchylony).",
+      "body": ""
+    },
+    "statute-39": {
+      "kind": "consolidation",
+      "label": "scalone z § 26",
+      "rationale": "Zasady zakończenia i zmiany organizacji opisuje procedura indywidualnego nauczania.",
+      "title": "§ 35. (uchylony).",
+      "body": ""
+    },
+    "statute-77": {
+      "kind": "legal-update",
+      "label": "aktualizacja prawa",
+      "rationale": "Program nie jest zatwierdzany raz na cztery lata. Ustawa wymaga corocznej diagnozy, a program uchwala rada rodziców w porozumieniu z radą pedagogiczną.",
+      "title": "§ 72. Program wychowawczo-profilaktyczny.",
+      "body": "1. Szkoła realizuje program wychowawczo-profilaktyczny obejmujący działania wychowawcze skierowane do uczniów oraz działania profilaktyczne skierowane do uczniów, nauczycieli i rodziców.\n\n2. Program opracowuje się na podstawie wyników corocznej diagnozy potrzeb rozwojowych uczniów, czynników chroniących i czynników ryzyka w środowisku szkolnym.\n\n3. Program uchwala rada rodziców w porozumieniu z radą pedagogiczną. Jeżeli porozumienie nie zostanie osiągnięte w terminie określonym ustawą, program ustala dyrektor w uzgodnieniu z organem sprawującym nadzór pedagogiczny.\n\n4. Roczny plan działań wychowawczo-profilaktycznych uwzględnia specyfikę technikum, branżowej szkoły I stopnia, branżowej szkoły II stopnia, praktycznej nauki zawodu oraz potrzeby rozpoznane w poszczególnych oddziałach.\n\n5. Wychowawcy planują działania oddziału na podstawie programu i rocznego planu szkoły. Realizację programu monitoruje dyrektor przy udziale rady pedagogicznej, rady rodziców i samorządu uczniowskiego."
+    },
+    "statute-83": {
+      "kind": "consolidation",
+      "label": "uproszczenie",
+      "rationale": "Usunięto sztywny wykaz teczek i miejsca ich przechowywania. Te elementy powinny wynikać z przepisów dokumentacyjnych, procedur i jednej instrukcji kancelaryjno-archiwalnej.",
+      "title": "§ 77. Dokumentowanie przebiegu nauczania, wychowania i opieki.",
+      "body": "1. Szkoła prowadzi dokumentację przebiegu nauczania, działalności wychowawczej i opiekuńczej w postaci papierowej lub elektronicznej, zgodnie z przepisami prawa.\n\n2. Zakres dodatkowej dokumentacji prowadzonej przez wychowawcę, nauczycieli, specjalistów i osoby odpowiedzialne za kształcenie zawodowe ustala dyrektor wyłącznie w zakresie niezbędnym do realizacji zadań szkoły.\n\n3. Dokumentację zabezpiecza się przed utratą, uszkodzeniem i dostępem osób nieupoważnionych. Zasady rejestrowania, obiegu, przechowywania, udostępniania, przekazywania do składnicy akt i brakowania określa jednolita instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej.\n\n4. Dokumentacja zawierająca dane osobowe może być udostępniana wyłącznie osobom uprawnionym i w zakresie wynikającym z ich zadań lub przepisów prawa."
+    },
+    "statute-101": {
+      "kind": "legal-update",
+      "label": "jawność dokumentacji",
+      "rationale": "Usunięto uzależnienie sfotografowania własnej pracy od zgody nauczyciela. Statut określa sposób udostępniania, ale nie powinien ograniczać ustawowego prawa ucznia i rodziców.",
+      "title": "§ 95. Jawność ocen i udostępnianie prac.",
+      "body": "1. Oceny są jawne dla ucznia i jego rodziców.\n\n2. Sprawdzone i ocenione pisemne prace udostępnia się uczniowi podczas zajęć albo w innym uzgodnionym terminie, a jego rodzicom - na ich wniosek, w terminie umożliwiającym zapoznanie się z oceną i informacją zwrotną.\n\n3. Uczeń i jego rodzice mogą sporządzić kopię lub fotografię udostępnionej pracy, z zachowaniem ochrony danych innych osób i praw autorskich do materiałów wykorzystanych w zadaniu.\n\n4. Dokumentację dotyczącą oceniania inną niż pisemne prace udostępnia się do wglądu na wniosek ucznia lub jego rodziców w obecności pracownika szkoły, bez zbędnej zwłoki.\n\n5. Prace i dokumentację przechowuje się przez okres wynikający z przepisów oraz jednolitej instrukcji kancelaryjnej, obiegu dokumentów i archiwizacji dokumentacji szkolnej.\n\n6. Wymagania edukacyjne i sposoby sprawdzania osiągnięć są przekazywane uczniom i rodzicom na początku roku szkolnego oraz dostępne w sposób przyjęty w szkole."
+    },
+    "statute-102": {
+      "kind": "legal-update",
+      "label": "uzasadnianie ocen",
+      "rationale": "Uzasadnienie oceny nie powinno zależeć od uprzedniej prośby ucznia.",
+      "title": "§ 96. Uzasadnianie ocen.",
+      "body": "1. Nauczyciel uzasadnia każdą ustaloną ocenę w sposób dostosowany do rodzaju zadania i potrzeb ucznia.\n\n2. Uzasadnienie wskazuje, co uczeń zrobił dobrze, co wymaga poprawy oraz w jaki sposób może dalej pracować i uzupełnić braki.\n\n3. Uzasadnienie przekazuje się ustnie albo pisemnie, w szczególności w komentarzu do pracy lub za pośrednictwem dziennika elektronicznego.\n\n4. Uzasadnienie formułuje się rzeczowo, życzliwie i z poszanowaniem godności ucznia."
+    },
+    "statute-104": {
+      "kind": "simplification",
+      "label": "uproszczenie oceniania",
+      "rationale": "Zachowano szkolną skalę, formy sprawdzania i podstawowe terminy, ale usunięto automatyzm średniej ważonej, techniczne skróty dziennika i nadmiar wyjątków.",
+      "title": "§ 98. Skala ocen i sposoby sprawdzania osiągnięć.",
+      "body": "1. Oceny bieżące oraz śródroczne i roczne oceny klasyfikacyjne ustala się w skali od 1 do 6, zgodnie z przepisami prawa.\n\n2. Oceny bieżące mogą być ustalane na podstawie w szczególności: odpowiedzi ustnych, kartkówek, sprawdzianów, prac klasowych, zadań praktycznych, projektów, prezentacji, aktywności podczas zajęć, dokumentacji zawodowej i innych form właściwych dla danych zajęć.\n\n3. Nauczyciel na początku roku szkolnego informuje o stosowanych formach sprawdzania, kryteriach oraz zasadach poprawy. Formy te muszą odpowiadać specyfice zajęć, w tym kształcenia zawodowego i praktycznej nauki zawodu.\n\n4. Ocena klasyfikacyjna nie jest automatycznym wynikiem średniej arytmetycznej ani ważonej. Ustala ją nauczyciel na podstawie rozpoznanego poziomu i postępów ucznia w opanowaniu wymagań edukacyjnych. Wagi ocen w dzienniku mogą mieć wyłącznie charakter informacyjny.\n\n5. W ciągu jednego dnia może odbyć się jedna praca klasowa albo sprawdzian obejmujący większą partię materiału. Sprawdzian zapowiada się co najmniej tydzień wcześniej, a pracę klasową co najmniej dwa tygodnie wcześniej.\n\n6. Prace pisemne nauczyciel sprawdza bez zbędnej zwłoki, nie później niż w terminie: tygodnia dla kartkówki, dwóch tygodni dla sprawdzianu i trzech tygodni dla pracy klasowej, z wyłączeniem okresu usprawiedliwionej nieobecności nauczyciela.\n\n7. Uczeń nieobecny podczas obowiązkowej formy sprawdzania ustala z nauczycielem termin jej uzupełnienia. Termin uwzględnia długość i przyczynę nieobecności oraz możliwość przygotowania się ucznia.\n\n8. Uczeń ma prawo poprawić ocenę na zasadach przekazanych przez nauczyciela na początku roku. Ocena z poprawy jest odrębną informacją o aktualnym poziomie osiągnięć i nie może automatycznie obniżać wcześniej uzyskanej oceny.\n\n9. Przy ustalaniu oceny nauczyciel przekazuje informację zwrotną zgodnie z § 96 oraz uwzględnia dostosowania wynikające z potrzeb ucznia i przepisów prawa."
+    },
+    "statute-106": {
+      "kind": "simplification",
+      "label": "spójność oceniania",
+      "rationale": "Usunięto karanie punktami z zachowania za brak dokumentu od pracodawcy; szkoła powinna najpierw wyjaśnić brak i pozyskać informację.",
+      "replacements": [
+        [
+          "6. W przypadku niedostarczenia przez ucznia w terminie oceny z zajęć praktycznych, otrzymuje on punkty ujemne zgodnie z § 108 ust. 3 pkt 1.",
+          "6. W przypadku niedostarczenia w terminie oceny z zajęć praktycznych wychowawca lub osoba odpowiedzialna za kształcenie praktyczne wyjaśnia przyczynę braku i podejmuje kontakt z uczniem, rodzicami albo pracodawcą w celu uzupełnienia dokumentacji przed klasyfikacją."
+        ]
+      ]
+    },
+    "statute-107": {
+      "kind": "simplification",
+      "label": "dostępny tryb",
+      "rationale": "Zastąpiono warunki frekwencyjne i mechaniczne progi prostym trybem weryfikacji spełnienia wymagań na wyższą ocenę.",
+      "title": "§ 101. Warunki i tryb uzyskania wyższej niż przewidywana rocznej oceny.",
+      "body": "1. Uczeń lub jego rodzice mogą wystąpić do nauczyciela o ustalenie rocznej oceny klasyfikacyjnej wyższej niż przewidywana w terminie dwóch dni roboczych od przekazania informacji o ocenie przewidywanej.\n\n2. Wniosek może być złożony pisemnie albo za pośrednictwem dziennika elektronicznego i wskazuje ocenę, o którą ubiega się uczeń, oraz krótkie uzasadnienie.\n\n3. Nauczyciel sprawdza, czy dotychczasowe osiągnięcia ucznia potwierdzają spełnienie wymagań na wskazaną ocenę. W razie potrzeby umożliwia uzupełnienie brakującej pracy, przedstawienie projektu albo przeprowadza dodatkowe sprawdzenie wiadomości i umiejętności w formie właściwej dla danych zajęć.\n\n4. Zakres dodatkowego sprawdzenia obejmuje wymagania na ocenę, o którą ubiega się uczeń. Termin ustala się przed klasyfikacyjnym zebraniem rady pedagogicznej.\n\n5. Ocena ustalona w tym trybie nie może być niższa od oceny przewidywanej. Nauczyciel przekazuje uczniowi i jego rodzicom rozstrzygnięcie wraz z uzasadnieniem.\n\n6. Uczeń lub jego rodzice mogą w tym samym terminie wystąpić do wychowawcy o wyższą niż przewidywana roczną ocenę zachowania. Wychowawca ponownie analizuje kryteria z § 106, samoocenę ucznia oraz opinie osób uczestniczących w ustalaniu oceny i przekazuje uzasadnione rozstrzygnięcie."
+    },
+    "statute-113": {
+      "kind": "simplification",
+      "label": "ocena jakościowa",
+      "rationale": "Zachowano udział ucznia, klasy, nauczycieli i pracodawcy, ale usunięto przeliczanie opinii na punkty.",
+      "title": "§ 107. Tryb ustalania oceny zachowania.",
+      "body": "1. Ocenę zachowania ustala wychowawca po rozpoznaniu stopnia respektowania przez ucznia zasad współżycia społecznego, norm etycznych i obowiązków określonych w statucie.\n\n2. Przed ustaleniem oceny wychowawca zasięga opinii nauczycieli uczących ucznia, uczniów danego oddziału oraz ocenianego ucznia. W przypadku ucznia realizującego praktyczną naukę zawodu uwzględnia także informację pracodawcy, instruktora albo opiekuna praktyk.\n\n3. Opinie mają charakter informacji jakościowej. Nie przelicza się ich automatycznie na punkty ani średnią.\n\n4. Przy ustalaniu oceny wychowawca uwzględnia w szczególności zachowanie ucznia w całym okresie klasyfikacyjnym, jego rozwój, reakcję na udzieloną pomoc, sytuację osobistą oraz wpływ niepełnosprawności lub stanu zdrowia, jeżeli ma to zastosowanie.\n\n5. Przewidywaną ocenę zachowania przekazuje się uczniowi i jego rodzicom w terminie określonym dla ocen przewidywanych.\n\n6. Wychowawca może zmienić ocenę przewidywaną przed klasyfikacją, jeżeli ujawniono nowe istotne okoliczności albo uczeń skutecznie skorzystał z trybu określonego w § 101 ust. 6. Zmiana wymaga uzasadnienia."
+    },
+    "statute-114": {
+      "kind": "simplification",
+      "label": "kryteria opisowe",
+      "rationale": "Zastąpiono taryfikator punktów opisowymi kryteriami, pozostawiając wszystkie istotne dla szkoły obszary zachowania.",
+      "title": "§ 108. Kryteria oceniania zachowania.",
+      "body": "1. Ustalając ocenę zachowania, wychowawca uwzględnia kryteria określone w § 106 oraz całokształt funkcjonowania ucznia w okresie klasyfikacyjnym.\n\n2. W szczególności uwzględnia się:\n\n1) wywiązywanie się z obowiązków ucznia, systematyczność i punktualność;\n\n2) postępowanie zgodne z dobrem społeczności szkolnej i dbałość o mienie;\n\n3) kulturę osobistą, uczciwość, odpowiedzialność i szacunek wobec innych osób;\n\n4) dbałość o bezpieczeństwo i zdrowie własne oraz innych osób;\n\n5) udział w życiu klasy, szkoły, wolontariacie, samorządzie lub innych działaniach społecznych;\n\n6) zachowanie podczas praktycznej nauki zawodu, praktyk zawodowych, wycieczek i innych zajęć organizowanych przez szkołę;\n\n7) sposób reagowania na trudności, konflikty i działania naprawcze podejmowane po naruszeniu zasad.\n\n3. Pojedyncze zdarzenie może mieć decydujące znaczenie tylko wtedy, gdy jego charakter lub skutki są szczególnie poważne. Każdorazowo uwzględnia się okoliczności zdarzenia, stopień odpowiedzialności ucznia i podjęte działania naprawcze.\n\n4. Ocena zachowania nie może być ustalana wyłącznie na podstawie liczby nieobecności, spóźnień, uwag, pochwał lub zastosowanych kar."
+    },
+    "statute-115": {
+      "kind": "consolidation",
+      "label": "scalone z § 107-108",
+      "rationale": "Przepis staje się zbędny po odejściu od systemu punktowego.",
+      "title": "§ 109. (uchylony).",
+      "body": ""
+    },
+    "statute-116": {
+      "kind": "consolidation",
+      "label": "scalone z § 107-108",
+      "rationale": "Automatyczne progi frekwencji i spóźnień zastąpiono oceną jakościową.",
+      "title": "§ 110. (uchylony).",
+      "body": ""
+    },
+    "statute-117": {
+      "kind": "consolidation",
+      "label": "scalone z § 107-108",
+      "rationale": "Skala punktowa zostaje usunięta; obowiązuje skala ocen zachowania wskazana w § 106.",
+      "title": "§ 111. (uchylony).",
+      "body": ""
+    },
+    "statute-145": {
+      "kind": "consolidation",
+      "label": "jeden system dokumentacji",
+      "rationale": "Instrukcja kancelaryjna, obieg dokumentów i archiwizacja są ujęte jako jeden spójny system, z JRWA i instrukcją składnicy akt jako jego częściami lub załącznikami.",
+      "title": "§ 136. Dokumentacja i przepisy kancelaryjno-archiwalne.",
+      "body": "1. Szkoła prowadzi, przechowuje, udostępnia i zabezpiecza dokumentację zgodnie z przepisami prawa.\n\n2. W szkole obowiązuje jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej, obejmująca postępowanie z dokumentacją od chwili jej wpływu albo wytworzenia do przekazania do składnicy akt, brakowania lub przekazania materiałów archiwalnych.\n\n3. Integralnymi częściami albo załącznikami do instrukcji są w szczególności jednolity rzeczowy wykaz akt oraz instrukcja organizacji i zakresu działania składnicy akt.\n\n4. Przepisy kancelaryjne i archiwalne wprowadza się po wymaganym uzgodnieniu z właściwym Archiwum Państwowym albo na podstawie wspólnych przepisów ustalonych dla jednostek prowadzonych przez Miasto Wrocław."
+    }
+  }
+}

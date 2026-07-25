@@ -2,6 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteStats, statuteChapters } from "../../content";
 import { renderStructuredText, statuteChapterHref } from "../../content-utils";
+import {
+  getStatuteProposal,
+  statuteProposalChangeCount,
+  statuteProposalMeta,
+} from "../../statute-proposals";
 
 type PageProps = {
   params: Promise<{
@@ -49,12 +54,35 @@ export default async function StatuteChapterPage({ params }: PageProps) {
 
       <section className="statute-section">
         <div className="section-heading">
-          <p>Statut tekstowy</p>
+          <p>Porównanie robocze</p>
           <h1>{chapter.title}</h1>
           <p className="section-lead">
-            Wyświetlany jest tylko jeden rozdział. Pozostałe rozdziały są dostępne z menu po lewej stronie.
+            Po lewej stronie znajduje się tekst jednolity z 15 października 2025 r., a po prawej propozycja
+            uproszczenia i aktualizacji zachowująca rozwiązania właściwe dla ZSZ nr 5.
           </p>
         </div>
+        <div className="statute-proposal-notice">
+          <strong>{statuteProposalMeta.notice}</strong>
+          <p>{statuteProposalMeta.method}</p>
+          <div className="statute-comparison-summary" aria-label="Zakres porównania">
+            <span>Stan kwerendy: {statuteProposalMeta.asOf}</span>
+            <span>{statuteProposalChangeCount} paragrafów z propozycją zmiany</span>
+            <span>Pozostałe paragrafy zachowane bez zmian</span>
+          </div>
+        </div>
+        <section className="statute-legal-basis" aria-labelledby="statute-legal-basis-title">
+          <div>
+            <p>Podstawa prawna i źródła metodyczne</p>
+            <h2 id="statute-legal-basis-title">Źródła wykorzystane do porównania</h2>
+          </div>
+          <div className="statute-source-links">
+            {statuteProposalMeta.sources.map((source) => (
+              <a href={source.url} key={source.url} rel="noreferrer" target="_blank">
+                {source.label}
+              </a>
+            ))}
+          </div>
+        </section>
         <div className="reader-layout">
           <aside className="reader-toc" aria-label="Spis treści statutu">
             <div className="reader-toc-header">
@@ -73,13 +101,38 @@ export default async function StatuteChapterPage({ params }: PageProps) {
             </nav>
           </aside>
           <div className="statute-reader">
-            {chapter.sections.map((section) => (
-              <article className="reader-article" id={section.id} key={section.id}>
-                <span>{section.chapter}</span>
-                <h2>{section.title}</h2>
-                <div className="reader-text">{renderStructuredText(section.body)}</div>
-              </article>
-            ))}
+            {chapter.sections.map((section) => {
+              const proposal = getStatuteProposal(section);
+
+              return (
+                <article
+                  className={`statute-comparison-row${proposal.changed ? " has-proposal" : ""}`}
+                  id={section.id}
+                  key={section.id}
+                >
+                  <section className="statute-version statute-version-current" aria-label={`Aktualne brzmienie ${section.title}`}>
+                    <div className="statute-version-heading">
+                      <span>Aktualne brzmienie</span>
+                      <small>tekst z 15.10.2025 r.</small>
+                    </div>
+                    <h2>{section.title}</h2>
+                    <div className="reader-text">{renderStructuredText(section.body)}</div>
+                  </section>
+                  <section
+                    className={`statute-version statute-version-proposed proposal-${proposal.kind}`}
+                    aria-label={`Proponowane brzmienie ${proposal.title}`}
+                  >
+                    <div className="statute-version-heading">
+                      <span>Proponowane brzmienie</span>
+                      <small>{proposal.label}</small>
+                    </div>
+                    <h2>{proposal.title}</h2>
+                    <div className="reader-text">{renderStructuredText(proposal.body)}</div>
+                    {proposal.rationale ? <p className="statute-rationale">{proposal.rationale}</p> : null}
+                  </section>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

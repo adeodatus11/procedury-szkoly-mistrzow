@@ -9,6 +9,9 @@ const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 const formTemplates = JSON.parse(
   fs.readFileSync(path.join(siteRoot, "app", "form-templates-data.json"), "utf8"),
 );
+const statuteProposalData = JSON.parse(
+  fs.readFileSync(path.join(siteRoot, "app", "statute-proposals-data.json"), "utf8"),
+);
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -73,6 +76,34 @@ function formTemplateHref(template, prefix) {
 
 function templatesForDocument(documentId) {
   return formTemplates.filter((template) => template.sourceDocumentId === documentId);
+}
+
+function applyReplacements(value, replacements = []) {
+  return replacements.reduce((result, [from, to]) => result.replace(from, to), value);
+}
+
+function statuteProposal(section) {
+  const update = statuteProposalData.proposals[section.id];
+
+  if (!update) {
+    return {
+      title: section.title,
+      body: section.body,
+      kind: "unchanged",
+      label: "bez proponowanej zmiany",
+      rationale: "",
+      changed: false,
+    };
+  }
+
+  return {
+    title: update.title || applyReplacements(section.title, update.replacements),
+    body: update.body ?? applyReplacements(section.body, update.replacements),
+    kind: update.kind,
+    label: update.label,
+    rationale: update.rationale,
+    changed: true,
+  };
 }
 
 function splitBodyAtSources(body) {
@@ -374,9 +405,9 @@ const indexHtml = shell({
 
     <section class="statute-section" id="statut">
       <div class="section-heading">
-        <p>Statut tekstowy</p>
-        <h2>Statut podzielony na rozdziały</h2>
-        <p class="section-lead">Każdy rozdział otwiera się jako osobna strona. Menu rozdziałów zostaje po lewej, a po prawej wyświetla się tylko jeden wybrany rozdział.</p>
+        <p>Porównanie statutu</p>
+        <h2>Aktualne i proponowane brzmienie</h2>
+        <p class="section-lead">Każdy rozdział otwiera się jako osobna strona z aktualnym tekstem po lewej i propozycją po prawej. Menu rozdziałów pozostaje po lewej stronie.</p>
       </div>
       <div class="reader-layout">
         <aside class="reader-toc" aria-label="Spis treści statutu" id="reader-toc"></aside>
@@ -667,19 +698,19 @@ function statuteIndexPage() {
   const prefix = relativePrefix(1);
   const firstChapter = data.statuteChapters[0];
   return shell({
-    title: "Rozdziały statutu | Procedury Szkoły Mistrzów",
-    description: "Statut ZSZ nr 5 podzielony na osobne rozdziały.",
+    title: "Porównanie statutu | Procedury Szkoły Mistrzów",
+    description: "Aktualny Statut ZSZ nr 5 i propozycja umiarkowanego uproszczenia, rozdział po rozdziale.",
     depth: 1,
     body: `<main>
       ${topbar(prefix, "statut")}
       <section class="statute-section">
-        <div class="section-heading"><p>Statut tekstowy</p><h1>Rozdziały statutu</h1><p class="section-lead">Wybierz rozdział z menu. Każdy rozdział otwiera się jako osobna strona.</p></div>
+        <div class="section-heading"><p>Porównanie statutu</p><h1>Aktualne brzmienie i propozycja</h1><p class="section-lead">Wybierz rozdział, aby porównać obowiązujący tekst z umiarkowanie uproszczoną propozycją. Każdy rozdział otwiera się jako osobna strona.</p></div>
         <div class="reader-layout">
           <aside class="reader-toc" aria-label="Spis treści statutu">
             <div class="reader-toc-header"><strong>${data.statuteChapters.length}</strong><span>rozdziałów</span></div>
             <nav>${data.statuteChapters.map((chapter) => `<a href="${chapterHref(chapter, prefix)}">${esc(chapter.title)}</a>`).join("")}</nav>
           </aside>
-          <article class="reader-article chapter-teaser"><span>Start</span><h2>${esc(firstChapter?.title || "Statut")}</h2><p>Otwórz pierwszy rozdział albo wybierz dowolny rozdział z menu po lewej.</p>${firstChapter ? `<a class="section-link" href="${chapterHref(firstChapter, prefix)}">Otwórz pierwszy rozdział</a>` : ""}</article>
+          <article class="reader-article chapter-teaser"><span>Start</span><h2>${esc(firstChapter?.title || "Statut")}</h2><p>Po lewej stronie zobaczysz tekst z 15 października 2025 r., a po prawej proponowane brzmienie i uzasadnienie zmiany.</p>${firstChapter ? `<a class="section-link" href="${chapterHref(firstChapter, prefix)}">Otwórz pierwszy rozdział</a>` : ""}</article>
         </div>
       </section>
     </main>`,
@@ -695,7 +726,22 @@ function statuteChapterPage(chapter) {
     body: `<main>
       ${topbar(prefix, "statut")}
       <section class="statute-section">
-        <div class="section-heading"><p>Statut tekstowy</p><h1>${esc(chapter.title)}</h1><p class="section-lead">Wyświetlany jest tylko jeden rozdział. Pozostałe rozdziały są dostępne z menu po lewej stronie.</p></div>
+        <div class="section-heading"><p>Porównanie robocze</p><h1>${esc(chapter.title)}</h1><p class="section-lead">Po lewej stronie znajduje się tekst jednolity z 15 października 2025 r., a po prawej propozycja uproszczenia i aktualizacji zachowująca rozwiązania właściwe dla ZSZ nr 5.</p></div>
+        <div class="statute-proposal-notice">
+          <strong>${esc(statuteProposalData.notice)}</strong>
+          <p>${esc(statuteProposalData.method)}</p>
+          <div class="statute-comparison-summary" aria-label="Zakres porównania">
+            <span>Stan kwerendy: ${esc(statuteProposalData.asOf)}</span>
+            <span>${Object.keys(statuteProposalData.proposals).length} paragrafów z propozycją zmiany</span>
+            <span>Pozostałe paragrafy zachowane bez zmian</span>
+          </div>
+        </div>
+        <section class="statute-legal-basis" aria-labelledby="statute-legal-basis-title">
+          <div><p>Podstawa prawna i źródła metodyczne</p><h2 id="statute-legal-basis-title">Źródła wykorzystane do porównania</h2></div>
+          <div class="statute-source-links">${statuteProposalData.sources
+            .map((source) => `<a href="${esc(source.url)}" rel="noreferrer" target="_blank">${esc(source.label)}</a>`)
+            .join("")}</div>
+        </section>
         <div class="reader-layout">
           <aside class="reader-toc" aria-label="Spis treści statutu">
             <div class="reader-toc-header"><strong>${data.statuteChapters.length}</strong><span>rozdziałów</span></div>
@@ -704,9 +750,22 @@ function statuteChapterPage(chapter) {
           </aside>
           <div class="statute-reader">
             ${chapter.sections
-              .map(
-                (section) => `<article class="reader-article" id="${esc(section.id)}"><span>${esc(section.chapter)}</span><h2>${esc(section.title)}</h2><div class="reader-text">${structuredHtml(section.body)}</div></article>`,
-              )
+              .map((section) => {
+                const proposal = statuteProposal(section);
+                return `<article class="statute-comparison-row${proposal.changed ? " has-proposal" : ""}" id="${esc(section.id)}">
+                  <section class="statute-version statute-version-current" aria-label="Aktualne brzmienie ${esc(section.title)}">
+                    <div class="statute-version-heading"><span>Aktualne brzmienie</span><small>tekst z 15.10.2025 r.</small></div>
+                    <h2>${esc(section.title)}</h2>
+                    <div class="reader-text">${structuredHtml(section.body)}</div>
+                  </section>
+                  <section class="statute-version statute-version-proposed proposal-${esc(proposal.kind)}" aria-label="Proponowane brzmienie ${esc(proposal.title)}">
+                    <div class="statute-version-heading"><span>Proponowane brzmienie</span><small>${esc(proposal.label)}</small></div>
+                    <h2>${esc(proposal.title)}</h2>
+                    <div class="reader-text">${structuredHtml(proposal.body)}</div>
+                    ${proposal.rationale ? `<p class="statute-rationale">${esc(proposal.rationale)}</p>` : ""}
+                  </section>
+                </article>`;
+              })
               .join("")}
           </div>
         </div>
