@@ -547,7 +547,10 @@ const siteJs = `(() => {
     let entries = [];
     fetch((search.dataset.searchRoot || "./") + "global-search-data.json")
       .then((response) => response.json())
-      .then((data) => { entries = data.entries || []; })
+      .then((data) => {
+        entries = data.entries || [];
+        if (input.value.trim()) renderResults();
+      })
       .catch(() => { entries = []; });
 
     const close = () => {
