@@ -42,3 +42,5 @@ next-env.d.ts
 /outputs/
 /work/
 /_site/
+/public/global-search-data.json
+/public/packages/

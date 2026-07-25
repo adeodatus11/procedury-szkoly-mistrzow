@@ -69,21 +69,7 @@ export default function Home() {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <a className="brand" href="#start">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </a>
-          <div className="topbar-links">
-            <a href="#dokumenty">Dokumenty</a>
-            <a href="#statut">Statut</a>
-            <a href="./wzory/">Wzory pism</a>
-            <a href="./braki/">Braki</a>
-            <a href="#zrodla">Źródła</a>
-          </div>
-        </nav>
-
-        <section className="hero" id="start">
+      <section className="hero" id="start">
           <div className="hero-copy">
             <p className="eyebrow">System dokumentacji ZSZ nr 5</p>
             <h1>Statut, procedury i regulaminy w jednym miejscu</h1>
@@ -100,6 +86,12 @@ export default function Home() {
               </a>
               <a className="secondary-action" href="./wzory/">
                 Przeglądaj wzory pism
+              </a>
+              <a className="secondary-action" href="./zmiany/">
+                Centrum zmian
+              </a>
+              <a className="secondary-action" href="./pakiety/">
+                Pobierz paczki ZIP
               </a>
             </div>
           </div>
@@ -121,8 +113,7 @@ export default function Home() {
               <span>wzorów pism do weryfikacji</span>
             </div>
           </aside>
-        </section>
-      </header>
+      </section>
 
       <section className="search-band" id="wyszukiwarka">
         <div className="search-inner">

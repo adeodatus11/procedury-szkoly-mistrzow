@@ -13,6 +13,7 @@ const formTemplates = JSON.parse(
 const statuteProposalData = JSON.parse(
   fs.readFileSync(path.join(siteRoot, "app", "statute-proposals-data.json"), "utf8"),
 );
+const globalSearchDataPath = path.join(publicDir, "global-search-data.json");
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -79,6 +80,14 @@ function templatesForDocument(documentId) {
   return formTemplates.filter((template) => template.sourceDocumentId === documentId);
 }
 
+function templateForMissingDocument(documentId) {
+  const mapping = {
+    "missing-5": "archiwum-rejestr-pieczeci",
+    "missing-6": "skreslenie-karta-obiegowa",
+  };
+  return formTemplates.find((template) => template.id === mapping[documentId]);
+}
+
 function applyReplacements(value, replacements = []) {
   return replacements.reduce((result, [from, to]) => result.replace(from, to), value);
 }
@@ -106,6 +115,25 @@ function statuteProposal(section) {
     changed: true,
   };
 }
+
+const statuteChangeEntries = data.statuteChapters.flatMap((chapter) =>
+  chapter.sections.flatMap((section) => {
+    const proposal = statuteProposal(section);
+    if (!proposal.changed) return [];
+    return [{
+      id: section.id,
+      chapterId: chapter.id,
+      chapterTitle: chapter.title,
+      currentTitle: section.title,
+      currentBody: section.body,
+      proposedTitle: proposal.title,
+      proposedBody: proposal.body,
+      kind: proposal.kind,
+      label: proposal.label,
+      rationale: proposal.rationale,
+    }];
+  }),
+);
 
 function splitBodyAtSources(body) {
   const sourcesHeading = /\n(?=\s*\d+\.\s+Źródła wykorzystane w kwerendzie)/i;
@@ -323,7 +351,7 @@ function shell({ title, description, depth = 0, body }) {
     <link rel="icon" href="${prefix}assets/logo.png">
     <link rel="stylesheet" href="${prefix}styles.css">
   </head>
-  <body>${body}</body>
+  <body>${body}<script src="${prefix}site.js" defer></script></body>
 </html>`;
 }
 
@@ -331,12 +359,21 @@ function topbar(prefix, current = "") {
   return `<header class="site-header">
     <nav class="topbar" aria-label="Główna nawigacja">
       <a class="brand" href="${prefix}"><img src="${prefix}assets/logo.png" alt="procedury.szkolamistrzow.info"></a>
-      <div class="topbar-links">
-        <a href="${prefix}">Strona główna</a>
-        <a href="${prefix}#dokumenty">Dokumenty</a>
-        <a href="${prefix}statut/"${current === "statut" ? ' aria-current="page"' : ""}>Statut</a>
-        <a href="${prefix}wzory/"${current === "wzory" ? ' aria-current="page"' : ""}>Wzory pism</a>
-        <a href="${prefix}braki/"${current === "braki" ? ' aria-current="page"' : ""}>Braki</a>
+      <div class="topbar-main">
+        <div class="topbar-links">
+          <a href="${prefix}">Strona główna</a>
+          <a href="${prefix}#dokumenty">Dokumenty</a>
+          <a href="${prefix}statut/"${current === "statut" ? ' aria-current="page"' : ""}>Statut</a>
+          <a href="${prefix}zmiany/"${current === "zmiany" ? ' aria-current="page"' : ""}>Zmiany</a>
+          <a href="${prefix}wzory/"${current === "wzory" ? ' aria-current="page"' : ""}>Wzory</a>
+          <a href="${prefix}pakiety/"${current === "pakiety" ? ' aria-current="page"' : ""}>Paczki ZIP</a>
+          <a href="${prefix}braki/"${current === "braki" ? ' aria-current="page"' : ""}>Braki</a>
+        </div>
+        <div class="global-search" role="search" data-search-root="${prefix}">
+          <label class="visually-hidden" for="global-search">Szukaj w całym serwisie</label>
+          <input aria-autocomplete="list" aria-controls="global-search-results" aria-expanded="false" id="global-search" placeholder="Szukaj w całym serwisie" type="search">
+          <div class="global-search-results" hidden id="global-search-results" role="listbox"></div>
+        </div>
       </div>
     </nav>
   </header>`;
@@ -354,6 +391,8 @@ ensureDir(outputDir);
 copyDir(path.join(publicDir, "assets"), path.join(outputDir, "assets"));
 copyDir(path.join(publicDir, "docs"), path.join(outputDir, "docs"));
 copyDir(path.join(publicDir, "previews"), path.join(outputDir, "previews"));
+copyDir(path.join(publicDir, "packages"), path.join(outputDir, "packages"));
+fs.copyFileSync(globalSearchDataPath, path.join(outputDir, "global-search-data.json"));
 fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
 
 const generatedDate = new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(
@@ -365,18 +404,8 @@ const indexHtml = shell({
   title: "Procedury Szkoły Mistrzów",
   description: "Statut, procedury, regulaminy i dokumenty Zespołu Szkół Zawodowych nr 5 we Wrocławiu.",
   body: `<main>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Główna nawigacja">
-        <a class="brand" href="#start"><img src="./assets/logo.png" alt="procedury.szkolamistrzow.info"></a>
-        <div class="topbar-links">
-          <a href="#dokumenty">Dokumenty</a>
-          <a href="#statut">Statut</a>
-          <a href="./wzory/">Wzory pism</a>
-          <a href="./braki/">Braki</a>
-          <a href="#zrodla">Źródła</a>
-        </div>
-      </nav>
-      <section class="hero" id="start">
+    ${topbar("./")}
+    <section class="hero" id="start">
         <div class="hero-copy">
           <p class="eyebrow">System dokumentacji ZSZ nr 5</p>
           <h1>Statut, procedury i regulaminy w jednym miejscu</h1>
@@ -384,6 +413,8 @@ const indexHtml = shell({
           <div class="hero-actions">
             <a class="primary-action" href="./docs/Statut_Zespolu_Szkol_Zawodowych_nr_20251015.pdf">Pobierz statut PDF</a>
             <a class="secondary-action" href="#wyszukiwarka">Przejdź do wyszukiwarki</a>
+            <a class="secondary-action" href="./zmiany/">Centrum zmian</a>
+            <a class="secondary-action" href="./pakiety/">Pobierz paczki ZIP</a>
           </div>
         </div>
         <aside class="hero-status" aria-label="Stan katalogu">
@@ -391,8 +422,7 @@ const indexHtml = shell({
           <div><strong>${data.siteStats.statuteChapterCount}</strong><span>rozdziałów statutu</span></div>
           <div><strong>${data.siteStats.missingCount}</strong><span>braków do opracowania</span></div>
         </aside>
-      </section>
-    </header>
+    </section>
 
     <section class="search-band" id="wyszukiwarka">
       <div class="search-inner">
@@ -506,6 +536,88 @@ $("clear").addEventListener("click", () => { state.query = ""; $("search").value
 document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => { state.category = button.dataset.filter; render(); }));
 render();`;
 
+const siteJs = `(() => {
+  const normalize = (value) => String(value || "").toLocaleLowerCase("pl").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
+  const escapeHtml = (value) => String(value || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+  const search = document.querySelector(".global-search");
+
+  if (search) {
+    const input = search.querySelector("input");
+    const resultsBox = search.querySelector(".global-search-results");
+    let entries = [];
+    fetch((search.dataset.searchRoot || "./") + "global-search-data.json")
+      .then((response) => response.json())
+      .then((data) => { entries = data.entries || []; })
+      .catch(() => { entries = []; });
+
+    const close = () => {
+      resultsBox.hidden = true;
+      input.setAttribute("aria-expanded", "false");
+    };
+    const renderResults = () => {
+      const needle = normalize(input.value.trim());
+      if (needle.length < 2) {
+        close();
+        return;
+      }
+      const matches = entries
+        .map((entry) => {
+          const title = normalize(entry.title);
+          const haystack = normalize([entry.title, entry.type, entry.category, entry.excerpt, entry.keywords].join(" "));
+          const score = title.startsWith(needle) ? 0 : title.includes(needle) ? 1 : haystack.includes(needle) ? 2 : 3;
+          return { entry, score };
+        })
+        .filter((item) => item.score < 3)
+        .sort((a, b) => a.score - b.score || a.entry.title.localeCompare(b.entry.title, "pl"))
+        .slice(0, 8)
+        .map((item) => item.entry);
+      resultsBox.innerHTML = matches.length
+        ? matches.map((entry) => '<a href="' + escapeHtml(entry.href) + '" role="option"><span>' + escapeHtml(entry.type) + '</span><strong>' + escapeHtml(entry.title) + '</strong><small>' + escapeHtml(entry.excerpt) + '</small></a>').join("")
+        : "<p>Brak wyników.</p>";
+      resultsBox.hidden = false;
+      input.setAttribute("aria-expanded", "true");
+    };
+
+    input.addEventListener("input", renderResults);
+    input.addEventListener("focus", renderResults);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+    document.addEventListener("mousedown", (event) => {
+      if (!search.contains(event.target)) close();
+    });
+  }
+
+  document.querySelectorAll("[data-print-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.body.dataset.printMode = button.dataset.printMode;
+      window.print();
+    });
+  });
+  window.addEventListener("afterprint", () => {
+    delete document.body.dataset.printMode;
+  });
+  document.querySelectorAll("[data-print-page]").forEach((button) => {
+    button.addEventListener("click", () => window.print());
+  });
+
+  const changeButtons = document.querySelectorAll("[data-change-filter]");
+  if (changeButtons.length) {
+    changeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.changeFilter;
+        changeButtons.forEach((item) => {
+          item.classList.toggle("active", item === button);
+          item.setAttribute("aria-pressed", item === button ? "true" : "false");
+        });
+        document.querySelectorAll(".change-entry").forEach((entry) => {
+          entry.hidden = filter !== "all" && entry.dataset.changeKind !== filter;
+        });
+      });
+    });
+  }
+})();`;
+
 function formQuickEntryHtml(template, prefix, { compact = false, index } = {}) {
   const firstPreviewPage = fileHref(template.previewPages[0], prefix);
   const downloadUrl = fileHref(template.downloadUrl, prefix);
@@ -609,6 +721,30 @@ function groupedFormTemplates() {
       }, new Map())
       .values(),
   );
+}
+
+function documentPackages() {
+  const groups = groupedFormTemplates();
+  return [
+    ...groups.map((group) => ({
+      id: group.id,
+      title: group.title,
+      description: `Komplet wzorów DOCX do obszaru: ${group.title}.`,
+      sourceDocumentId: group.sourceDocumentId,
+      sourceDocumentTitle: group.sourceDocumentTitle,
+      filename: `wzory-${group.id}.zip`,
+      templateCount: group.templates.length,
+    })),
+    {
+      id: "wszystkie",
+      title: "Wszystkie wzory",
+      description: "Pełny komplet wszystkich wzorów DOCX dostępnych w serwisie.",
+      sourceDocumentId: "",
+      sourceDocumentTitle: "Pełny zestaw formularzy roboczych ZSZ nr 5",
+      filename: "wzory-wszystkie.zip",
+      templateCount: formTemplates.length,
+    },
+  ];
 }
 
 function formsIndexPage() {
@@ -737,6 +873,16 @@ function statuteIndexPage() {
   });
 }
 
+function printToolbarHtml(prefix) {
+  return `<div class="print-toolbar" aria-label="Drukowanie i eksport">
+    <strong>Druk i eksport</strong>
+    <button data-print-mode="comparison" type="button">Drukuj porównanie</button>
+    <button data-print-mode="current" type="button">Tylko tekst aktualny</button>
+    <button data-print-mode="proposed" type="button">Tylko propozycję</button>
+    <a href="${prefix}reports/Wykaz_proponowanych_zmian_statutu_ZSZ5.pdf">Raport PDF</a>
+  </div>`;
+}
+
 function statuteChapterPage(chapter) {
   const prefix = relativePrefix(2);
   return shell({
@@ -768,6 +914,7 @@ function statuteChapterPage(chapter) {
             .map((source) => `<a href="${esc(source.url)}" rel="noreferrer" target="_blank">${esc(source.label)}</a>`)
             .join("")}</div>
         </section>
+        ${printToolbarHtml(prefix)}
         <div class="reader-layout">
           <aside class="reader-toc" aria-label="Spis treści statutu">
             <div class="reader-toc-header"><strong>${data.statuteChapters.length}</strong><span>rozdziałów</span></div>
@@ -795,6 +942,119 @@ function statuteChapterPage(chapter) {
               .join("")}
           </div>
         </div>
+      </section>
+    </main>`,
+  });
+}
+
+function changesPage() {
+  const prefix = relativePrefix(1);
+  const kinds = [
+    { id: "legal-update", label: "Aktualizacja prawa" },
+    { id: "simplification", label: "Uproszczenie" },
+    { id: "consolidation", label: "Scalenie" },
+  ];
+  return shell({
+    title: "Centrum zmian statutu | Procedury Szkoły Mistrzów",
+    description: "Rejestr wszystkich proponowanych aktualizacji, uproszczeń i scaleń w Statucie ZSZ nr 5.",
+    depth: 1,
+    body: `<main>
+      ${topbar(prefix, "zmiany")}
+      <section class="changes-hero">
+        <p class="eyebrow">Centrum zmian statutu</p>
+        <h1>Rejestr proponowanych zmian</h1>
+        <p class="lead">Jedno zestawienie wszystkich proponowanych aktualizacji, uproszczeń i scaleń. Każda pozycja prowadzi bezpośrednio do właściwego paragrafu w porównaniu rozdziałowym.</p>
+        <div class="verification-banner"><strong>PROPOZYCJA ROBOCZA</strong><span>${esc(statuteProposalData.notice)}</span></div>
+        <div class="change-summary" aria-label="Podsumowanie zmian">
+          <div><strong>${statuteChangeEntries.length}</strong><span>proponowanych zmian</span></div>
+          ${kinds.map((kind) => `<div><strong>${statuteChangeEntries.filter((entry) => entry.kind === kind.id).length}</strong><span>${esc(kind.label.toLocaleLowerCase("pl"))}</span></div>`).join("")}
+        </div>
+        <div class="change-actions">
+          <a class="primary-action" href="${prefix}reports/Wykaz_proponowanych_zmian_statutu_ZSZ5.pdf">Pobierz raport PDF</a>
+          <a class="secondary-action" href="${prefix}zmiany/druk/">Otwórz wersję do druku</a>
+        </div>
+      </section>
+      <section class="changes-index" aria-label="Rejestr zmian">
+        <div class="change-filters" aria-label="Filtry zmian">
+          <button class="active" aria-pressed="true" data-change-filter="all" type="button">Wszystkie</button>
+          <button aria-pressed="false" data-change-filter="legal-update" type="button">Aktualizacje prawa</button>
+          <button aria-pressed="false" data-change-filter="simplification" type="button">Uproszczenia</button>
+          <button aria-pressed="false" data-change-filter="consolidation" type="button">Scalenia</button>
+        </div>
+        <div class="change-register" aria-live="polite">
+          ${statuteChangeEntries.map((entry, index) => `<article class="change-entry change-${esc(entry.kind)}" data-change-kind="${esc(entry.kind)}" id="change-${esc(entry.id)}">
+            <div class="change-entry-number">${String(index + 1).padStart(2, "0")}</div>
+            <div class="change-entry-copy">
+              <div class="change-entry-meta"><span>${esc(entry.label)}</span><strong>${esc(entry.chapterTitle)}</strong></div>
+              <h2>${esc(entry.currentTitle)}</h2>
+              ${entry.proposedTitle !== entry.currentTitle ? `<p class="change-proposed-title">Proponowany tytuł: ${esc(entry.proposedTitle)}</p>` : ""}
+              <p>${esc(entry.rationale)}</p>
+              <a href="${prefix}statut/${esc(entry.chapterId)}/#${esc(entry.id)}">Otwórz porównanie w rozdziale</a>
+            </div>
+          </article>`).join("")}
+        </div>
+      </section>
+    </main>`,
+  });
+}
+
+function printableChangesPage() {
+  const prefix = relativePrefix(2);
+  return shell({
+    title: "Wykaz proponowanych zmian statutu ZSZ nr 5",
+    description: "Pełne porównanie aktualnego i proponowanego brzmienia zmienianych paragrafów statutu.",
+    depth: 2,
+    body: `<main class="print-report">
+      ${topbar(prefix, "zmiany")}
+      <header class="print-report-header">
+        <p>Zespół Szkół Zawodowych nr 5 we Wrocławiu</p>
+        <h1>Wykaz proponowanych zmian statutu</h1>
+        <span>Stan kwerendy: ${esc(statuteProposalData.asOf)}</span>
+        <strong>PROPOZYCJA ROBOCZA DO WERYFIKACJI</strong>
+        <button data-print-page type="button">Drukuj raport</button>
+      </header>
+      <section class="print-report-notice"><p>${esc(statuteProposalData.notice)}</p><p>${esc(statuteProposalData.method)}</p></section>
+      ${statuteChangeEntries.map((entry, index) => `<article class="print-change" id="change-${esc(entry.id)}">
+        <div class="print-change-heading"><span>Zmiana ${index + 1} z ${statuteChangeEntries.length}</span><strong>${esc(entry.chapterTitle)}</strong><small>${esc(entry.label)}</small></div>
+        <div class="print-change-columns">
+          <section class="statute-version statute-version-current">
+            <div class="statute-version-heading"><span>Aktualne brzmienie</span></div>
+            <h2>${esc(entry.currentTitle)}</h2>
+            <div class="reader-text">${structuredHtml(entry.currentBody)}</div>
+          </section>
+          <section class="statute-version statute-version-proposed proposal-${esc(entry.kind)}">
+            <div class="statute-version-heading"><span>Proponowane brzmienie</span></div>
+            <h2>${statuteDiffSegmentsHtml(buildInlineDiff(entry.currentTitle, entry.proposedTitle))}</h2>
+            <div class="reader-text">${statuteDiffBodyHtml(entry.currentBody, entry.proposedBody)}</div>
+            <p class="statute-rationale">${esc(entry.rationale)}</p>
+          </section>
+        </div>
+      </article>`).join("")}
+    </main>`,
+  });
+}
+
+function packagesPage() {
+  const prefix = relativePrefix(1);
+  const packages = documentPackages();
+  return shell({
+    title: "Paczki dokumentów ZIP | Procedury Szkoły Mistrzów",
+    description: "Tematyczne paczki wzorów dokumentów Word ZSZ nr 5 do pobrania.",
+    depth: 1,
+    body: `<main>
+      ${topbar(prefix, "pakiety")}
+      <section class="packages-hero">
+        <p class="eyebrow">Pliki do pobrania</p>
+        <h1>Paczki wzorów dokumentów</h1>
+        <p class="lead">Pobierz cały zestaw tematyczny w jednym pliku ZIP. Każda paczka zawiera edytowalne pliki Word i informację, że wzory wymagają weryfikacji przed zatwierdzeniem.</p>
+        <div class="verification-banner"><strong>DO WERYFIKACJI</strong><span>Paczki zawierają propozycje robocze, a nie obowiązujące wzory ZSZ nr 5.</span></div>
+        <div class="packages-summary"><div><strong>${packages.length}</strong><span>paczek ZIP</span></div><div><strong>${formTemplates.length}</strong><span>wzorów DOCX</span></div></div>
+      </section>
+      <section class="packages-list" aria-label="Dostępne paczki">
+        ${packages.map((item) => `<article class="package-row${item.id === "wszystkie" ? " package-row-all" : ""}" id="package-${esc(item.id)}">
+          <div><span>${item.templateCount} plików DOCX</span><h2>${esc(item.title)}</h2><p>${esc(item.description)}</p>${item.sourceDocumentId ? `<a href="${prefix}dokumenty/${esc(item.sourceDocumentId)}/">${esc(item.sourceDocumentTitle)}</a>` : ""}</div>
+          <a class="primary-action" download href="${prefix}packages/${esc(item.filename)}">Pobierz ZIP</a>
+        </article>`).join("")}
       </section>
     </main>`,
   });
@@ -834,7 +1094,10 @@ function missingPage() {
           .map(
             ([category, items]) => `<article class="share-group"><div class="share-group-header"><h2>${esc(category)}</h2><span>${items.length}</span></div><div class="share-items">${items
               .map(
-                (document, index) => `<section class="share-item"><span>${index + 1}</span><div><h3>${esc(document.title)}</h3><p>${esc(document.note)}</p></div><strong>${esc(document.ref)}</strong></section>`,
+                (document, index) => {
+                  const template = templateForMissingDocument(document.id);
+                  return `<section class="share-item" id="${esc(document.id)}"><span>${index + 1}</span><div><h3>${esc(document.title)}</h3><p>${esc(document.note)}</p>${template ? `<a class="missing-proposal-link" href="${formTemplateHref(template, prefix)}">Jest propozycja wzoru - otwórz podgląd i plik Word</a>` : ""}</div><strong>${esc(document.ref)}</strong></section>`;
+                },
               )
               .join("")}</div></article>`,
           )
@@ -847,6 +1110,7 @@ function missingPage() {
 fs.writeFileSync(path.join(outputDir, "index.html"), indexHtml);
 fs.writeFileSync(path.join(outputDir, "styles.css"), fs.readFileSync(path.join(siteRoot, "app", "globals.css"), "utf8").replace('@import "tailwindcss";', ""));
 fs.writeFileSync(path.join(outputDir, "app.js"), appJs);
+fs.writeFileSync(path.join(outputDir, "site.js"), siteJs);
 
 ensureDir(path.join(outputDir, "braki"));
 fs.writeFileSync(path.join(outputDir, "braki", "index.html"), missingPage());
@@ -870,5 +1134,12 @@ for (const chapter of data.statuteChapters) {
   ensureDir(path.join(outputDir, "statut", chapter.id));
   fs.writeFileSync(path.join(outputDir, "statut", chapter.id, "index.html"), statuteChapterPage(chapter));
 }
+
+ensureDir(path.join(outputDir, "zmiany", "druk"));
+fs.writeFileSync(path.join(outputDir, "zmiany", "index.html"), changesPage());
+fs.writeFileSync(path.join(outputDir, "zmiany", "druk", "index.html"), printableChangesPage());
+
+ensureDir(path.join(outputDir, "pakiety"));
+fs.writeFileSync(path.join(outputDir, "pakiety", "index.html"), packagesPage());
 
 console.log(`Built GitHub Pages site in ${path.relative(siteRoot, outputDir)}`);

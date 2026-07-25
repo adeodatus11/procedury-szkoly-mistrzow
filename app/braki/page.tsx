@@ -20,20 +20,6 @@ export default function MissingPage() {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <Link className="brand" href="/">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </Link>
-          <div className="topbar-links">
-            <Link href="/">Strona główna</Link>
-            <Link href="/#dokumenty">Dokumenty</Link>
-            <Link href="/#statut">Statut</Link>
-            <Link href="/wzory">Wzory pism</Link>
-          </div>
-        </nav>
-      </header>
-
       <section className="share-hero">
         <p className="eyebrow">Lista do przekazania</p>
         <h1>Braki w dokumentacji statutowej</h1>
@@ -98,7 +84,7 @@ export default function MissingPage() {
             </div>
             <div className="share-items">
               {items.map((document, index) => (
-                <section className="share-item" key={document.id}>
+                <section className="share-item" id={document.id} key={document.id}>
                   <span>{index + 1}</span>
                   <div>
                     <h3>{document.title}</h3>

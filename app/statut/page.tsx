@@ -7,20 +7,6 @@ export default function StatuteIndexPage() {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <Link className="brand" href="/">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </Link>
-          <div className="topbar-links">
-            <Link href="/">Strona główna</Link>
-            <Link href="/#dokumenty">Dokumenty</Link>
-            <Link href="/wzory">Wzory pism</Link>
-            <Link href="/braki">Braki</Link>
-          </div>
-        </nav>
-      </header>
-
       <section className="statute-section">
         <div className="section-heading">
           <p>Porównanie statutu</p>

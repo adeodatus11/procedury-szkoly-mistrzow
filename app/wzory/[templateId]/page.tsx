@@ -38,20 +38,6 @@ export default async function FormTemplatePage({ params }: PageProps) {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <Link className="brand" href="/">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </Link>
-          <div className="topbar-links">
-            <Link href="/">Strona główna</Link>
-            <Link href="/wzory">Wszystkie wzory</Link>
-            <Link href={`/dokumenty/${template.sourceDocumentId}`}>Dokument źródłowy</Link>
-            <Link href="/braki">Braki</Link>
-          </div>
-        </nav>
-      </header>
-
       <section className="form-detail">
         <aside className="form-detail-meta" aria-label="Informacje o wzorze">
           <span className="status status-propozycja">propozycja</span>

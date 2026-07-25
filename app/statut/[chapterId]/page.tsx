@@ -8,6 +8,7 @@ import {
   statuteProposalChangeCount,
   statuteProposalMeta,
 } from "../../statute-proposals";
+import { PrintToolbar } from "../../print-toolbar";
 
 type PageProps = {
   params: Promise<{
@@ -58,21 +59,6 @@ export default async function StatuteChapterPage({ params }: PageProps) {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <Link className="brand" href="/">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </Link>
-          <div className="topbar-links">
-            <Link href="/">Strona główna</Link>
-            <Link href="/#dokumenty">Dokumenty</Link>
-            <Link href="/statut">Statut</Link>
-            <Link href="/wzory">Wzory pism</Link>
-            <Link href="/braki">Braki</Link>
-          </div>
-        </nav>
-      </header>
-
       <section className="statute-section">
         <div className="section-heading">
           <p>Porównanie robocze</p>
@@ -116,6 +102,7 @@ export default async function StatuteChapterPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+        <PrintToolbar />
         <div className="reader-layout">
           <aside className="reader-toc" aria-label="Spis treści statutu">
             <div className="reader-toc-header">

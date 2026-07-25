@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { documents } from "../../content";
 import { renderStructuredText, statusLabel } from "../../content-utils";
@@ -52,21 +51,6 @@ export default async function DocumentPage({ params }: PageProps) {
 
   return (
     <main>
-      <header className="site-header">
-        <nav className="topbar" aria-label="Główna nawigacja">
-          <Link className="brand" href="/">
-            <img src="/assets/logo.png" alt="procedury.szkolamistrzow.info" />
-          </Link>
-          <div className="topbar-links">
-            <Link href="/">Strona główna</Link>
-            <Link href="/#dokumenty">Dokumenty</Link>
-            <Link href="/statut">Statut</Link>
-            <Link href="/wzory">Wzory pism</Link>
-            <Link href="/braki">Braki</Link>
-          </div>
-        </nav>
-      </header>
-
       <section className="document-page">
         <div className="document-shell">
           <aside className="document-meta" aria-label="Informacje o dokumencie">

@@ -317,6 +317,55 @@ test("links proposed form templates from their source procedure", async () => {
   assert.match(html, /Pobierz DOCX/);
 });
 
+test("server-renders the change center, print report, and ZIP packages", async () => {
+  const [changesResponse, printResponse, packagesResponse] = await Promise.all([
+    render("/zmiany"),
+    render("/zmiany/druk"),
+    render("/pakiety"),
+  ]);
+
+  assert.equal(changesResponse.status, 200);
+  assert.equal(printResponse.status, 200);
+  assert.equal(packagesResponse.status, 200);
+
+  const changesHtml = await changesResponse.text();
+  const printHtml = await printResponse.text();
+  const packagesHtml = await packagesResponse.text();
+
+  assert.match(changesHtml, /Rejestr proponowanych zmian/);
+  assert.match(changesHtml, /39<\/strong><span>proponowanych zmian/);
+  assert.match(changesHtml, /href="\/statut\/rozdzial-1-przepisy-definiujace\/#statute-1"/);
+  assert.match(changesHtml, /Wykaz_proponowanych_zmian_statutu_ZSZ5\.pdf/);
+  assert.match(printHtml, /Wykaz proponowanych zmian statutu/);
+  assert.equal((printHtml.match(/class="print-change"/g) ?? []).length, 39);
+  assert.match(packagesHtml, /Paczki wzorów dokumentów/);
+  assert.match(packagesHtml, /wzory-wszystkie\.zip/);
+  assert.match(packagesHtml, /35<\/strong><span>wzorów DOCX/);
+});
+
+test("builds a global search index covering all content types", async () => {
+  const search = JSON.parse(
+    await readFile(new URL("../public/global-search-data.json", import.meta.url), "utf8"),
+  );
+  const types = new Set(search.entries.map((entry) => entry.type));
+
+  assert.equal(search.count, search.entries.length);
+  assert.ok(search.entries.length >= 200);
+  assert.ok(types.has("Dokument"));
+  assert.ok(types.has("Statut"));
+  assert.ok(types.has("Wzór pisma"));
+  assert.ok(types.has("Brak"));
+  assert.ok(types.has("Proponowana zmiana"));
+  assert.ok(types.has("Pakiet ZIP"));
+  assert.ok(
+    search.entries.some(
+      (entry) =>
+        entry.title === "Wniosek o organizację indywidualnego nauczania" &&
+        entry.href === "/wzory/indywidualne-wniosek/",
+    ),
+  );
+});
+
 test("builds the GitHub Pages version with embedded previews and form pages", async () => {
   execFileSync(process.execPath, ["scripts/build-github-pages.mjs"], {
     cwd: new URL("..", import.meta.url),
@@ -336,6 +385,9 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
     new URL("../_site/statut/rozdzial-17-przepisy-koncowe/index.html", import.meta.url),
     "utf8",
   );
+  const changesHtml = await readFile(new URL("../_site/zmiany/index.html", import.meta.url), "utf8");
+  const packagesHtml = await readFile(new URL("../_site/pakiety/index.html", import.meta.url), "utf8");
+  const globalScript = await readFile(new URL("../_site/site.js", import.meta.url), "utf8");
 
   const sectionStart = procedureHtml.indexOf("8. Wzory załączników do opracowania");
   const embeddedForms = procedureHtml.indexOf("Podgląd i pliki do pobrania");
@@ -361,4 +413,13 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
     statuteChapterHtml,
     /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/,
   );
+  assert.match(statuteChapterHtml, /data-print-mode="comparison"/);
+  assert.equal((changesHtml.match(/class="change-entry /g) ?? []).length, 39);
+  assert.match(packagesHtml, /packages\/wzory-wszystkie\.zip/);
+  assert.match(globalScript, /global-search-data\.json/);
+
+  execFileSync(process.execPath, ["scripts/audit-site.mjs"], {
+    cwd: new URL("..", import.meta.url),
+    stdio: "pipe",
+  });
 });
