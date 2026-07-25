@@ -6,6 +6,9 @@ const outputDir = path.join(siteRoot, "_site");
 const publicDir = path.join(siteRoot, "public");
 const dataPath = path.join(publicDir, "search-data.json");
 const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+const formTemplates = JSON.parse(
+  fs.readFileSync(path.join(siteRoot, "app", "form-templates-data.json"), "utf8"),
+);
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -62,6 +65,28 @@ function chapterHref(chapter, prefix) {
 
 function fileHref(url, prefix) {
   return `${prefix}${String(url).replace(/^\//, "")}`;
+}
+
+function formTemplateHref(template, prefix) {
+  return `${prefix}wzory/${template.id}/`;
+}
+
+function templatesForDocument(documentId) {
+  return formTemplates.filter((template) => template.sourceDocumentId === documentId);
+}
+
+function splitBodyAtSources(body) {
+  const sourcesHeading = /\n(?=\s*\d+\.\s+Źródła wykorzystane w kwerendzie)/i;
+  const match = sourcesHeading.exec(body);
+
+  if (match?.index === undefined) {
+    return { beforeSources: body, sources: "" };
+  }
+
+  return {
+    beforeSources: body.slice(0, match.index).trimEnd(),
+    sources: body.slice(match.index).trimStart(),
+  };
 }
 
 function sourceUrl(title) {
@@ -184,7 +209,13 @@ function structuredBlockHtml(block) {
     .filter(Boolean);
 
   if (shouldSplitStructuredBlock(lines)) {
-    return lines.map((line) => `<p class="${lineClassName(line)}">${linkedText(line)}</p>`).join("");
+    return lines
+      .map((line) =>
+        /^-{3,}$/.test(line)
+          ? '<hr class="document-rule">'
+          : `<p class="${lineClassName(line)}">${linkedText(line)}</p>`,
+      )
+      .join("");
   }
 
   return `<p class="${lineClassName(block)}">${linkedText(block)}</p>`;
@@ -195,7 +226,11 @@ function structuredHtml(value) {
     .split(/\n{2,}/)
     .map((block) => block.trim())
     .filter(Boolean)
-    .map((block) => markdownTableHtml(block) || structuredBlockHtml(block))
+    .map((block) =>
+      /^-{3,}$/.test(block)
+        ? '<hr class="document-rule">'
+        : markdownTableHtml(block) || structuredBlockHtml(block),
+    )
     .join("");
 }
 
@@ -223,6 +258,7 @@ function topbar(prefix, current = "") {
         <a href="${prefix}">Strona główna</a>
         <a href="${prefix}#dokumenty">Dokumenty</a>
         <a href="${prefix}statut/"${current === "statut" ? ' aria-current="page"' : ""}>Statut</a>
+        <a href="${prefix}wzory/"${current === "wzory" ? ' aria-current="page"' : ""}>Wzory pism</a>
         <a href="${prefix}braki/"${current === "braki" ? ' aria-current="page"' : ""}>Braki</a>
       </div>
     </nav>
@@ -240,6 +276,7 @@ fs.rmSync(outputDir, { recursive: true, force: true });
 ensureDir(outputDir);
 copyDir(path.join(publicDir, "assets"), path.join(outputDir, "assets"));
 copyDir(path.join(publicDir, "docs"), path.join(outputDir, "docs"));
+copyDir(path.join(publicDir, "previews"), path.join(outputDir, "previews"));
 fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
 
 const generatedDate = new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(
@@ -257,6 +294,7 @@ const indexHtml = shell({
         <div class="topbar-links">
           <a href="#dokumenty">Dokumenty</a>
           <a href="#statut">Statut</a>
+          <a href="./wzory/">Wzory pism</a>
           <a href="./braki/">Braki</a>
           <a href="#zrodla">Źródła</a>
         </div>
@@ -391,8 +429,57 @@ $("clear").addEventListener("click", () => { state.query = ""; $("search").value
 document.querySelectorAll("[data-filter]").forEach((button) => button.addEventListener("click", () => { state.category = button.dataset.filter; render(); }));
 render();`;
 
+function formQuickEntryHtml(template, prefix, { compact = false, index } = {}) {
+  const firstPreviewPage = fileHref(template.previewPages[0], prefix);
+  const downloadUrl = fileHref(template.downloadUrl, prefix);
+  const pageLabel = `${template.pageCount} ${template.pageCount === 1 ? "strona" : "strony"}`;
+
+  return `<div class="form-quick-entry form-quick-entry-${compact ? "compact" : "catalog"}">
+    ${
+      compact
+        ? `<a class="form-inline-thumbnail" href="${firstPreviewPage}" rel="noreferrer" target="_blank">
+            <img src="${firstPreviewPage}" alt="Podgląd pierwszej strony: ${esc(template.title)}" decoding="async" loading="lazy">
+          </a>`
+        : ""
+    }
+    ${index !== undefined ? `<span class="form-number">${index + 1}</span>` : ""}
+    <div class="form-quick-copy">
+      <span class="form-code">${esc(template.code)}</span>
+      <div class="form-title-with-preview">
+        <a class="form-title-link" href="${formTemplateHref(template, prefix)}">${esc(template.title)}</a>
+        <aside class="form-hover-preview" aria-hidden="true">
+          <div><span>${esc(template.code)}</span><strong>DO WERYFIKACJI</strong></div>
+          <img src="${firstPreviewPage}" alt="" decoding="async" loading="lazy">
+          <p>Podgląd pierwszej strony</p>
+        </aside>
+      </div>
+      ${compact ? "" : `<p>${esc(template.summary)}</p>`}
+    </div>
+    <div class="form-quick-actions">
+      <span class="form-page-count">${pageLabel}</span>
+      <a class="form-quick-action form-preview-action" href="${firstPreviewPage}" rel="noreferrer" target="_blank">Podgląd PNG</a>
+      <a class="form-quick-action form-download-action" download href="${downloadUrl}">Pobierz DOCX</a>
+    </div>
+  </div>`;
+}
+
+function relatedFormsHtml(templates, prefix) {
+  if (!templates.length) return "";
+
+  return `<section class="related-forms related-forms-inline" aria-label="Wzory pism do dokumentu" id="zalaczniki">
+    <div class="section-heading"><p>Załączniki robocze</p><h2>Podgląd i pliki do pobrania</h2></div>
+    <div class="related-forms-list">
+      ${templates.map((template) => formQuickEntryHtml(template, prefix, { compact: true })).join("")}
+    </div>
+  </section>`;
+}
+
 function documentPage(document) {
   const prefix = relativePrefix(2);
+  const relatedTemplates = templatesForDocument(document.id);
+  const { beforeSources, sources } = relatedTemplates.length
+    ? splitBodyAtSources(document.body)
+    : { beforeSources: document.body, sources: "" };
   return shell({
     title: `${document.title} | Procedury Szkoły Mistrzów`,
     description: document.excerpt,
@@ -405,6 +492,7 @@ function documentPage(document) {
             <span class="pill">${esc(document.category)}</span>
             <span class="status status-${esc(document.status.replaceAll(" ", "-"))}">${esc(statusLabel(document.status))}</span>
             <div><p>Podstawa w statucie</p><strong>${esc(document.statuteRefs.join(", "))}</strong></div>
+            ${relatedTemplates.length ? '<a class="related-forms-jump" href="#zalaczniki">Przejdź do wzorów</a>' : ""}
             ${document.hasDownload && document.download ? `<a class="download-link" href="${fileHref(document.download, prefix)}">Pobierz plik źródłowy</a>` : ""}
           </aside>
           <article class="document-full">
@@ -414,9 +502,136 @@ function documentPage(document) {
                 ? `<div class="proposal-notice">To jest propozycja robocza przygotowana na podstawie kwerendy. Nie jest jeszcze aktem obowiązującym szkoły i wymaga konfrontacji z dokumentami ZSZ nr 5 oraz weryfikacji prawnej.</div>`
                 : ""
             }
-            <div class="document-reader document-reader-full">${structuredHtml(document.body)}</div>
+            <div class="document-reader document-reader-full">
+              ${structuredHtml(beforeSources)}
+              ${relatedFormsHtml(relatedTemplates, prefix)}
+              ${sources ? `<div class="document-reader-continuation">${structuredHtml(sources)}</div>` : ""}
+            </div>
           </article>
         </div>
+      </section>
+    </main>`,
+  });
+}
+
+function groupedFormTemplates() {
+  return Array.from(
+    formTemplates
+      .reduce((groups, template) => {
+        if (!groups.has(template.groupId)) {
+          groups.set(template.groupId, {
+            id: template.groupId,
+            title: template.groupTitle,
+            sourceDocumentId: template.sourceDocumentId,
+            sourceDocumentTitle: template.sourceDocumentTitle,
+            templates: [],
+          });
+        }
+        groups.get(template.groupId).templates.push(template);
+        return groups;
+      }, new Map())
+      .values(),
+  );
+}
+
+function formsIndexPage() {
+  const prefix = relativePrefix(1);
+  const groups = groupedFormTemplates();
+  const previewPageCount = formTemplates.reduce((total, template) => total + template.pageCount, 0);
+
+  return shell({
+    title: "Wzory pism i formularzy | Procedury Szkoły Mistrzów",
+    description: "Robocze wzory pism i formularzy ZSZ nr 5 z podglądami PNG i plikami Word.",
+    depth: 1,
+    body: `<main>
+      ${topbar(prefix, "wzory")}
+      <section class="forms-hero">
+        <p class="eyebrow">Materiały robocze ZSZ nr 5</p>
+        <h1>Wzory pism i formularzy</h1>
+        <p class="lead">Zestaw propozycji przygotowanych do procedur i instrukcji. Każdy wzór ma podgląd wszystkich stron, bezpośredni plik Word oraz wykaz źródeł wykorzystanych w kwerendzie.</p>
+        <div class="verification-banner"><strong>DO WERYFIKACJI</strong><span>Wzory nie są obowiązującymi dokumentami szkoły. Przed użyciem wymagają zatwierdzenia i dostosowania do konkretnej sprawy.</span></div>
+        <div class="forms-summary" aria-label="Podsumowanie wzorów">
+          <div><strong>${formTemplates.length}</strong><span>wzorów DOCX</span></div>
+          <div><strong>${groups.length}</strong><span>pakietów tematycznych</span></div>
+          <div><strong>${previewPageCount}</strong><span>stron podglądu</span></div>
+        </div>
+      </section>
+      <section class="forms-index" aria-label="Katalog wzorów">
+        ${groups
+          .map(
+            (group) => `<article class="forms-group" id="${esc(group.id)}">
+              <header class="forms-group-header">
+                <div><p>${esc(group.title)}</p><h2>${esc(group.sourceDocumentTitle)}</h2></div>
+                <a href="${prefix}dokumenty/${esc(group.sourceDocumentId)}/">Otwórz dokument źródłowy</a>
+              </header>
+              <div class="forms-list">
+                ${group.templates
+                  .map((template, index) => formQuickEntryHtml(template, prefix, { index }))
+                  .join("")}
+              </div>
+            </article>`,
+          )
+          .join("")}
+      </section>
+    </main>`,
+  });
+}
+
+function formTemplatePage(template) {
+  const prefix = relativePrefix(2);
+  const siblings = templatesForDocument(template.sourceDocumentId);
+
+  return shell({
+    title: `${template.title} | Wzory dokumentów ZSZ nr 5`,
+    description: template.summary,
+    depth: 2,
+    body: `<main>
+      ${topbar(prefix, "wzory")}
+      <section class="form-detail">
+        <aside class="form-detail-meta" aria-label="Informacje o wzorze">
+          <span class="status status-propozycja">propozycja</span>
+          <strong>${esc(template.code)}</strong>
+          <div><p>Pakiet</p><span>${esc(template.groupTitle)}</span></div>
+          <div><p>Liczba stron</p><span>${template.pageCount}</span></div>
+          <a class="primary-action" href="${fileHref(template.downloadUrl, prefix)}" download>Pobierz plik Word</a>
+          <a class="secondary-action" href="${prefix}dokumenty/${esc(template.sourceDocumentId)}/">Czytaj procedurę lub instrukcję</a>
+        </aside>
+        <article class="form-detail-main">
+          <p class="eyebrow">${esc(template.sourceDocumentTitle)}</p>
+          <h1>${esc(template.title)}</h1>
+          <p class="lead">${esc(template.summary)}</p>
+          <div class="verification-banner verification-banner-strong"><strong>DO WERYFIKACJI</strong><span>To propozycja tego, jak dokument może wyglądać. Nie jest jeszcze obowiązującym wzorem ZSZ nr 5 i wymaga sprawdzenia merytorycznego, prawnego oraz zatwierdzenia przez dyrektora.</span></div>
+          <section class="preview-section" aria-label="Podgląd dokumentu">
+            <div class="section-heading"><p>Szybki podgląd</p><h2>Wszystkie strony dokumentu</h2></div>
+            <div class="preview-pages">
+              ${template.previewPages
+                .map(
+                  (page, index) => `<figure class="preview-page">
+                    <img src="${fileHref(page, prefix)}" alt="${esc(template.title)} - podgląd strony ${index + 1} z ${template.pageCount}" loading="${index === 0 ? "eager" : "lazy"}">
+                    <figcaption>Strona ${index + 1} z ${template.pageCount}</figcaption>
+                  </figure>`,
+                )
+                .join("")}
+            </div>
+          </section>
+          <section class="research-section">
+            <div class="section-heading"><p>Kwerenda</p><h2>Podstawa opracowania</h2></div>
+            <p>Zakres pól wzoru opracowano na podstawie niżej wskazanych przepisów, materiałów urzędowych i przykładów szkolnych. Źródła służą do weryfikacji projektu, nie zastępują analizy konkretnej sprawy.</p>
+            <div class="research-links">
+              ${template.sources
+                .map((source) => `<a href="${esc(source.url)}" rel="noreferrer" target="_blank">${esc(source.label)}</a>`)
+                .join("")}
+            </div>
+          </section>
+          <nav class="sibling-forms" aria-label="Pozostałe wzory w pakiecie">
+            <h2>Pozostałe wzory w tym pakiecie</h2>
+            ${siblings
+              .map(
+                (item) => `<a class="${item.id === template.id ? "active" : ""}" href="${formTemplateHref(item, prefix)}"><span>${esc(item.code)}</span>${esc(item.title)}</a>`,
+              )
+              .join("")}
+          </nav>
+        </article>
       </section>
     </main>`,
   });
@@ -529,6 +744,13 @@ ensureDir(path.join(outputDir, "dokumenty"));
 for (const document of data.documents) {
   ensureDir(path.join(outputDir, "dokumenty", document.id));
   fs.writeFileSync(path.join(outputDir, "dokumenty", document.id, "index.html"), documentPage(document));
+}
+
+ensureDir(path.join(outputDir, "wzory"));
+fs.writeFileSync(path.join(outputDir, "wzory", "index.html"), formsIndexPage());
+for (const template of formTemplates) {
+  ensureDir(path.join(outputDir, "wzory", template.id));
+  fs.writeFileSync(path.join(outputDir, "wzory", template.id, "index.html"), formTemplatePage(template));
 }
 
 ensureDir(path.join(outputDir, "statut"));

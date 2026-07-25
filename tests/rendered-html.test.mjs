@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
@@ -194,4 +195,33 @@ test("links proposed form templates from their source procedure", async () => {
   assert.match(html, /href="\/previews\/wzory\/skreslenie-notatka-sluzbowa\/page-1\.png"/);
   assert.match(html, /download="" href="\/docs\/wzory\/PROC_03_Skreslenie_Ucznia\/01_Notatka_sluzbowa_o_zdarzeniu\.docx"/);
   assert.match(html, /Pobierz DOCX/);
+});
+
+test("builds the GitHub Pages version with embedded previews and form pages", async () => {
+  execFileSync(process.execPath, ["scripts/build-github-pages.mjs"], {
+    cwd: new URL("..", import.meta.url),
+    stdio: "pipe",
+  });
+
+  const procedureHtml = await readFile(
+    new URL("../_site/dokumenty/proc-indywidualne-nauczanie-propozycja/index.html", import.meta.url),
+    "utf8",
+  );
+  const formsIndexHtml = await readFile(new URL("../_site/wzory/index.html", import.meta.url), "utf8");
+  const formPageHtml = await readFile(
+    new URL("../_site/wzory/indywidualne-wniosek/index.html", import.meta.url),
+    "utf8",
+  );
+
+  const sectionStart = procedureHtml.indexOf("8. Wzory załączników do opracowania");
+  const embeddedForms = procedureHtml.indexOf("Podgląd i pliki do pobrania");
+  const sourcesStart = procedureHtml.indexOf("9. Źródła wykorzystane w kwerendzie");
+
+  assert.ok(sectionStart >= 0 && embeddedForms > sectionStart && sourcesStart > embeddedForms);
+  assert.equal((procedureHtml.match(/class="form-inline-thumbnail"/g) ?? []).length, 5);
+  assert.equal((procedureHtml.match(/Pobierz DOCX/g) ?? []).length, 5);
+  assert.match(procedureHtml, /href="\.\.\/\.\.\/previews\/wzory\/indywidualne-wniosek\/page-1\.png"/);
+  assert.match(procedureHtml, /download href="\.\.\/\.\.\/docs\/wzory\/PROC_04_Indywidualne_Nauczanie\/01_Wniosek_o_indywidualne_nauczanie\.docx"/);
+  assert.match(formsIndexHtml, /35<\/strong><span>wzorów DOCX/);
+  assert.match(formPageHtml, /Wszystkie strony dokumentu/);
 });
