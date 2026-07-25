@@ -18,6 +18,21 @@ export function FormTemplateQuickEntry({
 
   return (
     <div className={`form-quick-entry form-quick-entry-${variant}`}>
+      {variant === "compact" ? (
+        <a
+          className="form-inline-thumbnail"
+          href={firstPreviewPage}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img
+            src={firstPreviewPage}
+            alt={`Podgląd pierwszej strony: ${template.title}`}
+            decoding="async"
+            loading="lazy"
+          />
+        </a>
+      ) : null}
       {index !== undefined ? <span className="form-number">{index + 1}</span> : null}
       <div className="form-quick-copy">
         <span className="form-code">{template.code}</span>

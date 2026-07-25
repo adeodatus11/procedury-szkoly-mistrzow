@@ -11,6 +11,20 @@ type PageProps = {
   }>;
 };
 
+function splitBodyAtSources(body: string) {
+  const sourcesHeading = /\n(?=\s*\d+\.\s+Źródła wykorzystane w kwerendzie)/i;
+  const match = sourcesHeading.exec(body);
+
+  if (match?.index === undefined) {
+    return { beforeSources: body, sources: "" };
+  }
+
+  return {
+    beforeSources: body.slice(0, match.index).trimEnd(),
+    sources: body.slice(match.index).trimStart(),
+  };
+}
+
 export function generateStaticParams() {
   return documents.map((document) => ({
     documentId: document.id,
@@ -32,6 +46,9 @@ export default async function DocumentPage({ params }: PageProps) {
 
   if (!document) notFound();
   const relatedTemplates = templatesForDocument(document.id);
+  const { beforeSources, sources } = relatedTemplates.length
+    ? splitBodyAtSources(document.body)
+    : { beforeSources: document.body, sources: "" };
 
   return (
     <main>
@@ -61,6 +78,11 @@ export default async function DocumentPage({ params }: PageProps) {
               <p>Podstawa w statucie</p>
               <strong>{document.statuteRefs.join(", ")}</strong>
             </div>
+            {relatedTemplates.length ? (
+              <a className="related-forms-jump" href="#zalaczniki">
+                Przejdź do wzorów
+              </a>
+            ) : null}
             {document.hasDownload && document.download ? (
               <a className="download-link" href={document.download}>
                 Pobierz plik źródłowy
@@ -76,24 +98,35 @@ export default async function DocumentPage({ params }: PageProps) {
                 szkoły i wymaga konfrontacji z dokumentami ZSZ nr 5 oraz weryfikacji prawnej.
               </div>
             ) : null}
-            <div className="document-reader document-reader-full">{renderStructuredText(document.body)}</div>
-            {relatedTemplates.length ? (
-              <section className="related-forms" aria-label="Wzory pism do dokumentu">
-                <div className="section-heading">
-                  <p>Załączniki robocze</p>
-                  <h2>Propozycje wzorów pism i formularzy</h2>
+            <div className="document-reader document-reader-full">
+              {renderStructuredText(beforeSources)}
+              {relatedTemplates.length ? (
+                <section
+                  className="related-forms related-forms-inline"
+                  aria-label="Wzory pism do dokumentu"
+                  id="zalaczniki"
+                >
+                  <div className="section-heading">
+                    <p>Załączniki robocze</p>
+                    <h2>Podgląd i pliki do pobrania</h2>
+                  </div>
+                  <div className="related-forms-list">
+                    {relatedTemplates.map((template) => (
+                      <FormTemplateQuickEntry
+                        key={template.id}
+                        template={template}
+                        variant="compact"
+                      />
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+              {sources ? (
+                <div className="document-reader-continuation">
+                  {renderStructuredText(sources)}
                 </div>
-                <div className="related-forms-list">
-                  {relatedTemplates.map((template) => (
-                    <FormTemplateQuickEntry
-                      key={template.id}
-                      template={template}
-                      variant="compact"
-                    />
-                  ))}
-                </div>
-              </section>
-            ) : null}
+              ) : null}
+            </div>
           </article>
         </div>
       </section>

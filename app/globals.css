@@ -785,6 +785,22 @@ h1 {
   line-height: 1.45;
 }
 
+.related-forms-jump {
+  background: var(--surface);
+  border: 1px solid var(--blue);
+  border-radius: 6px;
+  color: var(--blue);
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.related-forms-jump:hover,
+.related-forms-jump:focus-visible {
+  background: #eef3ff;
+}
+
 .document-full {
   min-width: 0;
   padding: clamp(22px, 4vw, 44px);
@@ -1100,6 +1116,18 @@ h1 {
   padding-top: 34px;
 }
 
+.related-forms-inline {
+  background: #f7f8f4;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 24px 0 30px;
+  padding: 20px;
+}
+
+.related-forms-inline .section-heading h2 {
+  font-size: 1.4rem;
+}
+
 .related-forms-list {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1117,8 +1145,33 @@ h1 {
 
 .form-quick-entry-compact {
   background: var(--surface);
-  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
+  grid-template-columns: 84px minmax(0, 1fr) minmax(220px, auto);
   padding: 16px 18px;
+}
+
+.form-inline-thumbnail {
+  align-self: start;
+  background: #fff;
+  border: 1px solid #bfc4bd;
+  box-shadow: 0 5px 14px rgba(29, 37, 34, 0.12);
+  display: block;
+  width: 84px;
+}
+
+.form-inline-thumbnail:hover,
+.form-inline-thumbnail:focus-visible {
+  border-color: var(--green);
+  box-shadow: 0 7px 18px rgba(29, 37, 34, 0.18);
+}
+
+.form-inline-thumbnail img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.document-reader-continuation {
+  margin-top: 0;
 }
 
 .forms-hero,
@@ -1676,6 +1729,22 @@ h1 {
   .form-quick-entry,
   .verification-banner {
     grid-template-columns: 1fr;
+  }
+
+  .form-quick-entry-compact {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .form-quick-entry-compact .form-quick-actions {
+    grid-column: 1 / -1;
+  }
+
+  .form-inline-thumbnail {
+    width: 72px;
+  }
+
+  .related-forms-inline {
+    padding: 14px;
   }
 
   .missing-item strong,

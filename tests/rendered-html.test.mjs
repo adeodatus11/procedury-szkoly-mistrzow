@@ -71,6 +71,25 @@ test("server-renders a full proposed procedure page", async () => {
   assert.match(html, /Źródła wykorzystane w kwerendzie/);
 });
 
+test("embeds individual teaching templates directly under the attachments section", async () => {
+  const response = await render("/dokumenty/proc-indywidualne-nauczanie-propozycja");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const sectionStart = html.indexOf("8. Wzory załączników do opracowania");
+  const embeddedForms = html.indexOf("Podgląd i pliki do pobrania");
+  const sourcesStart = html.indexOf("9. Źródła wykorzystane w kwerendzie");
+
+  assert.ok(sectionStart >= 0);
+  assert.ok(embeddedForms > sectionStart);
+  assert.ok(sourcesStart > embeddedForms);
+  assert.match(html, /href="#zalaczniki">Przejdź do wzorów/);
+  assert.match(html, /id="zalaczniki"/);
+  assert.match(html, /class="form-inline-thumbnail"/);
+  assert.match(html, /Podgląd pierwszej strony: Wniosek o organizację indywidualnego nauczania/);
+  assert.match(html, /download="" href="\/docs\/wzory\/PROC_04_Indywidualne_Nauczanie\/01_Wniosek_o_indywidualne_nauczanie\.docx"/);
+});
+
 test("server-renders markdown tables as readable HTML tables", async () => {
   const response = await render("/dokumenty/proc-ppp");
   assert.equal(response.status, 200);
@@ -169,7 +188,7 @@ test("links proposed form templates from their source procedure", async () => {
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /Propozycje wzorów pism i formularzy/);
+  assert.match(html, /Podgląd i pliki do pobrania/);
   assert.match(html, /href="\/wzory\/skreslenie-notatka-sluzbowa"/);
   assert.match(html, /href="\/wzory\/skreslenie-decyzja"/);
   assert.match(html, /href="\/previews\/wzory\/skreslenie-notatka-sluzbowa\/page-1\.png"/);
