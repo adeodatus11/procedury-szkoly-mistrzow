@@ -1,0 +1,315 @@
+{
+  "verifiedAsOf": "30 lipca 2026 r.",
+  "majorChanges": [
+    {
+      "id": "ppp-consolidation",
+      "title": "Scalenie zasad pomocy psychologiczno-pedagogicznej w § 14",
+      "leadEntryId": "statute-15",
+      "entryIds": [
+        "statute-15",
+        "statute-16",
+        "statute-17",
+        "statute-18",
+        "statute-19",
+        "statute-20",
+        "statute-21",
+        "statute-22",
+        "statute-23",
+        "statute-24",
+        "statute-25",
+        "statute-26",
+        "statute-27",
+        "statute-28"
+      ],
+      "summary": "Zmiana zastępuje rozbudowany rozdział obejmujący §§ 14-25a jednym paragrafem opisującym sposób organizacji pomocy w ZSZ nr 5. Katalogi form pomocy, osób inicjujących i szczegółowych czynności pozostają w rozporządzeniu oraz szkolnej procedurze, dzięki czemu ich zmiana nie będzie wymagała każdorazowej nowelizacji statutu.",
+      "legalBasis": "Art. 98 ust. 1 pkt 4 Prawa oświatowego wymaga, aby statut określał cele i zadania szkoły oraz sposób ich wykonywania, w tym sposób udzielania pomocy psychologiczno-pedagogicznej. Rozporządzenie w sprawie PPP szczegółowo określa dobrowolność i nieodpłatność pomocy, odpowiedzialność dyrektora, formy pomocy, podmioty współpracujące oraz tok jej planowania. Przepis nie nakazuje scalenia rozdziału, ale pozwala pozostawić w statucie szkolny sposób realizacji zadania bez przepisywania całego rozporządzenia.",
+      "editorialDecision": "Scalenie jest decyzją redakcyjną, a nie obowiązkiem ustawowym. Zachowano elementy właściwe dla ZSZ nr 5: odpowiedzialność dyrektora, współpracę ze specjalistami i poradniami, dobrowolność pomocy, odwołanie do szkolnej procedury oraz powiązanie dokumentacji z systemem kancelaryjno-archiwalnym.",
+      "sourceShape": "Proponowany § 14 powstał przez zestawienie aktualnych §§ 14-25a z obowiązującą Procedurą udzielania PPP w ZSZ nr 5. Z publikacji „Statut Nieumarły” zaczerpnięto wyłącznie zasadę redakcyjną ograniczania powtórzeń przepisów powszechnie obowiązujących; tekst paragrafu nie jest kopią wzoru.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Prawo oświatowe, art. 98 ust. 1 pkt 4",
+          "url": "https://eli.gov.pl/api/acts/DU/2026/820/text.pdf#page=85",
+          "note": "Zakres zadania, który statut musi opisać."
+        },
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie w sprawie pomocy psychologiczno-pedagogicznej, w szczególności §§ 2-6 i 20",
+          "url": "https://eli.gov.pl/api/acts/DU/2023/1798/text.html",
+          "note": "Formy, odpowiedzialność i tok organizowania PPP."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Procedura udzielania pomocy psychologiczno-pedagogicznej uczniom",
+          "url": "/dokumenty/proc-ppp/",
+          "note": "Źródło szkolnego podziału odpowiedzialności i obiegu informacji."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, s. 22-24 - granice materii statutowej i unikanie powtórzeń",
+          "url": "https://static.sus.org.pl/statut.pdf#page=22",
+          "note": "Źródło metody uproszczenia, nie wiążąca podstawa prawna."
+        }
+      ]
+    },
+    {
+      "id": "individual-teaching-consolidation",
+      "title": "Scalenie organizacji indywidualnego nauczania w § 26",
+      "leadEntryId": "statute-29",
+      "entryIds": [
+        "statute-29",
+        "statute-30",
+        "statute-31",
+        "statute-32",
+        "statute-33",
+        "statute-34",
+        "statute-35",
+        "statute-36",
+        "statute-37",
+        "statute-38",
+        "statute-39"
+      ],
+      "summary": "Jedenaście paragrafów zastąpiono jednym przepisem, który wskazuje szkolny tok uruchomienia i dokumentowania indywidualnego nauczania. Wymiar godzin, miejsce prowadzenia zajęć, możliwość kontaktu ze szkołą oraz zawieszenie lub zakończenie nauczania nadal wynikają bezpośrednio z rozporządzenia i orzeczenia ucznia.",
+      "legalBasis": "Art. 127 ust. 20 Prawa oświatowego przekazuje ministrowi określenie sposobu i trybu organizowania indywidualnego nauczania. Rozporządzenie stanowi m.in., że dyrektor uzgadnia zakres i czas zajęć z organem prowadzącym, zasięga opinii rodziców albo pełnoletniego ucznia co do czasu zajęć, powierza zajęcia nauczycielom i zapewnia ich prowadzenie w miejscu pobytu ucznia. Dlatego poprawiono propozycję tak, aby nie przedstawiała miejsca, wymiaru i nauczycieli jako elementów uzgadnianych wyłącznie z rodzicami.",
+      "editorialDecision": "Scalenie nie jest wymagane przez ustawę. Jest propozycją ograniczenia ryzyka, że statut zachowa nieaktualne liczby godzin lub niepełny katalog przypadków po kolejnej zmianie rozporządzenia. W statucie pozostawiono kwestie właściwe dla zespołu szkół zawodowych, w tym sposób realizacji praktycznej nauki zawodu, dokumentowanie i odesłanie do lokalnej procedury.",
+      "sourceShape": "Nowe brzmienie § 26 oparto na obowiązującym rozporządzeniu oraz roboczej Procedurze organizacji indywidualnego nauczania w ZSZ nr 5. Układ jednego przepisu odsyłającego do aktu wykonawczego i procedury jest autorskim rozwiązaniem dla ZSZ nr 5, zgodnym z minimalistyczną metodą opisaną w „Statucie Nieumarłym”.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Prawo oświatowe, art. 127 ust. 20",
+          "url": "https://eli.gov.pl/api/acts/DU/2026/820/text.pdf#page=105",
+          "note": "Delegacja do określenia organizacji indywidualnego nauczania w rozporządzeniu."
+        },
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie w sprawie indywidualnego nauczania, §§ 3-12",
+          "url": "https://eli.gov.pl/api/acts/DU/2023/2468/text.html",
+          "note": "Zakres i czas zajęć, miejsce, nauczyciele, wymiar godzin oraz zakończenie nauczania."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Procedura organizacji indywidualnego nauczania - propozycja robocza",
+          "url": "/dokumenty/proc-indywidualne-nauczanie-propozycja/",
+          "note": "Źródło lokalnego obiegu orzeczenia, odpowiedzialności i wzorów pism."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, s. 22-24 - niewprowadzanie do statutu kopii rozporządzenia",
+          "url": "https://static.sus.org.pl/statut.pdf#page=22",
+          "note": "Inspiracja redakcyjna, nie źródło obowiązku prawnego."
+        }
+      ]
+    },
+    {
+      "id": "prevention-program-update",
+      "title": "Przebudowa § 72 o programie wychowawczo-profilaktycznym",
+      "leadEntryId": "statute-77",
+      "entryIds": ["statute-77"],
+      "summary": "Paragraf zmienia podmiot uchwalający program, wprowadza coroczną diagnozę i usuwa czteroletni cykl zatwierdzania. Doprecyzowano również, że ustawowy obowiązek realizacji programu dotyczy Technikum nr 5 i Branżowej Szkoły I stopnia nr 5, a nie Branżowej Szkoły II stopnia nr 5.",
+      "legalBasis": "Art. 26 ust. 1-3 Prawa oświatowego określa treść programu, coroczną diagnozę oraz odpowiedzialność dyrektora za jej przeprowadzenie. Art. 26 ust. 4 wyłącza stosowanie tych przepisów m.in. do branżowych szkół II stopnia. Art. 84 ust. 2 pkt 1 i ust. 3 stanowi, że program uchwala rada rodziców w porozumieniu z radą pedagogiczną, a przy braku porozumienia w terminie 30 dni ustala go dyrektor w uzgodnieniu z organem nadzoru pedagogicznego.",
+      "editorialDecision": "Roczny plan działań, uwzględnienie praktycznej nauki zawodu oraz udział samorządu uczniowskiego w monitorowaniu nie są wprost nakazane w art. 26 i 84. Są lokalną propozycją wykonawczą dla technikum i branżowej szkoły I stopnia, która ma połączyć coroczną diagnozę z konkretnymi działaniami szkoły.",
+      "sourceShape": "Brzmienie ust. 1-3 wynika bezpośrednio z art. 26 i 84. Ust. 4-5 opracowano na podstawie istniejącego Programu wychowawczo-profilaktycznego ZSZ nr 5 i szkolnej specyfiki kształcenia zawodowego. Modelowy § 16 „Statutu Nieumarłego” posłużył jako przykład krótkiego wskazania roli programu w dokumentacji szkoły.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Prawo oświatowe, art. 26 ust. 1-4",
+          "url": "https://eli.gov.pl/api/acts/DU/2026/820/text.pdf#page=24",
+          "note": "Treść programu, coroczna diagnoza i wyłączenie branżowej szkoły II stopnia."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Prawo oświatowe, art. 84 ust. 2 pkt 1 i ust. 3",
+          "url": "https://eli.gov.pl/api/acts/DU/2026/820/text.pdf#page=74",
+          "note": "Podmiot uchwalający program i tryb na wypadek braku porozumienia."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Program wychowawczo-profilaktyczny ZSZ nr 5",
+          "url": "/dokumenty/pwp/",
+          "note": "Źródło lokalnych obszarów działania; dokument nadal wymaga uzupełnienia."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, § 16 i komentarz, s. 37 i 79",
+          "url": "https://static.sus.org.pl/statut.pdf#page=37",
+          "note": "Przykład zwięzłego opisania funkcji programu w statucie."
+        }
+      ]
+    },
+    {
+      "id": "teaching-documentation-simplification",
+      "title": "Uproszczenie § 77 o dokumentacji przebiegu nauczania",
+      "leadEntryId": "statute-83",
+      "entryIds": ["statute-83"],
+      "summary": "Usunięto zamknięty, techniczny wykaz teczek i miejsc przechowywania. Paragraf pozostawia obowiązek prowadzenia wymaganej dokumentacji, odpowiedzialność dyrektora, ochronę danych i odesłanie do szkolnego systemu kancelaryjno-archiwalnego.",
+      "legalBasis": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania szczegółowo określa rodzaje ksiąg, dzienników, arkuszy i innych dokumentów oraz w § 26 przypisuje dyrektorowi odpowiedzialność za ich właściwe prowadzenie i przechowywanie. Ustawa archiwalna nakazuje samorządowej jednostce organizacyjnej ewidencję, przechowywanie i ochronę dokumentacji. Przepisy te nie wymagają wpisywania do statutu nazw konkretnych teczek ani pomieszczeń.",
+      "editorialDecision": "Odejście od sztywnego wykazu jest decyzją redakcyjną. Ma zapobiec rozbieżności między statutem, rozporządzeniem dokumentacyjnym, faktycznym obiegiem elektronicznym i instrukcją kancelaryjną. Zachowano możliwość określenia niezbędnej dokumentacji roboczej, ale bez tworzenia w statucie dodatkowego katalogu formularzy.",
+      "sourceShape": "Nowy § 77 opracowano przez połączenie obowiązków z rozporządzenia dokumentacyjnego z zakresem przygotowanej dla ZSZ nr 5 Instrukcji kancelaryjnej, obiegu dokumentów i archiwizacji. Z „Statutu Nieumarłego” wykorzystano model krótkiego odesłania do odrębnych przepisów, bez kopiowania jego brzmienia.",
+      "sources": [
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie w sprawie dokumentacji przebiegu nauczania, w szczególności §§ 8, 11 i 26",
+          "url": "https://eli.gov.pl/api/acts/DU/2024/50/text.html",
+          "note": "Rodzaje dokumentacji oraz odpowiedzialność dyrektora."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o narodowym zasobie archiwalnym i archiwach, art. 6",
+          "url": "https://eli.gov.pl/api/acts/DU/2020/164/text/U/D20200164Lj.pdf#page=7",
+          "note": "Ewidencja, przechowywanie, ochrona dokumentacji i przepisy kancelaryjno-archiwalne."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji - propozycja robocza",
+          "url": "/dokumenty/ins-kancelaryjna-propozycja/",
+          "note": "Docelowe miejsce dla technicznych zasad obiegu i przechowywania."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, § 28 i § 63, s. 90 i 145",
+          "url": "https://static.sus.org.pl/statut.pdf#page=90",
+          "note": "Przykład ograniczenia statutu do normy i odesłania."
+        }
+      ]
+    },
+    {
+      "id": "educational-assessment-rebuild",
+      "title": "Przebudowa zasad oceniania edukacyjnego i trybu podwyższania oceny",
+      "leadEntryId": "statute-104",
+      "entryIds": ["statute-104", "statute-107"],
+      "summary": "Zmiana usuwa automatyczne progi średniej ważonej i techniczne reguły dziennika, ale zachowuje skalę 1-6, szkolne formy sprawdzania, terminy prac oraz specyfikę kształcenia zawodowego. Równocześnie zastępuje warunki frekwencyjne dla uzyskania oceny wyższej niż przewidywana trybem opartym na sprawdzeniu wymagań edukacyjnych oraz rozdziela klasyfikację roczną uczniów od klasyfikacji semestralnej słuchaczy branżowej szkoły II stopnia.",
+      "legalBasis": "Art. 44b ust. 3 ustawy o systemie oświaty opisuje ocenianie jako rozpoznawanie przez nauczyciela poziomu i postępów ucznia w odniesieniu do wymagań. Art. 44b ust. 6 pkt 6 nakazuje ustalić w statucie warunki i tryb uzyskania oceny wyższej niż przewidywana, a art. 44h ust. 1 powierza ustalenie oceny nauczycielowi. Art. 44s-44x przewidują odrębny, semestralny system klasyfikowania słuchaczy branżowej szkoły II stopnia. Przepisy nie zakazują stosowania wag ani średniej jako informacji pomocniczej, ale też nie nakazują, aby wynik algorytmu automatycznie wyznaczał ocenę klasyfikacyjną.",
+      "editorialDecision": "Rezygnacja z automatyzmu średniej ważonej jest świadomą propozycją pedagogiczną i redakcyjną, nie literalnym nakazem ustawy. Ma pozostawić nauczycielowi odpowiedzialność za ocenę poziomu i postępów, a uczniowi czytelne wymagania oraz realny tryb wykazania ich spełnienia. Zachowano lokalne terminy, poprawy i formy praktyczne potrzebne w technikum i szkole branżowej.",
+      "sourceShape": "Proponowany § 98 jest autorskim rozwiązaniem pośrednim: nie przejmuje bezstopniowego modelu „Statutu Nieumarłego”, lecz wykorzystuje jego nacisk na informację zwrotną i ocenę procesu, pozostawiając dotychczasową skalę ZSZ nr 5. § 101 zestawiono również z istniejącą szkolną procedurą egzaminów, aby odróżnić zwykły tryb podwyższenia oceny od egzaminów przewidzianych ustawą.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44b ust. 3, 5, 6 i 10",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=57",
+          "note": "Istota i cele oceniania oraz zakres regulacji statutowej."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44g-44h",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=62",
+          "note": "Oceny przewidywane i odpowiedzialność nauczyciela za ocenę klasyfikacyjną."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44s-44x",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=70",
+          "note": "Odrębne zasady oceniania i klasyfikacji semestralnej słuchaczy branżowej szkoły II stopnia."
+        },
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie w sprawie oceniania, w szczególności §§ 7 i 12, z późniejszymi zmianami",
+          "url": "https://eli.gov.pl/eli/DU/2023/2572/ogl",
+          "note": "Skala rocznych ocen oraz cel oceniania bieżącego."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Procedura egzaminu klasyfikacyjnego, poprawkowego i komisyjnego sprawdzianu",
+          "url": "/dokumenty/proc-egzaminy-klasyfikacyjne-poprawkowe/",
+          "note": "Źródło rozgraniczenia szkolnego trybu od formalnych egzaminów."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, §§ 38-44 i komentarze, s. 107-118",
+          "url": "https://static.sus.org.pl/statut.pdf#page=107",
+          "note": "Inspiracja dla oceny jakościowej i informacji zwrotnej; nie przejęto modelu w całości."
+        }
+      ]
+    },
+    {
+      "id": "behaviour-assessment-rebuild",
+      "title": "Zastąpienie punktowego systemu oceny zachowania kryteriami jakościowymi",
+      "leadEntryId": "statute-113",
+      "entryIds": [
+        "statute-106",
+        "statute-113",
+        "statute-114",
+        "statute-115",
+        "statute-116",
+        "statute-117"
+      ],
+      "summary": "Zmiana usuwa przeliczanie opinii, pochwał, uwag, frekwencji i pojedynczych zdarzeń na punkty. Ocenę ustala wychowawca na podstawie kryteriów opisowych, samooceny ucznia i opinii wymaganych ustawą, z zachowaniem informacji od pracodawcy lub opiekuna praktyk właściwej dla szkoły zawodowej.",
+      "legalBasis": "Art. 44b ust. 4 ustawy o systemie oświaty definiuje ocenianie zachowania jako rozpoznawanie stopnia respektowania zasad i obowiązków przez wychowawcę, nauczycieli i uczniów. Art. 44h ust. 1 powierza ostateczne ustalenie oceny wychowawcy po zasięgnięciu wymaganych opinii. § 11 rozporządzenia określa siedem obszarów oceny i skalę roczną. Żaden z tych przepisów nie nakazuje ani nie zakazuje systemu punktowego. Art. 44s ust. 2 stanowi natomiast wprost, że w branżowej szkole II stopnia nie ocenia się zachowania słuchacza.",
+      "editorialDecision": "Odejście od punktów jest propozycją modelu jakościowego, a nie korektą wymuszoną jednym przepisem. Uzasadnieniem jest lepsze powiązanie oceny z ustawowym „rozpoznawaniem” zachowania i ograniczenie automatycznych skutków pojedynczych zdarzeń. Kryteria nadal obejmują wszystkie obszary z § 11 rozporządzenia, a rozwiązanie zachowuje specyfikę praktycznej nauki zawodu i wyłącza słuchaczy branżowej szkoły II stopnia.",
+      "sourceShape": "Punktem wyjścia są obecne kryteria w § 106 Statutu ZSZ nr 5. Model jakościowy i rezygnację z taryfikatora zainspirował § 37 wraz z komentarzem na s. 103-106 „Statutu Nieumarłego”. Propozycja ZSZ nr 5 jest szersza od wzoru: zachowuje sześciostopniową skalę, lokalny tryb opiniowania i informację z praktycznej nauki zawodu.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44b ust. 4 i 6",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=57",
+          "note": "Definicja oceniania zachowania i obowiązek określenia kryteriów w statucie."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44h ust. 1",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=62",
+          "note": "Ostateczną ocenę zachowania ustala wychowawca po zasięgnięciu wymaganych opinii."
+        },
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o systemie oświaty, art. 44s ust. 2",
+          "url": "https://eli.gov.pl/api/acts/DU/2025/881/text/U/D20250881Lj.pdf#page=70",
+          "note": "W branżowej szkole II stopnia nie ocenia się zachowania słuchacza."
+        },
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie w sprawie oceniania, § 11, z późniejszymi zmianami",
+          "url": "https://eli.gov.pl/api/acts/DU/2023/2572/text.html",
+          "note": "Obowiązkowe obszary oceny zachowania i skala roczna."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Aktualny Statut ZSZ nr 5, § 106",
+          "url": "/statut/rozdzial-14-szczegolowe-warunki-i-sposob-oceniania-wewnatrzszkolnego-uczniow/#statute-112",
+          "note": "Źródło zachowanych lokalnych kryteriów opisowych i skali."
+        },
+        {
+          "kind": "Wzorzec redakcyjny",
+          "label": "Statut Nieumarły, § 37 i komentarze, s. 103-106",
+          "url": "https://static.sus.org.pl/statut.pdf#page=103",
+          "note": "Jawne źródło pomysłu odejścia od systemu punktowego."
+        }
+      ]
+    },
+    {
+      "id": "documentation-system-consolidation",
+      "title": "Ujęcie kancelarii, obiegu i archiwizacji w jednym systemie dokumentacji",
+      "leadEntryId": "statute-145",
+      "entryIds": ["statute-145"],
+      "summary": "Paragraf porządkuje rozproszone odesłania do instrukcji kancelaryjnej, obiegu dokumentów i archiwizacji. Szkoła ma stosować jeden spójny pakiet regulacji, ale z wyraźnie wyodrębnioną instrukcją kancelaryjną, JRWA oraz instrukcją składnicy akt, ponieważ ustawa traktuje je jako trzy wymagane elementy.",
+      "legalBasis": "Art. 6 ust. 1 ustawy o narodowym zasobie archiwalnym i archiwach nakazuje właściwą ewidencję, przechowywanie i ochronę dokumentacji. Art. 6 ust. 2 wymienia odrębnie instrukcję kancelaryjną, jednolity rzeczowy wykaz akt i instrukcję w sprawie organizacji i zakresu działania archiwum zakładowego albo składnicy akt oraz przewiduje ich uzgodnienie z Naczelnym Dyrektorem Archiwów Państwowych. Rozporządzenie z 20 października 2015 r. określa m.in. budowę JRWA i tryb brakowania.",
+      "editorialDecision": "Prawo nie nakazuje wydania tych trzech elementów jako jednego pliku ani pod jedną nazwą. „Jeden system” jest propozycją organizacyjną ZSZ nr 5: wspólny dokument lub pakiet może ograniczyć sprzeczności, pod warunkiem że trzy wymagane części pozostaną jednoznacznie wyodrębnione i zostaną prawidłowo uzgodnione. Jest to zatem rozwiązanie do konfrontacji z organem prowadzącym i właściwym Archiwum Państwowym.",
+      "sourceShape": "Proponowane brzmienie § 136 oraz nazwa systemu pochodzą z roboczej Instrukcji kancelaryjnej, obiegu dokumentów i archiwizacji ZSZ nr 5. Układ części prawnych zweryfikowano według ustawy archiwalnej i materiałów Archiwów Państwowych; to one mają pierwszeństwo przed wygodą redakcyjną jednego szkolnego pliku.",
+      "sources": [
+        {
+          "kind": "Ustawa",
+          "label": "Ustawa o narodowym zasobie archiwalnym i archiwach, art. 6 ust. 1-2",
+          "url": "https://eli.gov.pl/api/acts/DU/2020/164/text/U/D20200164Lj.pdf#page=7",
+          "note": "Trzy wymagane elementy przepisów kancelaryjno-archiwalnych i tryb ich uzgodnienia."
+        },
+        {
+          "kind": "Rozporządzenie",
+          "label": "Rozporządzenie MKiDN z 20 października 2015 r., w szczególności §§ 1-3",
+          "url": "https://eli.gov.pl/api/acts/DU/2015/1743/text.html",
+          "note": "Klasyfikacja, kwalifikacja, JRWA, przekazywanie i brakowanie dokumentacji."
+        },
+        {
+          "kind": "Źródło urzędowe",
+          "label": "Archiwa Państwowe - przepisy kancelaryjne i archiwalne",
+          "url": "https://archiwa.gov.pl/poznaj/dla-instytucji-i-firm/zarzadzanie-dokumentacja/przepisy-kancelaryjne-i-archiwalne/",
+          "note": "Urzędowe objaśnienie trzech elementów i ich uzgadniania."
+        },
+        {
+          "kind": "Dokument ZSZ5",
+          "label": "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji - propozycja robocza",
+          "url": "/dokumenty/ins-kancelaryjna-propozycja/",
+          "note": "Źródłowy dokument proponowanego szkolnego układu."
+        }
+      ]
+    }
+  ]
+}

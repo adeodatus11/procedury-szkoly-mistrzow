@@ -1,4 +1,5 @@
 import { getStructuredLineClassName } from "../../content-utils";
+import { StatuteMajorChangeJustification } from "../../statute-major-change-justification";
 import { buildInlineDiff, buildTextDiff } from "../../statute-diff.mjs";
 import { statuteProposalMeta } from "../../statute-proposals";
 import { statuteChangeEntries } from "../../statute-change-register";
@@ -66,6 +67,7 @@ export default function PrintableChangesPage() {
               <p className="statute-rationale">{entry.rationale}</p>
             </section>
           </div>
+          <StatuteMajorChangeJustification context={entry.majorChange} />
         </article>
       ))}
     </main>

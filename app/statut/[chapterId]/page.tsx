@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { siteStats, statuteChapters } from "../../content";
 import { getStructuredLineClassName, renderStructuredText, statuteChapterHref } from "../../content-utils";
 import { buildInlineDiff, buildTextDiff } from "../../statute-diff.mjs";
+import { StatuteMajorChangeJustification } from "../../statute-major-change-justification";
+import { getStatuteMajorChange } from "../../statute-major-changes";
 import {
   getStatuteProposal,
   statuteProposalChangeCount,
@@ -161,6 +163,7 @@ export default async function StatuteChapterPage({ params }: PageProps) {
                       )}
                     </div>
                     {proposal.rationale ? <p className="statute-rationale">{proposal.rationale}</p> : null}
+                    <StatuteMajorChangeJustification context={getStatuteMajorChange(section.id)} />
                   </section>
                 </article>
               );

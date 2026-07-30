@@ -1,4 +1,5 @@
 import { statuteChapters } from "./content";
+import { getStatuteMajorChange, type StatuteMajorChangeContext } from "./statute-major-changes";
 import { getStatuteProposal } from "./statute-proposals";
 
 export type StatuteChangeEntry = {
@@ -12,6 +13,7 @@ export type StatuteChangeEntry = {
   kind: "legal-update" | "simplification" | "consolidation";
   label: string;
   rationale: string;
+  majorChange?: StatuteMajorChangeContext;
 };
 
 export const statuteChangeEntries: StatuteChangeEntry[] = statuteChapters.flatMap((chapter) =>
@@ -30,6 +32,7 @@ export const statuteChangeEntries: StatuteChangeEntry[] = statuteChapters.flatMa
       kind: proposal.kind,
       label: proposal.label,
       rationale: proposal.rationale,
+      majorChange: getStatuteMajorChange(section.id),
     }];
   }),
 );

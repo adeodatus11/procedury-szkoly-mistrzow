@@ -27,7 +27,7 @@ try {
     displayHeaderFooter: true,
     headerTemplate: "<span></span>",
     footerTemplate:
-      '<div style="box-sizing:border-box;color:#555;font-family:Arial,sans-serif;font-size:8px;padding:0 12mm;text-align:right;width:100%;">Strona <span class="pageNumber"></span> z <span class="totalPages"></span></div>',
+      '<div style="box-sizing:border-box;color:#555;font-family:Arial,sans-serif;font-size:8px;text-align:center;width:100%;">Strona <span class="pageNumber"></span> z <span class="totalPages"></span></div>',
     margin: {
       top: "12mm",
       right: "12mm",

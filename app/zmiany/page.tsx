@@ -1,4 +1,5 @@
 import { statuteProposalMeta } from "../statute-proposals";
+import { statuteMajorChanges } from "../statute-major-changes";
 import { statuteChangeEntries, statuteChangeKinds } from "../statute-change-register";
 import { ChangeRegister } from "./change-register";
 
@@ -14,7 +15,8 @@ export default function ChangesPage() {
         <h1>Rejestr proponowanych zmian</h1>
         <p className="lead">
           Po lewej stronie znajduje się aktualna treść paragrafu, a po prawej proponowane brzmienie. Każdą
-          pozycję można również otworzyć w kontekście właściwego rozdziału statutu.
+          pozycję można również otworzyć w kontekście właściwego rozdziału statutu. Przy {statuteMajorChanges.length}{" "}
+          zmianach dużego zakresu dodano osobne uzasadnienie, podstawy prawne i dokumenty źródłowe.
         </p>
         <div className="verification-banner">
           <strong>PROPOZYCJA ROBOCZA</strong>

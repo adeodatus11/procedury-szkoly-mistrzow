@@ -13,6 +13,9 @@ const formTemplates = JSON.parse(
 const statuteProposalData = JSON.parse(
   fs.readFileSync(path.join(siteRoot, "app", "statute-proposals-data.json"), "utf8"),
 );
+const statuteMajorChangeData = JSON.parse(
+  fs.readFileSync(path.join(siteRoot, "app", "statute-major-changes.json"), "utf8"),
+);
 const globalSearchDataPath = path.join(publicDir, "global-search-data.json");
 const buildVersion = JSON.parse(fs.readFileSync(globalSearchDataPath, "utf8"))
   .generatedAt.replace(/\D/g, "");
@@ -136,6 +139,47 @@ const statuteChangeEntries = data.statuteChapters.flatMap((chapter) =>
     }];
   }),
 );
+
+const statuteMajorChangeByEntryId = new Map();
+for (const change of statuteMajorChangeData.majorChanges) {
+  for (const entryId of change.entryIds) statuteMajorChangeByEntryId.set(entryId, change);
+}
+
+function majorChangeJustificationHtml(entryId, prefix) {
+  const change = statuteMajorChangeByEntryId.get(entryId);
+  if (!change) return "";
+
+  if (change.leadEntryId !== entryId) {
+    return `<p class="major-change-reference"><strong>Część zmiany dużego zakresu.</strong> <a data-major-change-reference href="${prefix}zmiany/#change-${esc(change.leadEntryId)}">Zobacz szczegółowe uzasadnienie i źródła przy zmianie głównej.</a></p>`;
+  }
+
+  const sources = change.sources.map((source) => {
+    const external = /^https?:\/\//.test(source.url);
+    const href = external ? source.url : fileHref(source.url, prefix);
+    return `<li>
+      <span>${esc(source.kind)}</span>
+      <div>
+        <a href="${esc(href)}"${external ? ' rel="noreferrer" target="_blank"' : ""}>${esc(source.label)}</a>
+        <p>${esc(source.note)}</p>
+      </div>
+    </li>`;
+  }).join("");
+
+  return `<section class="major-change-justification" id="justification-${esc(change.id)}">
+    <header class="major-change-heading">
+      <div><span>Zmiana dużego zakresu</span><h3>Szczegółowe uzasadnienie</h3></div>
+      <small>Źródła sprawdzone: ${esc(statuteMajorChangeData.verifiedAsOf)}</small>
+    </header>
+    <h4>${esc(change.title)}</h4>
+    <p class="major-change-summary">${esc(change.summary)}</p>
+    <dl class="major-change-reasons">
+      <div><dt>Co wynika z prawa</dt><dd>${esc(change.legalBasis)}</dd></div>
+      <div><dt>Decyzja redakcyjna</dt><dd>${esc(change.editorialDecision)}</dd></div>
+      <div><dt>Źródło proponowanego kształtu</dt><dd>${esc(change.sourceShape)}</dd></div>
+    </dl>
+    <div class="major-change-sources"><h4>Źródła przypisane do tej zmiany</h4><ul>${sources}</ul></div>
+  </section>`;
+}
 
 function splitBodyAtSources(body) {
   const sourcesHeading = /\n(?=\s*\d+\.\s+Źródła wykorzystane w kwerendzie)/i;
@@ -620,6 +664,20 @@ const siteJs = `(() => {
         });
       });
     });
+
+    document.querySelectorAll("[data-major-change-reference]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const targetUrl = new URL(link.href, window.location.href);
+        if (targetUrl.pathname !== window.location.pathname) return;
+
+        event.preventDefault();
+        const allButton = document.querySelector('[data-change-filter="all"]');
+        if (allButton && !allButton.classList.contains("active")) allButton.click();
+        const target = document.querySelector(targetUrl.hash);
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.replaceState(null, "", targetUrl.hash);
+      });
+    });
   }
 })();`;
 
@@ -941,6 +999,7 @@ function statuteChapterPage(chapter) {
                     <h2>${proposal.changed ? statuteDiffSegmentsHtml(buildInlineDiff(section.title, proposal.title)) : esc(proposal.title)}</h2>
                     <div class="reader-text">${proposal.changed ? statuteDiffBodyHtml(section.body, proposal.body) : structuredHtml(proposal.body)}</div>
                     ${proposal.rationale ? `<p class="statute-rationale">${esc(proposal.rationale)}</p>` : ""}
+                    ${majorChangeJustificationHtml(section.id, prefix)}
                   </section>
                 </article>`;
               })
@@ -968,7 +1027,7 @@ function changesPage() {
       <section class="changes-hero">
         <p class="eyebrow">Centrum zmian statutu</p>
         <h1>Rejestr proponowanych zmian</h1>
-        <p class="lead">Po lewej stronie znajduje się aktualna treść paragrafu, a po prawej proponowane brzmienie. Każdą pozycję można również otworzyć w kontekście właściwego rozdziału statutu.</p>
+        <p class="lead">Po lewej stronie znajduje się aktualna treść paragrafu, a po prawej proponowane brzmienie. Każdą pozycję można również otworzyć w kontekście właściwego rozdziału statutu. Przy ${statuteMajorChangeData.majorChanges.length} zmianach dużego zakresu dodano osobne uzasadnienie, podstawy prawne i dokumenty źródłowe.</p>
         <div class="verification-banner"><strong>PROPOZYCJA ROBOCZA</strong><span>${esc(statuteProposalData.notice)}</span></div>
         <div class="statute-diff-legend changes-diff-legend" aria-label="Legenda oznaczeń zmian">
           <strong>Oznaczenia zmian:</strong>
@@ -1014,6 +1073,7 @@ function changesPage() {
                 <p class="statute-rationale">${esc(entry.rationale)}</p>
               </section>
             </div>
+            ${majorChangeJustificationHtml(entry.id, prefix)}
           </article>`).join("")}
         </div>
       </section>
@@ -1052,6 +1112,7 @@ function printableChangesPage() {
             <p class="statute-rationale">${esc(entry.rationale)}</p>
           </section>
         </div>
+        ${majorChangeJustificationHtml(entry.id, prefix)}
       </article>`).join("")}
     </main>`,
   });

@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type MouseEvent } from "react";
 import { getStructuredLineClassName, renderStructuredText } from "../content-utils";
+import { StatuteMajorChangeJustification } from "../statute-major-change-justification";
 import { buildInlineDiff, buildTextDiff } from "../statute-diff.mjs";
 import type { StatuteChangeEntry } from "../statute-change-register";
 
@@ -42,6 +43,16 @@ export function ChangeRegister({ entries }: Props) {
     () => entries.filter((entry) => filter === "all" || entry.kind === filter),
     [entries, filter],
   );
+
+  function showMajorChange(event: MouseEvent<HTMLAnchorElement>, leadEntryId: string) {
+    event.preventDefault();
+    setFilter("all");
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById(`change-${leadEntryId}`);
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", `#change-${leadEntryId}`);
+    });
+  }
 
   return (
     <>
@@ -99,6 +110,14 @@ export function ChangeRegister({ entries }: Props) {
                 <p className="statute-rationale">{entry.rationale}</p>
               </section>
             </div>
+            <StatuteMajorChangeJustification
+              context={entry.majorChange}
+              onReferenceClick={
+                entry.majorChange
+                  ? (event) => showMajorChange(event, entry.majorChange.change.leadEntryId)
+                  : undefined
+              }
+            />
           </article>
         ))}
       </div>

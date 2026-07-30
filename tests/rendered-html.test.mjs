@@ -98,6 +98,31 @@ test("keeps statute proposals aligned with existing sections and links outside t
   );
 });
 
+test("keeps major-change rationales complete and assigned to existing proposals", async () => {
+  const data = JSON.parse(await readFile(new URL("../public/search-data.json", import.meta.url), "utf8"));
+  const proposals = JSON.parse(await readFile(new URL("../app/statute-proposals-data.json", import.meta.url), "utf8"));
+  const majorChanges = JSON.parse(await readFile(new URL("../app/statute-major-changes.json", import.meta.url), "utf8"));
+  const sectionIds = new Set(data.statuteChapters.flatMap((chapter) => chapter.sections.map((section) => section.id)));
+  const assignedEntryIds = majorChanges.majorChanges.flatMap((change) => change.entryIds);
+
+  assert.equal(majorChanges.verifiedAsOf, "30 lipca 2026 r.");
+  assert.equal(majorChanges.majorChanges.length, 7);
+  assert.equal(new Set(assignedEntryIds).size, assignedEntryIds.length);
+  assert.ok(assignedEntryIds.every((id) => sectionIds.has(id) && proposals.proposals[id]));
+  assert.ok(majorChanges.majorChanges.every((change) => change.entryIds.includes(change.leadEntryId)));
+  assert.ok(
+    majorChanges.majorChanges.every(
+      (change) =>
+        change.summary &&
+        change.legalBasis &&
+        change.editorialDecision &&
+        change.sourceShape &&
+        change.sources.length >= 4 &&
+        change.sources.every((source) => source.kind && source.label && source.url && source.note),
+    ),
+  );
+});
+
 test("server-renders a full proposed procedure page", async () => {
   const response = await render("/dokumenty/proc-indywidualne-nauczanie-propozycja");
   assert.equal(response.status, 200);
@@ -232,10 +257,11 @@ test("proposes one coherent documentation and archival system", async () => {
   const section = html.slice(sectionStart, sectionEnd);
 
   assert.ok(sectionStart >= 0 && sectionEnd > sectionStart);
-  assert.match(section, /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/);
+  assert.match(section, /jeden spójny system kancelaryjny, obiegu dokumentów i archiwizacji dokumentacji szkolnej/);
+  assert.match(section, /instrukcję kancelaryjną/);
   assert.match(section, /jednolity rzeczowy wykaz akt/);
-  assert.match(section, /instrukcja organizacji i zakresu działania składnicy akt/);
-  assert.match(section, /właściwym Archiwum Państwowym/);
+  assert.match(section, /instrukcję w sprawie organizacji i zakresu działania składnicy akt/);
+  assert.match(section, /Naczelnym Dyrektorem Archiwów Państwowych/);
   assert.match(section, /statute-diff-added/);
 });
 
@@ -342,8 +368,18 @@ test("server-renders the change center, print report, and ZIP packages", async (
   assert.match(changesHtml, /statute-diff-removed/);
   assert.match(changesHtml, /statute-diff-changed/);
   assert.match(changesHtml, /statute-diff-added/);
+  assert.match(changesHtml, /Przy (?:<!-- -->)?7(?:<!-- -->)? (?:<!-- -->)?zmianach dużego zakresu/);
+  assert.equal((changesHtml.match(/class="major-change-justification"/g) ?? []).length, 7);
+  assert.match(changesHtml, /Co wynika z prawa/);
+  assert.match(changesHtml, /Decyzja redakcyjna/);
+  assert.match(changesHtml, /Źródło proponowanego kształtu/);
+  assert.match(changesHtml, /Prawo oświatowe, art\. 127 ust\. 20/);
+  assert.match(changesHtml, /https:\/\/eli\.gov\.pl\/api\/acts\/DU\/2026\/820\/text\.pdf#page=105/);
+  assert.match(changesHtml, /Dokument ZSZ5/);
+  assert.match(changesHtml, /data-major-change-reference/);
   assert.match(printHtml, /Wykaz proponowanych zmian statutu/);
   assert.equal((printHtml.match(/class="print-change"/g) ?? []).length, 39);
+  assert.equal((printHtml.match(/class="major-change-justification"/g) ?? []).length, 7);
   assert.match(packagesHtml, /Paczki wzorów dokumentów/);
   assert.match(packagesHtml, /wzory-wszystkie\.zip/);
   assert.match(packagesHtml, /35<\/strong><span>wzorów DOCX/);
@@ -417,8 +453,10 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   assert.match(statuteChapterHtml, /statute-diff-added/);
   assert.match(
     statuteChapterHtml,
-    /jedna Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej/,
+    /jeden spójny system kancelaryjny, obiegu dokumentów i archiwizacji dokumentacji szkolnej/,
   );
+  assert.match(statuteChapterHtml, /class="major-change-justification"/);
+  assert.match(statuteChapterHtml, /Ustawa o narodowym zasobie archiwalnym i archiwach, art\. 6 ust\. 1-2/);
   assert.match(statuteChapterHtml, /data-print-mode="comparison"/);
   assert.equal((changesHtml.match(/class="change-entry /g) ?? []).length, 39);
   assert.equal((changesHtml.match(/class="change-entry-comparison"/g) ?? []).length, 39);
@@ -427,6 +465,8 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   assert.match(changesHtml, /statute-diff-removed/);
   assert.match(changesHtml, /statute-diff-changed/);
   assert.match(changesHtml, /statute-diff-added/);
+  assert.equal((changesHtml.match(/class="major-change-justification"/g) ?? []).length, 7);
+  assert.match(changesHtml, /Źródła przypisane do tej zmiany/);
   assert.match(packagesHtml, /packages\/wzory-wszystkie\.zip/);
   assert.match(globalScript, /global-search-data\.json/);
 
