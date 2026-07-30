@@ -13,12 +13,24 @@ export default function ChangesPage() {
         <p className="eyebrow">Centrum zmian statutu</p>
         <h1>Rejestr proponowanych zmian</h1>
         <p className="lead">
-          Jedno zestawienie wszystkich proponowanych aktualizacji, uproszczeń i scaleń. Każda pozycja prowadzi
-          bezpośrednio do właściwego paragrafu w porównaniu rozdziałowym.
+          Po lewej stronie znajduje się aktualna treść paragrafu, a po prawej proponowane brzmienie. Każdą
+          pozycję można również otworzyć w kontekście właściwego rozdziału statutu.
         </p>
         <div className="verification-banner">
           <strong>PROPOZYCJA ROBOCZA</strong>
           <span>{statuteProposalMeta.notice}</span>
+        </div>
+        <div className="statute-diff-legend changes-diff-legend" aria-label="Legenda oznaczeń zmian">
+          <strong>Oznaczenia zmian:</strong>
+          <span>
+            <span className="statute-diff statute-diff-removed">tekst usunięty</span>
+          </span>
+          <span>
+            <span className="statute-diff statute-diff-changed">tekst zmieniony</span>
+          </span>
+          <span>
+            <span className="statute-diff statute-diff-added">tekst nowy</span>
+          </span>
         </div>
         <div className="change-summary" aria-label="Podsumowanie zmian">
           <div>

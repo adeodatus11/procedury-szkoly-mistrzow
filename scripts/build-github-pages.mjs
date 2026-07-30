@@ -968,8 +968,14 @@ function changesPage() {
       <section class="changes-hero">
         <p class="eyebrow">Centrum zmian statutu</p>
         <h1>Rejestr proponowanych zmian</h1>
-        <p class="lead">Jedno zestawienie wszystkich proponowanych aktualizacji, uproszczeń i scaleń. Każda pozycja prowadzi bezpośrednio do właściwego paragrafu w porównaniu rozdziałowym.</p>
+        <p class="lead">Po lewej stronie znajduje się aktualna treść paragrafu, a po prawej proponowane brzmienie. Każdą pozycję można również otworzyć w kontekście właściwego rozdziału statutu.</p>
         <div class="verification-banner"><strong>PROPOZYCJA ROBOCZA</strong><span>${esc(statuteProposalData.notice)}</span></div>
+        <div class="statute-diff-legend changes-diff-legend" aria-label="Legenda oznaczeń zmian">
+          <strong>Oznaczenia zmian:</strong>
+          <span><span class="statute-diff statute-diff-removed">tekst usunięty</span></span>
+          <span><span class="statute-diff statute-diff-changed">tekst zmieniony</span></span>
+          <span><span class="statute-diff statute-diff-added">tekst nowy</span></span>
+        </div>
         <div class="change-summary" aria-label="Podsumowanie zmian">
           <div><strong>${statuteChangeEntries.length}</strong><span>proponowanych zmian</span></div>
           ${kinds.map((kind) => `<div><strong>${statuteChangeEntries.filter((entry) => entry.kind === kind.id).length}</strong><span>${esc(kind.label.toLocaleLowerCase("pl"))}</span></div>`).join("")}
@@ -988,13 +994,25 @@ function changesPage() {
         </div>
         <div class="change-register" aria-live="polite">
           ${statuteChangeEntries.map((entry, index) => `<article class="change-entry change-${esc(entry.kind)}" data-change-kind="${esc(entry.kind)}" id="change-${esc(entry.id)}">
-            <div class="change-entry-number">${String(index + 1).padStart(2, "0")}</div>
-            <div class="change-entry-copy">
-              <div class="change-entry-meta"><span>${esc(entry.label)}</span><strong>${esc(entry.chapterTitle)}</strong></div>
-              <h2>${esc(entry.currentTitle)}</h2>
-              ${entry.proposedTitle !== entry.currentTitle ? `<p class="change-proposed-title">Proponowany tytuł: ${esc(entry.proposedTitle)}</p>` : ""}
-              <p>${esc(entry.rationale)}</p>
-              <a href="${prefix}statut/${esc(entry.chapterId)}/#${esc(entry.id)}">Otwórz porównanie w rozdziale</a>
+            <header class="change-entry-header">
+              <div class="change-entry-number">${String(index + 1).padStart(2, "0")}</div>
+              <div class="change-entry-copy">
+                <div class="change-entry-meta"><span>${esc(entry.label)}</span><strong>${esc(entry.chapterTitle)}</strong></div>
+                <a class="change-entry-link" href="${prefix}statut/${esc(entry.chapterId)}/#${esc(entry.id)}">Otwórz zmianę w rozdziale</a>
+              </div>
+            </header>
+            <div class="change-entry-comparison">
+              <section class="statute-version statute-version-current" aria-label="Aktualne brzmienie ${esc(entry.currentTitle)}">
+                <div class="statute-version-heading"><span>Aktualne brzmienie</span><small>tekst z 15.10.2025 r.</small></div>
+                <h2>${esc(entry.currentTitle)}</h2>
+                <div class="reader-text">${structuredHtml(entry.currentBody)}</div>
+              </section>
+              <section class="statute-version statute-version-proposed proposal-${esc(entry.kind)}" aria-label="Proponowane brzmienie ${esc(entry.proposedTitle)}">
+                <div class="statute-version-heading"><span>Proponowane brzmienie</span><small>${esc(entry.label)}</small></div>
+                <h2>${statuteDiffSegmentsHtml(buildInlineDiff(entry.currentTitle, entry.proposedTitle))}</h2>
+                <div class="reader-text">${statuteDiffBodyHtml(entry.currentBody, entry.proposedBody)}</div>
+                <p class="statute-rationale">${esc(entry.rationale)}</p>
+              </section>
             </div>
           </article>`).join("")}
         </div>

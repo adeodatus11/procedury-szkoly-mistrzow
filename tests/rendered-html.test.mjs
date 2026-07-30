@@ -336,6 +336,12 @@ test("server-renders the change center, print report, and ZIP packages", async (
   assert.match(changesHtml, /39<\/strong><span>proponowanych zmian/);
   assert.match(changesHtml, /href="\/statut\/rozdzial-1-przepisy-definiujace\/#statute-1"/);
   assert.match(changesHtml, /Wykaz_proponowanych_zmian_statutu_ZSZ5\.pdf/);
+  assert.match(changesHtml, /change-entry-comparison/);
+  assert.match(changesHtml, /Aktualne brzmienie/);
+  assert.match(changesHtml, /Proponowane brzmienie/);
+  assert.match(changesHtml, /statute-diff-removed/);
+  assert.match(changesHtml, /statute-diff-changed/);
+  assert.match(changesHtml, /statute-diff-added/);
   assert.match(printHtml, /Wykaz proponowanych zmian statutu/);
   assert.equal((printHtml.match(/class="print-change"/g) ?? []).length, 39);
   assert.match(packagesHtml, /Paczki wzorów dokumentów/);
@@ -415,6 +421,12 @@ test("builds the GitHub Pages version with embedded previews and form pages", as
   );
   assert.match(statuteChapterHtml, /data-print-mode="comparison"/);
   assert.equal((changesHtml.match(/class="change-entry /g) ?? []).length, 39);
+  assert.equal((changesHtml.match(/class="change-entry-comparison"/g) ?? []).length, 39);
+  assert.match(changesHtml, /Aktualne brzmienie/);
+  assert.match(changesHtml, /Proponowane brzmienie/);
+  assert.match(changesHtml, /statute-diff-removed/);
+  assert.match(changesHtml, /statute-diff-changed/);
+  assert.match(changesHtml, /statute-diff-added/);
   assert.match(packagesHtml, /packages\/wzory-wszystkie\.zip/);
   assert.match(globalScript, /global-search-data\.json/);
 
