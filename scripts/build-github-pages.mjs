@@ -19,6 +19,25 @@ const statuteMajorChangeData = JSON.parse(
 const globalSearchDataPath = path.join(publicDir, "global-search-data.json");
 const buildVersion = JSON.parse(fs.readFileSync(globalSearchDataPath, "utf8"))
   .generatedAt.replace(/\D/g, "");
+const documentAttachments = {
+  "ins-kancelaryjna-propozycja": [
+    {
+      href: "/docs/instrukcje/INS_01_Schemat_obiegu_dokumentow.svg",
+      label: "Schemat obiegu dokumentów",
+      note: "Grafika SVG pokazująca obieg dokumentów przychodzących, wychodzących i sekretariatu uczniowskiego.",
+    },
+    {
+      href: "/docs/ewidencja/Ewidencja_dokumentow_ZSZ5.xlsx",
+      label: "Ewidencja dokumentów ZSZ5",
+      note: "Skoroszyt Excel z rejestrem dokumentów przychodzących i wychodzących/wytworzonych.",
+    },
+    {
+      href: "/docs/ewidencja/jednolity_wykaz_akt_UMWroc.xlsx",
+      label: "Jednolity wykaz akt",
+      note: "Roboczy słownik klasyfikacyjny użyty w ewidencji dokumentów.",
+    },
+  ],
+};
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -726,10 +745,41 @@ function relatedFormsHtml(templates, prefix) {
   </section>`;
 }
 
+function documentAttachmentsHtml(attachments, prefix) {
+  if (!attachments.length) return "";
+
+  return `<div class="document-attachments">
+    ${attachments
+      .map(
+        (attachment) =>
+          `<a class="document-attachment" href="${fileHref(attachment.href, prefix)}"><strong>${esc(attachment.label)}</strong><span>${esc(attachment.note)}</span></a>`,
+      )
+      .join("")}
+  </div>`;
+}
+
+function documentRelatedContentHtml(templates, attachments, prefix) {
+  if (!templates.length && !attachments.length) return "";
+
+  return `<section class="related-forms related-forms-inline" aria-label="Załączniki do dokumentu" id="zalaczniki">
+    <div class="section-heading"><p>Załączniki robocze</p><h2>Podgląd i pliki do pobrania</h2></div>
+    ${documentAttachmentsHtml(attachments, prefix)}
+    ${
+      templates.length
+        ? `<div class="related-forms-list">${templates
+            .map((template) => formQuickEntryHtml(template, prefix, { compact: true }))
+            .join("")}</div>`
+        : ""
+    }
+  </section>`;
+}
+
 function documentPage(document) {
   const prefix = relativePrefix(2);
   const relatedTemplates = templatesForDocument(document.id);
-  const { beforeSources, sources } = relatedTemplates.length
+  const attachments = documentAttachments[document.id] || [];
+  const hasRelatedContent = relatedTemplates.length || attachments.length;
+  const { beforeSources, sources } = hasRelatedContent
     ? splitBodyAtSources(document.body)
     : { beforeSources: document.body, sources: "" };
   return shell({
@@ -744,7 +794,13 @@ function documentPage(document) {
             <span class="pill">${esc(document.category)}</span>
             <span class="status status-${esc(document.status.replaceAll(" ", "-"))}">${esc(statusLabel(document.status))}</span>
             <div><p>Podstawa w statucie</p><strong>${esc(document.statuteRefs.join(", "))}</strong></div>
-            ${relatedTemplates.length ? '<a class="related-forms-jump" href="#zalaczniki">Przejdź do wzorów</a>' : ""}
+            ${
+              hasRelatedContent
+                ? `<a class="related-forms-jump" href="#zalaczniki">${
+                    attachments.length ? "Przejdź do załączników" : "Przejdź do wzorów"
+                  }</a>`
+                : ""
+            }
             ${document.hasDownload && document.download ? `<a class="download-link" href="${fileHref(document.download, prefix)}">Pobierz plik źródłowy</a>` : ""}
           </aside>
           <article class="document-full">
@@ -756,7 +812,7 @@ function documentPage(document) {
             }
             <div class="document-reader document-reader-full">
               ${structuredHtml(beforeSources)}
-              ${relatedFormsHtml(relatedTemplates, prefix)}
+              ${documentRelatedContentHtml(relatedTemplates, attachments, prefix)}
               ${sources ? `<div class="document-reader-continuation">${structuredHtml(sources)}</div>` : ""}
             </div>
           </article>
