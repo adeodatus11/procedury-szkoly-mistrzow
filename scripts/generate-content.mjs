@@ -85,8 +85,8 @@ const sourceFiles = [
     id: "ins-kancelaryjna-propozycja",
     title: "Instrukcja kancelaryjna, obiegu dokumentów i archiwizacji dokumentacji szkolnej",
     category: "Instrukcje",
-    source: "instrukcje/INS_01_Instrukcja_Kancelaryjna_Obieg_Archiwizacja_Propozycja.md",
-    download: "",
+    source: "instrukcje/INS_01_Instrukcja_Kancelaryjna_ZSZ5_robocza.md",
+    download: "/docs/instrukcje/INS_01_Instrukcja_Kancelaryjna_ZSZ5_robocza.docx",
     statuteRefs: ["§ 21", "§ 39 ust. 3 pkt 7", "§ 77", "§ 136", "§ 137"],
     status: "propozycja",
   },
@@ -317,8 +317,10 @@ function parseStatuteSections(markdown) {
 const docs = sourceFiles.map((item) => {
   const markdown = readSource(item.source);
   const heading = markdown.match(/^#\s+(.+)$/m)?.[1]?.trim();
-  const sourceDocx = item.download ? path.basename(item.download) : "";
-  const hasDownload = sourceDocx ? fs.existsSync(path.join(publicDocs, sourceDocx)) || item.id === "statut" : false;
+  const downloadPath = item.download?.startsWith("/docs/")
+    ? path.join(publicDocs, item.download.slice("/docs/".length))
+    : "";
+  const hasDownload = downloadPath ? fs.existsSync(downloadPath) || item.id === "statut" : false;
   return {
     ...item,
     title: heading || item.title,

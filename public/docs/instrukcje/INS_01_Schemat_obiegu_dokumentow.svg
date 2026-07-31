@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Schemat obiegu dokumentów w ZSZ nr 5</title>
+  <desc id="desc">Schemat pokazuje obieg dokumentów przychodzących, wychodzących i dokumentów sekretariatu uczniowskiego: rejestrację, numerację, skan PDF, dekretację i zapis we właściwym folderze.</desc>
+  <defs>
+    <style>
+      .page { fill: #f7f8fb; }
+      .title { font: 700 36px Arial, sans-serif; fill: #111827; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #4b5563; }
+      .lane-title { font: 700 22px Arial, sans-serif; fill: #111827; }
+      .step-title { font: 700 17px Arial, sans-serif; fill: #111827; }
+      .step-text { font: 400 14px Arial, sans-serif; fill: #374151; }
+      .small { font: 400 13px Arial, sans-serif; fill: #4b5563; }
+      .lane-in { fill: #eef7ff; stroke: #9cc7e8; stroke-width: 1.4; }
+      .lane-out { fill: #f2fbf4; stroke: #9fd6a7; stroke-width: 1.4; }
+      .lane-student { fill: #fff7ed; stroke: #f2bd80; stroke-width: 1.4; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.6; rx: 8; }
+      .box-in { stroke: #4f93c5; }
+      .box-out { stroke: #4f9a62; }
+      .box-student { stroke: #d18b35; }
+      .decision { fill: #ffffff; stroke: #4f93c5; stroke-width: 1.6; }
+      .arrow { fill: none; stroke: #64748b; stroke-width: 2.2; marker-end: url(#arrowHead); }
+      .arrow-yes { fill: none; stroke: #2f7a47; stroke-width: 2.2; marker-end: url(#arrowHeadGreen); }
+      .arrow-no { fill: none; stroke: #b45309; stroke-width: 2.2; marker-end: url(#arrowHeadOrange); }
+      .tag { font: 700 12px Arial, sans-serif; fill: #ffffff; }
+      .tag-bg-green { fill: #2f7a47; rx: 10; }
+      .tag-bg-orange { fill: #b45309; rx: 10; }
+      .footer { font: 400 13px Arial, sans-serif; fill: #64748b; }
+    </style>
+    <marker id="arrowHead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowHeadGreen" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#2f7a47"/>
+    </marker>
+    <marker id="arrowHeadOrange" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <rect class="page" x="0" y="0" width="1600" height="1120"/>
+
+  <text class="title" x="70" y="58">Schemat obiegu dokumentów</text>
+  <text class="subtitle" x="70" y="90">Ewidencja elektroniczna, numer pisma, skan PDF i folder dokumentów</text>
+  <text class="subtitle" x="70" y="116">dla korespondencji wpływającej, wychodzącej i wytworzonej w szkole</text>
+
+  <rect class="lane-in" x="50" y="150" width="1500" height="470" rx="14"/>
+  <text class="lane-title" x="80" y="188">1. Dokument wpływający</text>
+
+  <rect class="box box-in" x="80" y="220" width="205" height="92"/>
+  <text class="step-title" x="104" y="252">Wpływ pisma</text>
+  <text class="step-text" x="104" y="278">papier, e-mail, ePUAP,</text>
+  <text class="step-text" x="104" y="300">e-Doręczenia, osobiście</text>
+
+  <path class="arrow" d="M285 266 H345"/>
+  <rect class="box box-in" x="345" y="220" width="205" height="92"/>
+  <text class="step-title" x="369" y="252">Skan PDF</text>
+  <text class="step-text" x="369" y="278">dla dokumentu</text>
+  <text class="step-text" x="369" y="300">papierowego</text>
+
+  <path class="arrow" d="M550 266 H610"/>
+  <rect class="box box-in" x="610" y="220" width="255" height="92"/>
+  <text class="step-title" x="634" y="252">Wpis do ewidencji</text>
+  <text class="step-text" x="634" y="278">arkusz: Dokumenty</text>
+  <text class="step-text" x="634" y="300">przychodzące</text>
+
+  <path class="arrow" d="M865 266 H925"/>
+  <rect class="box box-in" x="925" y="220" width="225" height="92"/>
+  <text class="step-title" x="949" y="252">Numer pisma</text>
+  <text class="step-text" x="949" y="278">nadany z ewidencji</text>
+  <text class="step-text" x="949" y="300">i oznaczony na dokumencie</text>
+
+  <path class="arrow" d="M1150 266 H1210"/>
+  <polygon class="decision" points="1310,205 1415,266 1310,327 1205,266"/>
+  <text class="step-title" x="1251" y="258">Czy typ i dział</text>
+  <text class="step-title" x="1266" y="281">są jasne?</text>
+
+  <rect class="tag-bg-green" x="1118" y="364" width="68" height="24"/>
+  <text class="tag" x="1138" y="381">TAK</text>
+  <path class="arrow-yes" d="M1270 316 C1225 355 1185 375 1140 395"/>
+  <rect class="box box-in" x="885" y="390" width="285" height="100"/>
+  <text class="step-title" x="909" y="422">Właściwy folder</text>
+  <text class="step-text" x="909" y="448">według typu pisma</text>
+  <text class="step-text" x="909" y="470">i działu z wykazu akt</text>
+
+  <rect class="tag-bg-orange" x="1388" y="364" width="62" height="24"/>
+  <text class="tag" x="1405" y="381">NIE</text>
+  <path class="arrow-no" d="M1350 316 C1395 355 1420 374 1420 395"/>
+  <rect class="box box-in" x="1225" y="390" width="285" height="100"/>
+  <text class="step-title" x="1249" y="422">Dekretacja</text>
+  <text class="step-text" x="1249" y="448">dyrektor albo osoba</text>
+  <text class="step-text" x="1249" y="470">upoważniona wskazuje tok sprawy</text>
+
+  <path class="arrow" d="M1028 490 V545 H1188"/>
+  <path class="arrow" d="M1368 490 V545 H1222"/>
+  <rect class="box box-in" x="1060" y="530" width="310" height="68"/>
+  <text class="step-title" x="1084" y="558">Lokalizacja i sprawa</text>
+  <text class="step-text" x="1084" y="584">folder w ewidencji oraz kompletność akt</text>
+
+  <rect class="lane-out" x="50" y="650" width="1500" height="260" rx="14"/>
+  <text class="lane-title" x="80" y="688">2. Dokument wychodzący albo wytworzony</text>
+
+  <rect class="box box-out" x="80" y="725" width="190" height="92"/>
+  <text class="step-title" x="104" y="757">Przygotowanie</text>
+  <text class="step-text" x="104" y="783">pismo robocze,</text>
+  <text class="step-text" x="104" y="805">uzgodnienia, korekty</text>
+
+  <path class="arrow" d="M270 771 H322"/>
+  <rect class="box box-out" x="322" y="725" width="230" height="92"/>
+  <text class="step-title" x="346" y="757">Wpis do ewidencji</text>
+  <text class="step-text" x="346" y="783">arkusz: wychodzące</text>
+  <text class="step-text" x="346" y="805">i wytworzone</text>
+
+  <path class="arrow" d="M552 771 H604"/>
+  <rect class="box box-out" x="604" y="725" width="205" height="92"/>
+  <text class="step-title" x="628" y="757">Numer w nagłówku</text>
+  <text class="step-text" x="628" y="783">numer pisma z ewidencji</text>
+  <text class="step-text" x="628" y="805">przed utrwaleniem</text>
+
+  <path class="arrow" d="M809 771 H861"/>
+  <rect class="box box-out" x="861" y="725" width="220" height="92"/>
+  <text class="step-title" x="885" y="757">Podpis</text>
+  <text class="step-text" x="885" y="783">dyrektor / osoba upoważniona</text>
+  <text class="step-text" x="885" y="805">elektronicznie albo ręcznie</text>
+
+  <path class="arrow" d="M1081 771 H1133"/>
+  <rect class="box box-out" x="1133" y="725" width="190" height="92"/>
+  <text class="step-title" x="1157" y="757">PDF końcowy</text>
+  <text class="step-text" x="1157" y="783">podpisany PDF albo</text>
+  <text class="step-text" x="1157" y="805">skan podpisanego pisma</text>
+
+  <path class="arrow" d="M1323 771 H1375"/>
+  <rect class="box box-out" x="1375" y="725" width="130" height="92"/>
+  <text class="step-title" x="1399" y="757">Folder</text>
+  <text class="step-text" x="1399" y="783">korespondencji</text>
+  <text class="step-text" x="1399" y="805">wychodzącej</text>
+
+  <text class="small" x="322" y="864">Lokalizacja podpisanego pliku PDF jest wpisywana w ewidencji dokumentów.</text>
+
+  <rect class="lane-student" x="50" y="940" width="1500" height="125" rx="14"/>
+  <text class="lane-title" x="80" y="980">3. Sekretariat uczniowski</text>
+  <rect class="box box-student" x="460" y="958" width="1030" height="82"/>
+  <text class="step-title" x="488" y="987">Ta sama zasada dla dokumentacji uczniowskiej</text>
+  <text class="step-text" x="488" y="1013">Każdy dokument wpływający, wychodzący albo wytworzony jest ewidencjonowany,</text>
+  <text class="step-text" x="488" y="1035">numerowany, skanowany do PDF i zapisywany we właściwym folderze.</text>
+
+  <text class="footer" x="70" y="1100">Załącznik do instrukcji kancelaryjnej ZSZ nr 5. Pliki końcowe w obiegu kancelaryjnym: nieedytowalne PDF-y powiązane z numerem pisma i wpisem w ewidencji.</text>
+</svg>
