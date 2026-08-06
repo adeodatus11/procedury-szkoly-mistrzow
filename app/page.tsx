@@ -87,6 +87,9 @@ export default function Home() {
               <a className="secondary-action" href="./wzory/">
                 Przeglądaj wzory pism
               </a>
+              <a className="secondary-action" href="./kancelaria.html">
+                Instrukcja kancelarii
+              </a>
               <a className="secondary-action" href="./zmiany/">
                 Centrum zmian
               </a>

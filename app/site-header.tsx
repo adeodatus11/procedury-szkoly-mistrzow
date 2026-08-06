@@ -24,6 +24,7 @@ function normalize(value: string) {
 const links = [
   { href: "/#dokumenty", label: "Dokumenty", section: "" },
   { href: "/statut", label: "Statut", section: "/statut" },
+  { href: "/kancelaria.html", label: "Kancelaria", section: "/kancelaria.html" },
   { href: "/zmiany", label: "Zmiany", section: "/zmiany" },
   { href: "/wzory", label: "Wzory", section: "/wzory" },
   { href: "/pakiety", label: "Paczki ZIP", section: "/pakiety" },
